@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import userAvatar from './images/user_avatar.jpg';
@@ -19,7 +20,24 @@ import NoFriends from "./pages/NoFriends/NoFriends";
 import Friends from "./pages/Friends/Friends";
 
 function App() {
+  const [userName, setUserName] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Получаем параметр telegramId из URL
+    const queryParams = new URLSearchParams(window.location.search);
+    const telegramId = queryParams.get('telegramId');
+
+    if (telegramId) {
+      // Получаем данные пользователя
+      fetch(`/api/user/${telegramId}`)
+        .then(response => response.json())
+        .then(data => {
+          setUserName(data.firstName); // Устанавливаем имя пользователя в состояние
+        })
+        .catch(error => console.error('Ошибка при загрузке данных пользователя:', error));
+    }
+  }, []);
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -28,7 +46,7 @@ function App() {
   return (
       <div className='appWrapper'>
         <header className='headerWrapper'>
-            <p className='userName'>John</p>
+            <p className='userName'>{userName}</p>
             <div className='userAvatarWrapper'>
                 <img className='userAvatarImg' src={userAvatar} alt="userAvatar"/>
             </div>
@@ -81,6 +99,5 @@ function App() {
       </div>
   );
 }
-
 
 export default App;
