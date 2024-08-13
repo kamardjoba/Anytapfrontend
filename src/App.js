@@ -21,27 +21,31 @@ import Friends from "./pages/Friends/Friends";
 
 function App() {
     
+    const [userInfo, setUserInfo] = useState({ firstName: '', coins: 0 });
 
-  const [userName, setUserName] = useState('');
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Получаем параметр telegramId из URL
-    const queryParams = new URLSearchParams(window.location.search);
-    const telegramId = queryParams.get('telegramId');
-
-    if (telegramId) {
-      // Получаем данные пользователя
-      fetch(`https://anypatbackend-production.up.railway.app/api/user/${telegramId}`)
-
-        .then(response => response.json())
-        .then(data => {
-          setUserName(data.firstName); // Устанавливаем имя пользователя в состояние
-        })
-        .catch(error => console.error('Ошибка при загрузке данных пользователя:', error));
-    }
-  }, []);
-
+    useEffect(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const telegramId = urlParams.get('telegramId');
+  
+      if (telegramId) {
+        fetch(`https://твой-домен.com/user-info?telegramId=${telegramId}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              setUserInfo({
+                firstName: data.firstName,
+                coins: data.coins
+              });
+            } else {
+              console.error('Ошибка при получении данных о пользователе:', data.message);
+            }
+          })
+          .catch(error => {
+            console.error('Ошибка при запросе:', error);
+          });
+      }
+    }, []);
+ 
   const handleNavigation = (path) => {
     navigate(path);
   };
@@ -49,7 +53,7 @@ function App() {
   return (
       <div className='appWrapper'>
         <header className='headerWrapper'>
-            <p className='userName'>{userName}</p>
+            <p className='userName'>{userInfo.firstName}</p>
             <div className='userAvatarWrapper'>
                 <img className='userAvatarImg' src={userAvatar} alt="userAvatar"/>
             </div>
