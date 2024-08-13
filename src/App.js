@@ -20,6 +20,8 @@ import NoFriends from "./pages/NoFriends/NoFriends";
 import Friends from "./pages/Friends/Friends";
 
 function App() {
+    
+
   const [userName, setUserName] = useState('');
   const navigate = useNavigate();
 
@@ -30,7 +32,8 @@ function App() {
 
     if (telegramId) {
       // Получаем данные пользователя
-      fetch(`/api/user/${telegramId}`)
+      fetch(`https://anypatbackend-production.up.railway.app/api/user/${telegramId}`)
+
         .then(response => response.json())
         .then(data => {
           setUserName(data.firstName); // Устанавливаем имя пользователя в состояние
