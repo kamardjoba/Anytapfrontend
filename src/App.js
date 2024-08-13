@@ -32,8 +32,7 @@ function App() {
 
     if (telegramId) {
       // Получаем данные пользователя
-      fetch(`https://anypatbackend-production.up.railway.app/api/user/${telegramId}`)
-
+      fetch(`/api/user/${telegramId}`)
         .then(response => response.json())
         .then(data => {
           setUserName(data.firstName); // Устанавливаем имя пользователя в состояние
