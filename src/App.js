@@ -21,31 +21,35 @@ import Friends from "./pages/Friends/Friends";
 
 function App() {
     
-    const [userInfo, setUserInfo] = useState({ firstName: '', coins: 0 });
 
-    useEffect(() => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const telegramId = urlParams.get('telegramId');
-  
-      if (telegramId) {
-        fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              setUserInfo({
-                firstName: data.firstName,
-                coins: data.coins
-              });
-            } else {
-              console.error('Ошибка при получении данных о пользователе:', data.message);
-            }
-          })
-          .catch(error => {
-            console.error('Ошибка при запросе:', error);
-          });
-      }
-    }, []);
  
+  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({ firstName: '', coins: 0 });
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const telegramId = urlParams.get('telegramId');
+
+    if (telegramId) {
+      fetch(`https://твой-домен.com/user-info?telegramId=${telegramId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            setUserInfo({
+              firstName: data.firstName,
+              coins: data.coins
+            });
+          } else {
+            console.error('Ошибка при получении данных о пользователе:', data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Ошибка при запросе:', error);
+        });
+    }
+  }, []);
+
+
   const handleNavigation = (path) => {
     navigate(path);
   };
