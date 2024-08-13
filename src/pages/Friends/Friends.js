@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './../../App.css';
 import inv_fr1 from './../../images/inv_fr1.svg';
 import inv_fr2 from './../../images/inv_fr2.svg';
@@ -6,7 +6,23 @@ import copy from './../../images/copy.svg';
 import avatar from "../../images/avatar.png";
 import small_diam from "../../images/small_diam.png";
 
-function Friends(props) {
+function Friends({ telegramId }) {
+    const [referredUsers, setReferredUsers] = useState([]);
+    const backendUrl = 'https://anypatbackend-production.up.railway.app'; // Замените на реальный URL вашего бэкенда
+
+    useEffect(() => {
+        if (telegramId) {
+            fetch(`${backendUrl}/api/user/${telegramId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.referredUsers) {
+                        setReferredUsers(data.referredUsers);
+                    }
+                })
+                .catch(error => console.error('Ошибка при загрузке данных пользователя:', error));
+        }
+    }, [telegramId]);
+
     return (
         <div className='friendsPage'>
             <div className='friendsContainer'>
@@ -27,262 +43,26 @@ function Friends(props) {
 
                 <div className='friendsUsers'>
                     <ul className='whiteContainerContent leaderboardScroll '>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
+                        {referredUsers.length > 0 ? referredUsers.map((user, index) => (
+                            <li key={index} className='leaderboardItem'>
+                                <div className='leaderboardItemLeft'>
+                                    <div className='leaderboardAvatar'>
+                                        <img src={avatar} alt="" className='leaderboardAvatarImg'/>
+                                    </div>
+                                    <div>
+                                        <p className='leaderboardTitle'>{user.nickname}</p>
+                                        <p className='leaderboardSubtitle'>{user.earnedCoins} coins earned</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678</p>
+                                <div className='leaderboardItemRight'>
+                                    {user.earnedCoins}<img src={small_diam} alt="" className=''/>
                                 </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678 <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
-                            </div>
-                        </li>
-
+                            </li>
+                        )) : (
+                            <li className='leaderboardItem'>
+                                <p>No referred users yet.</p>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>
