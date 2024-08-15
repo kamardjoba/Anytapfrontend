@@ -1,0 +1,93 @@
+.friendsPage {
+    width: 90%;
+    height: calc(100% - 5vh);
+    display: flex;
+    flex-direction: column;
+    margin: 5vh auto 0 auto;
+}
+
+.friendsItems {
+    padding: 1.5vh;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 2vh;
+    position: relative;
+}
+
+.friendsItemText {
+    font-weight: 700;
+    font-size: 1.6vh;
+    color: rgba(0, 0, 0, 1);
+    padding: 0;
+    margin: 0;
+}
+
+.friendsItem {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    margin-bottom: 1.8vh;
+}
+
+.friendsItem img {
+    height: 4vh;
+}
+  
+.linkCopyWrapper {
+    display: flex;
+    height: 30%;
+    gap: 1vh;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.copyBtn {
+    border: none;
+    border-radius: 0.8vh;
+    background-color: rgba(238, 238, 238, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5vh;
+}
+
+.copyBtn img{
+    height: 70%;
+}
+
+.linkBtn {
+    border: none;
+    background-color: rgba(1, 154, 229, 1);
+    font-weight: 700;
+    font-size: 2.5vh;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    border-radius: 0.8vh;
+    width: 100%;
+    padding-top: 0.8vh;
+    padding-bottom: 0.8vh;
+}
+
+.whiteContainerQuest{
+    margin-bottom: 1vh;
+    height: 22%;
+}
+
+.friendsUsers {
+    padding: 2vh 1vh 2vh 1vh;
+    border-radius: 3vh;
+    background-color: rgba(255, 255, 255, 1);
+    margin-top: 1vh;
+    max-height: 63%;
+   
+}
+
+  .whiteContainerContent {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+  }
+
+  .leaderboardScroll {
+    overflow-y: scroll;
+}

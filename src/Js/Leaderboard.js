@@ -1,47 +1,25 @@
 import React from 'react';
-import './../../App.css';
-import inv_fr1 from './../../images/inv_fr1.svg';
-import inv_fr2 from './../../images/inv_fr2.svg';
-import copy from './../../images/copy.svg';
-import avatar from "../../images/avatar.png";
-import small_diam from "../../images/small_diam.png";
+import '../Css/Leaderboard.css';
+import small_diam from '../IMG/small_diam.png';
+import avatar from '../IMG/avatar.png';
 
-function Friends(props) {
+function Leaderboard(props) {
     return (
-        <div className='friendsPage'>
-            <div className='friendsContainer'>
-                <div className='whiteContainerQuest friendsItems'>
-                    <div className='friendsItem'>
-                        <img src={inv_fr1} alt=""/>
-                        <p className='friendsItemText'>Get 10% of your friends’ points!</p>
+        <div className='leaderboardContainer'>
+           
+                <div className='blueContainer'>
+                    <div className='blueContainerItem'>
+                        <p className='blueContainerItemTitle'>#1</p>
+                        <p className='blueContainerItemSubtitle'>Your rank</p>
                     </div>
-                    <div className='friendsItem'>
-                        <img src={inv_fr2} alt=""/>
-                        <p className='friendsItemText'>Invite 10 friends and receive a unique NFT!</p>
-                    </div>
-                    <div className='linkCopyWrapper'>
-                        <button className='linkBtn'>Link</button>
-                        <button className='copyBtn'><img src={copy} alt=""/></button>
+                    <div className='blueContainerItem'>
+                        <p className='blueContainerItemTitle'>60.8K</p>
+                        <p className='blueContainerItemSubtitle'>Your points</p>
                     </div>
                 </div>
-
-                <div className='friendsUsers'>
-                    <ul className='whiteContainerContent leaderboardScroll '>
-                        <li className='leaderboardItem'>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt=""  className='leaderboardAvatarImg'/>
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>no_name</p>
-                                    <p className='leaderboardSubtitle'>12,345,678</p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                500
-
-                            </div>
-                        </li>
+                <div className='whiteContainerLeaderboard'>
+                    <ul className='whiteContainerContent leaderboardScroll'>
+                           
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -53,10 +31,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -68,10 +46,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+                        
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -83,10 +61,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -98,10 +76,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -113,10 +91,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -128,10 +106,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -143,10 +121,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -158,10 +136,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -173,10 +151,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -188,10 +166,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -203,10 +181,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -218,10 +196,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -233,10 +211,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -248,10 +226,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -263,10 +241,10 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
                         <li className='leaderboardItem'>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
@@ -278,16 +256,18 @@ function Friends(props) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                500<img src={small_diam} alt=""  className=''/>
-
+                                5
                             </div>
                         </li>
+
+
+                
+                       
 
                     </ul>
                 </div>
-            </div>
         </div>
     );
 }
 
-export default Friends;
+export default Leaderboard;

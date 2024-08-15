@@ -1,8 +1,8 @@
 import React from 'react';
-import diamond from "../../images/diamond.png";
-import './../../App.css';
-import inv_fr1 from './../../images/inv_fr1.svg';
-import inv_fr2 from './../../images/inv_fr2.svg';
+import diamond from '../IMG/diamond.png';
+import '../Css/NoFriends.css';
+import inv_fr1 from '../IMG/inv_fr1.svg';
+import inv_fr2 from '../IMG/inv_fr2.svg';
 
 function NoFriends(props) {
     return (
