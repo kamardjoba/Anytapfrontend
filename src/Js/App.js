@@ -20,6 +20,7 @@ function App() {
     const urlParams = new URLSearchParams(window.location.search);
     const telegramId = urlParams.get('telegramId');
 
+    
     if (telegramId) {
       fetch(`https://yourbackend.com/user-info?telegramId=${telegramId}`)
         .then(response => response.json())
