@@ -16,7 +16,7 @@ const FrendsQuest = ({GoFrands, Frends_val}) => {
             </div>
         </div>
         <div className='questItemRight'>
-            {!Frends_val && (<button className='questBtn' onClick={GoFrands}>Link</button>)}
+            {!Frends_val && (<button className='questBtn' onClick={GoFrands}>Mint</button>)}
         </div>
     </div>
   );
