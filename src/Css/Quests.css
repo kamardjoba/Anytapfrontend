@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-<<<<<<< HEAD
+
     position: relative;
 }
 
@@ -54,15 +54,15 @@
     border-top: 2.5vh solid rgba(164, 210, 255, 1); 
     transform: rotate(50deg); 
 }
-=======
-}
+
+
 
 #complatedtask{
     background: rgba(164, 210, 255, 1);
 }
 
 
->>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
+
 
 
 
