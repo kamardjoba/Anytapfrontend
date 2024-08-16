@@ -13,6 +13,7 @@
     position: relative;
 }
 
+<<<<<<< HEAD
 .friendsItems::after {
     content: '';
     position: absolute;
@@ -26,6 +27,8 @@
     transform: rotate(-50deg); 
 }
 
+=======
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
 .friendsItemText {
     font-weight: 700;
     font-size: 1.6vh;
@@ -60,7 +63,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     width: 8vh;
+=======
+    width: 5vh;
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
 }
 
 .copyBtn img{
@@ -91,6 +98,7 @@
     background-color: rgba(255, 255, 255, 1);
     margin-top: 1vh;
     max-height: 63%;
+<<<<<<< HEAD
     position: relative;
 }
 
@@ -105,6 +113,9 @@
     border-right: 3vh solid transparent;    
     border-top: 2.5vh solid white; 
     transform: rotate(50deg); 
+=======
+   
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
 }
 
   .whiteContainerContent {
@@ -116,6 +127,7 @@
 
   .leaderboardScroll {
     overflow-y: scroll;
+<<<<<<< HEAD
 }
 
 @media (orientation: landscape) {
@@ -140,4 +152,6 @@
     .linkBtn {
         font-size: 3.8vh;   
     }
+=======
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
 }

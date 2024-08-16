@@ -32,7 +32,11 @@ body {
 }
 
 .headerWrapper {
+<<<<<<< HEAD
   height: 8%;
+=======
+  height: 9%;
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -56,7 +60,11 @@ body {
 }
 
 .centeredBlock{
+<<<<<<< HEAD
   height: 81%;
+=======
+  height: 82%;
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
   width: 100%;
   display: flex;
   align-items: center;
@@ -64,7 +72,11 @@ body {
 }
 
 .footer {
+<<<<<<< HEAD
   height: 11%;
+=======
+  height: 9%;
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
   background-color: white;
   display: flex;
   align-items: center;
@@ -79,7 +91,10 @@ body {
   justify-content: space-evenly;
   list-style-type: none;
   padding: 0;
+<<<<<<< HEAD
   padding-bottom: 0.7vh;
+=======
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
   width: 100%;
 }
 
@@ -87,6 +102,7 @@ body {
   height: 3vh;
 }
 
+<<<<<<< HEAD
 .footerItem .footerItemImg {
   transition: transform 0.3s ease; /* Добавляем плавный переход для всех состояний */
 }
@@ -100,6 +116,8 @@ body {
 }
 
 
+=======
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
 .footerItem {
   display: flex;
   flex-direction: column;
@@ -116,7 +134,10 @@ body {
   font-size: 2vh;
   font-weight: 400;
   padding: 0;
+<<<<<<< HEAD
   padding-top: 0.5vh;
+=======
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
   margin: 0;
 }
 
@@ -136,7 +157,11 @@ body {
   }
 
   .footerItemImgWrapper {
+<<<<<<< HEAD
     height: 8vh;
+=======
+    height: 10vh;
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
   }
 
   .footerItems {
@@ -155,10 +180,14 @@ body {
     height: 10vh;
     margin-right: 10vh;
   }
+<<<<<<< HEAD
 
   .footerItem.active .footerItemImg {
     transform: scale(1.3); 
   }
 
+=======
+  
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
   
 }

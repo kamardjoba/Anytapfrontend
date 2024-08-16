@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import React from 'react';
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
 import '../Css/Quests.css';
 import TgQuest from '../Quests/questTg';
 import TgOctiesQuest from '../Quests/questOctiesTg';
@@ -9,6 +13,7 @@ import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 
+<<<<<<< HEAD
 function Quests() {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
@@ -100,3 +105,40 @@ function Quests() {
 }
 
 export default Quests;
+=======
+const gavno = false;
+function Quests(props) {
+    return (
+        <div className='questsPage'>
+
+            <div className='basedtask'>
+                <div className='txtNf'>
+                    <p>Based task</p>
+                </div>
+                {!gavno && <TgQuest />}
+                <TgOctiesQuest />
+                <XQuest/>
+                <MintStartNft />
+                <FrendsQuest />
+            </div>
+            <div className='basedtask'>
+                <div className='txtNf'>
+                    <p>Weekly task</p>
+                </div>
+                <WeeklyNft />
+                <TonTrans />
+            </div>
+            <div className='basedtask' id='complatedtask'>
+                <div className='txtNf'>
+                    <p>Complated task</p>
+                </div>    
+                <TonW />
+                {gavno && <TgQuest />}
+            </div>
+        </div>
+
+    );
+}
+
+export default Quests;
+>>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
