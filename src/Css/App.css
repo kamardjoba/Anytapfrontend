@@ -89,15 +89,15 @@ body {
 }
 
 .footerItem .footerItemImg {
-  transition: transform 0.3s ease; /* Добавляем плавный переход для всех состояний */
+  transition: transform 0.3s ease; 
 }
 
 .footerItem.active .footerItemImg {
-  transform: scale(1.5); /* Увеличивает изображение на 10% */
+  transform: scale(1.5);
 }
 
 .footerItem:not(.active) .footerItemImg {
-  transform: scale(1); /* Возвращает изображение к исходному размеру */
+  transform: scale(1);
 }
 
 

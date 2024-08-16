@@ -16,7 +16,7 @@ const TonW = ({GoWallet, Wallet_val}) => {
             </div>
         </div>
         <div className='questItemRight'>
-        {!Wallet_val &&(<button className='questBtn' onClick={GoWallet}>GO!</button>)}
+        {!Wallet_val &&(<button className='questBtn' onClick={GoWallet}>Connect</button>)}
         </div>
     </div>
   );

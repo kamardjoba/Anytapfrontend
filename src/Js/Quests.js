@@ -8,6 +8,7 @@ import FrendsQuest from '../Quests/questFriends';
 import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
+import InstQuest from '../Quests/questInst';
 
 function Quests() {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
@@ -22,6 +23,11 @@ function Quests() {
     const [WeeklyNft_val, setWeeklyNft_val] = useState(false);
     const [TonTran_val, setTonTran_val] = useState(false);
     const [Wallet_val, setWallet_val] = useState(false);
+    const [Inst_val, setInst_val] = useState(false);
+
+    function GoInst() {
+        setInst_val(true);
+    }
 
     function GoWallet() {
         setWallet_val(true);
@@ -96,12 +102,13 @@ function Quests() {
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
+                {!Wallet_val && <TonW GoWallet={GoWallet}/>}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} />}
                 {!X_val && <XQuest GoX={GoX} />}
+                {!Inst_val && <InstQuest GoInst={GoInst} />}
                 {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} />}
                 {!Frends_val && <FrendsQuest GoFrands={GoFrands} />}
-                {!Wallet_val && <TonW GoWallet={GoWallet}/>}
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
@@ -124,7 +131,7 @@ function Quests() {
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} />}
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} />}
-
+                {Inst_val && <InstQuest Inst_val={Inst_val}/>}
             </div>}
         </div>
     );
