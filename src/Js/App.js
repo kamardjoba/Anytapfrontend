@@ -10,6 +10,8 @@ import Leaderboard from "./Leaderboard";
 import NoFriends from "./NoFriends";
 import Friends from "./Friends";
 import Quests from "./Quests";
+import nophoto from '../IMG/noprofilephoto.png';
+
 
 function App() {
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ function App() {
             setUserInfo({
               firstName: data.firstName,
               coins: data.coins,
-              photoUrl: data.photoUrl // Используем URL фото из ответа или дефолтный аватар
+              photoUrl: data.photoUrl// Используем URL фото из ответа или дефолтный аватар
             });
           } else {
             console.error('Ошибка при получении данных о пользователе:', data.message);
@@ -50,7 +52,7 @@ function App() {
       <header className='headerWrapper'>
         <p className='userName'>{userInfo.firstName}</p>
         <div className='userAvatarWrapper'>
-          <img className='userAvatarImg' src={userInfo.photoUrl} alt="userAvatar" />
+          <img className='userAvatarImg' src={userInfo.photoUrl || nophoto} alt="userAvatar" />
         </div>
       </header>
       <div className='centeredBlock'>
