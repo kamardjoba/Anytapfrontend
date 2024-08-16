@@ -18,10 +18,7 @@ function Leaderboard(props) {
                     </div>
                 </div>
                 <div className='whiteContainerLeaderboard'>
-<<<<<<< HEAD
-                    
-=======
->>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
+
                     <ul className='whiteContainerContent leaderboardScroll'>
                            
                         <li className='leaderboardItem'>

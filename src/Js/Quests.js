@@ -1,8 +1,8 @@
-<<<<<<< HEAD
+
 import React, { useState, useEffect } from 'react';
-=======
+
 import React from 'react';
->>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
+
 import '../Css/Quests.css';
 import TgQuest from '../Quests/questTg';
 import TgOctiesQuest from '../Quests/questOctiesTg';
@@ -13,7 +13,7 @@ import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 
-<<<<<<< HEAD
+
 function Quests() {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
@@ -104,8 +104,8 @@ function Quests() {
     );
 }
 
-export default Quests;
-=======
+
+
 const gavno = false;
 function Quests(props) {
     return (
@@ -141,4 +141,4 @@ function Quests(props) {
 }
 
 export default Quests;
->>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
+

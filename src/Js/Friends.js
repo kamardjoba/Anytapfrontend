@@ -101,7 +101,7 @@ function Friends(props) {
                             500
                         </div>
                     </li>
-<<<<<<< HEAD
+
                     
                     <li className='leaderboardItem'>
                         <div className='leaderboardItemLeft'>
@@ -313,9 +313,7 @@ function Friends(props) {
                             500
                         </div>
                     </li>
-=======
 
->>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
                     <li className='leaderboardItem'>
                         <div className='leaderboardItemLeft'>
                             <div className='leaderboardAvatar'>
@@ -331,9 +329,7 @@ function Friends(props) {
                         </div>
                     </li>
 
-<<<<<<< HEAD
-                   
-=======
+
                     <li className='leaderboardItem'>
                         <div className='leaderboardItemLeft'>
                             <div className='leaderboardAvatar'>
@@ -438,7 +434,7 @@ function Friends(props) {
                             500
                         </div>
                     </li>
->>>>>>> 343c316300705fcf4a7ac6c167d1b877b9b7126b
+
 
          
                 </ul>
