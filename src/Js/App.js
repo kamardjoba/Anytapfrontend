@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../Css/App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import home from '../IMG/home.svg';
-import leaderboard from '../IMG/leaderboard.svg';
-import quests from '../IMG/quests.svg';
-import friends from '../IMG/friends.svg';
+import home from '../IMG/footerLogo/HM.png';
+import leaderboard from '../IMG/footerLogo/LB.png';
+import quests from '../IMG/footerLogo/QE.png';
+import friends from '../IMG/footerLogo/FR.png';
 import HomePage from "./HomePage";
 import Leaderboard from "./Leaderboard";
 import NoFriends from "./NoFriends";

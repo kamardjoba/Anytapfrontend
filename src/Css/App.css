@@ -46,10 +46,12 @@ body {
 }
 .userAvatarWrapper {
   height: 7vh;
+  display: flex;
+  align-items: center;
   margin-right: 3vh;
 }
 .userAvatarImg {
-  height: 100%;
+  height: 90%;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -87,15 +89,15 @@ body {
 }
 
 .footerItem .footerItemImg {
-  transition: transform 0.3s ease; /* Добавляем плавный переход для всех состояний */
+  transition: transform 0.3s ease; 
 }
 
 .footerItem.active .footerItemImg {
-  transform: scale(1.5); /* Увеличивает изображение на 10% */
+  transform: scale(1.5);
 }
 
 .footerItem:not(.active) .footerItemImg {
-  transform: scale(1); /* Возвращает изображение к исходному размеру */
+  transform: scale(1);
 }
 
 
@@ -107,7 +109,7 @@ body {
 }
 
 .footerItemImg {
-  height: 100%;
+  height: 98%;
   object-fit: cover;
 }
 
