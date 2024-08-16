@@ -1,8 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-
-import React from 'react';
-
 import '../Css/Quests.css';
 import TgQuest from '../Quests/questTg';
 import TgOctiesQuest from '../Quests/questOctiesTg';
