@@ -103,39 +103,3 @@ function Quests() {
 
 
 
-const gavno = false;
-function Quests(props) {
-    return (
-        <div className='questsPage'>
-
-            <div className='basedtask'>
-                <div className='txtNf'>
-                    <p>Based task</p>
-                </div>
-                {!gavno && <TgQuest />}
-                <TgOctiesQuest />
-                <XQuest/>
-                <MintStartNft />
-                <FrendsQuest />
-            </div>
-            <div className='basedtask'>
-                <div className='txtNf'>
-                    <p>Weekly task</p>
-                </div>
-                <WeeklyNft />
-                <TonTrans />
-            </div>
-            <div className='basedtask' id='complatedtask'>
-                <div className='txtNf'>
-                    <p>Complated task</p>
-                </div>    
-                <TonW />
-                {gavno && <TgQuest />}
-            </div>
-        </div>
-
-    );
-}
-
-export default Quests;
-
