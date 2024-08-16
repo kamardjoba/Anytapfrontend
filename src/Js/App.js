@@ -21,7 +21,7 @@ function App() {
     const telegramId = urlParams.get('telegramId');
 
     if (telegramId) {
-      fetch(`https://yourbackend.com/user-info?telegramId=${telegramId}`)
+      fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
         .then(response => response.json())
         .then(data => {
           if (data.success) {
