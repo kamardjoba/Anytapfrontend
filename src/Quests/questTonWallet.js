@@ -2,7 +2,7 @@ import React from 'react';
 import '../Css/Quests.css';
 import wallet from'../IMG/wallet.svg';
 
-const TonW = () => {
+const TonW = ({GoWallet, Wallet_val}) => {
 
   return (
     <div className='questItem'>
@@ -16,6 +16,7 @@ const TonW = () => {
             </div>
         </div>
         <div className='questItemRight'>
+        {!Wallet_val &&(<button className='questBtn' onClick={GoWallet}>GO!</button>)}
         </div>
     </div>
   );

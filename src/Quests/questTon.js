@@ -2,11 +2,7 @@ import React from 'react';
 import '../Css/Quests.css';
 import arrows from'../IMG/arrows.svg';
 
-
-const TonTrans = ({GoTon}) => {
-
-const TonTrans = () => {
-
+const TonTrans = ({GoTon, TonTran_val}) => {
 
   return (
     <div className='questItem'>
@@ -20,15 +16,10 @@ const TonTrans = () => {
             </div>
         </div>
         <div className='questItemRight'>
-
-            <button className='questBtn' onClick={GoTon}>GO!</button>
-
-            <button className='questBtn'>GO!</button>
-
+            {!TonTran_val && (<button className='questBtn' onClick={GoTon}>GO!</button>)}
         </div>
     </div>
   );
 };
-}
 
 export default TonTrans;

@@ -2,11 +2,7 @@ import React from 'react';
 import '../Css/Quests.css';
 import telegram from'../IMG/telegram.svg';
 
-
-const tgOctiesQuest = ({GoOct}) => {
-
-const tgOctiesQuest = () => {
-
+const tgOctiesQuest = ({GoOct,TgOcties_val}) => {
 
   return (
     <div className='questItem'>
@@ -20,15 +16,10 @@ const tgOctiesQuest = () => {
             </div>
         </div>
         <div className='questItemRight'>
-
-            <button className='questBtn' onClick={GoOct}>GO!</button>
-
-            <button className='questBtn'>GO!</button>
-
+            {!TgOcties_val &&(<button className='questBtn' onClick={GoOct}>GO!</button>)}
         </div>
     </div>
   );
 };
-}
 
 export default tgOctiesQuest;

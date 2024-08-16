@@ -2,11 +2,7 @@ import React from 'react';
 import '../Css/Quests.css';
 import invite from'../IMG/invite.svg';
 
-
-const FrendsQuest = ({GoFrands}) => {
-
-const FrendsQuest = () => {
-
+const FrendsQuest = ({GoFrands, Frends_val}) => {
 
   return (
     <div className='questItem'>
@@ -20,15 +16,10 @@ const FrendsQuest = () => {
             </div>
         </div>
         <div className='questItemRight'>
-
-            <button className='questBtn' onClick={GoFrands}>Link</button>
-
-            <button className='questBtn'>Link</button>
-
+            {!Frends_val && (<button className='questBtn' onClick={GoFrands}>Link</button>)}
         </div>
     </div>
   );
 };
-}
 
 export default FrendsQuest;

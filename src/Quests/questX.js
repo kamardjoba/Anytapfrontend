@@ -1,13 +1,9 @@
+
 import React from 'react';
 import '../Css/Quests.css';
 import X from'../IMG/x_chan.svg';
 
-
-const XQuest = ({GoX}) => {
-
-const XQuest = () => {
-
-
+const XQuest = ({ GoX, X_val }) => {
   return (
     <div className='questItem'>
         <div className='questItemLeft'>
@@ -20,15 +16,12 @@ const XQuest = () => {
             </div>
         </div>
         <div className='questItemRight'>
-
-            <button className='questBtn' onClick={GoX}>GO!</button>
-
-            <button className='questBtn'>GO!</button>
-
+            {!X_val && (
+                <button className='questBtn' onClick={GoX}>GO!</button>
+            )}
         </div>
     </div>
   );
 };
-}
 
 export default XQuest;

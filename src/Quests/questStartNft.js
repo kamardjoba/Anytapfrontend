@@ -2,11 +2,7 @@ import React from 'react';
 import '../Css/Quests.css';
 import MintStart from'../IMG/mint.svg';
 
-
-const MintStartNft = ({GoStartNft}) => {
-
-const MintStartNft = () => {
-
+const MintStartNft = ({GoStartNft, StartNft_val}) => {
 
   return (
     <div className='questItem'>
@@ -15,20 +11,15 @@ const MintStartNft = () => {
                 <img src={MintStart} alt=""/>
             </div>
             <div className='questItemLeftContent'>
-                <p className='questTitle'>Mint Weekly NFT</p>
-                <p className='questSubtitle'>+2500 Points and Weekly NFT</p>
+                <p className='questTitle'>Mint Start NFT</p>
+                <p className='questSubtitle'>+1000 Points and free NFT</p>
             </div>
         </div>
         <div className='questItemRight'>
-
-            <button className='questBtn' onClick={GoStartNft}>Mint</button>
-
-            <button className='questBtn'>Mint</button>
-
+            {!StartNft_val && (<button className='questBtn' onClick={GoStartNft}>Mint</button>)}
         </div>
     </div>
   );
 };
-}
 
 export default MintStartNft;

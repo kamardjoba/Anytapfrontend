@@ -15,7 +15,6 @@
     position: relative;
 }
 
-
 .blueContainer::after {
     content: '';
     position: absolute;
@@ -29,12 +28,15 @@
     transform: rotate(50deg); 
 }
 
-
 .blueContainerItem {
     padding: 1vh;
     background-color: rgba(239, 238, 244, 1);
     border-radius: 1.5vh;
     width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
   
 .blueContainerItemTitle {
@@ -42,11 +44,7 @@
     font-size: 2.5vh;
     font-weight: 700;
     padding: 0;
-
     margin: 0;   
-
-    margin: 0;
-
 }
 
 .blueContainerItemSubtitle {
@@ -67,7 +65,6 @@
     background-color: rgba(255, 255, 255, 1);
     margin-top: 2vh;
     max-height: 75%;
-
     position: relative;
 }
 
@@ -82,7 +79,6 @@
     border-right: 0 solid transparent;    
     border-top: 2.5vh solid #ffffff; 
     transform: rotate(-50deg); 
-
 }
 
 .whiteContainerContent {
@@ -141,7 +137,6 @@
     align-items: center;
 }
 
-
 @media (orientation: landscape) {
 
     .leaderboardTitle {
@@ -153,6 +148,22 @@
         font-size: 2vh;
     }
 
-}
+    .blueContainer {
+        height: 30%;
+    }
 
+    .whiteContainerLeaderboard {
+        max-height: 50%;
+    }
+
+    .blueContainerItemTitle {
+        font-size: 5vh;
+    }
+    
+    .blueContainerItemSubtitle {
+        font-size: 4vh;
+    }
+    
+
+}
   

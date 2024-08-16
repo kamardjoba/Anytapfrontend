@@ -13,7 +13,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
     position: relative;
 }
 
@@ -54,15 +53,6 @@
     border-top: 2.5vh solid rgba(164, 210, 255, 1); 
     transform: rotate(50deg); 
 }
-
-
-
-#complatedtask{
-    background: rgba(164, 210, 255, 1);
-}
-
-
-
 
 
 
@@ -136,4 +126,53 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+@media (orientation: landscape) {
+
+    .questsPage{
+        overflow: scroll;
+        justify-content: start;
+    }
+
+    .questItemLeft img {
+        height: 8vh;
+        margin-left: 1vh;
+    }
+
+    .questTitle {
+        font-size: 2.2vh;
+    }
+    
+    .questSubtitle {
+        font-size: 1.8vh;
+    }
+
+    .basedtask{
+       margin-top: 4vh;
+    }
+
+    #complatedtask{
+        margin-top: 4vh;
+    }
+
+    .questItem {
+        border-radius: 1vh;
+        width: 95%;
+    }
+
+    .txtNf{
+        width: calc(95% + 1.5vh + 1.5vh);
+    }
+
+    .questItemLeft {
+        gap: 2vh;
+    }
+
+    .questBtn {
+        padding: 1.5vh 2.5vh;
+        font-size: 2.5vh;
+    }
+    
 }

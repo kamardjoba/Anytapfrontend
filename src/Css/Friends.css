@@ -13,7 +13,6 @@
     position: relative;
 }
 
-
 .friendsItems::after {
     content: '';
     position: absolute;
@@ -61,11 +60,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 8vh;
-
-    width: 5vh;
-
 }
 
 .copyBtn img{
@@ -96,7 +91,6 @@
     background-color: rgba(255, 255, 255, 1);
     margin-top: 1vh;
     max-height: 63%;
-
     position: relative;
 }
 
@@ -111,7 +105,6 @@
     border-right: 3vh solid transparent;    
     border-top: 2.5vh solid white; 
     transform: rotate(50deg); 
-
 }
 
   .whiteContainerContent {
@@ -123,7 +116,6 @@
 
   .leaderboardScroll {
     overflow-y: scroll;
-
 }
 
 @media (orientation: landscape) {
@@ -148,5 +140,4 @@
     .linkBtn {
         font-size: 3.8vh;   
     }
-
 }
