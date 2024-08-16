@@ -62,7 +62,6 @@ function App() {
           <Route path="/quests" element={<Quests />} />
         </Routes>
       </div>
-
       <footer className='footer'>
         <ul className='footerItems'>
           <li 
