@@ -114,7 +114,7 @@ function Quests() {
 
             {VisiblaComplatedTask && <div id='complatedtask'>
                 <div className='txtNf'>
-                    <p>Complated task</p>
+                    <p>Complеted task</p>
                 </div>
                 {Wallet_val && <TonW Wallet_val={Wallet_val}/>}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} />}
