@@ -101,5 +101,5 @@ function Quests() {
     );
 }
 
-
+export default Quests;
 
