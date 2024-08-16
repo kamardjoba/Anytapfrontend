@@ -46,10 +46,12 @@ body {
 }
 .userAvatarWrapper {
   height: 7vh;
+  display: flex;
+  align-items: center;
   margin-right: 3vh;
 }
 .userAvatarImg {
-  height: 100%;
+  height: 90%;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -107,7 +109,7 @@ body {
 }
 
 .footerItemImg {
-  height: 100%;
+  height: 98%;
   object-fit: cover;
 }
 
