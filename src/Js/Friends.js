@@ -23,7 +23,7 @@ function Friends() {
 
                     if (data.success) {
                         setReferrals(data.referrals);
-                        setReferralCode(data.referralCode); // Предположим, что API возвращает referralCode
+                        setReferralCode(data.referralCode); // Устанавливаем реферальный код
                     } else {
                         console.error(data.message); // Лог ошибки с сервера
                     }
