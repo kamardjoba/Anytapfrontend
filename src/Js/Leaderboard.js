@@ -24,22 +24,32 @@ function Leaderboard() {
                 }
             };
 
-            const fetchUserRank = async () => {
-                try {
-                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
-                    const data = await response.json();
+            const telegramId = initDataUnsafe?.user?.id;
 
-                    if (data.success) {
-                        setUserRank(data.rank);
-                        setUserCoins(data.user.coins);
+            if (telegramId) {
+                console.log(`Используется telegramId: ${telegramId}`); // Лог на клиенте
+                const fetchUserRank = async () => {
+                    try {
+                        const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
+                        const data = await response.json();
+            
+                        if (data.success) {
+                            setUserRank(data.rank);
+                            setUserCoins(data.user.coins);
+                        } else {
+                            console.error(data.message); // Лог ошибки с сервера
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при загрузке ранга пользователя:', error);
                     }
-                } catch (error) {
-                    console.error('Ошибка при загрузке ранга пользователя:', error);
-                }
-            };
+                };
+            
+                fetchUserRank();
+            }
+            
 
             fetchLeaderboard();
-            fetchUserRank();
+           
         } else {
             console.error('Telegram ID не найден');
         }
