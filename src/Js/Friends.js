@@ -8,6 +8,7 @@ import small_diam from "../IMG/small_diam.png";
 
 function Friends() {
     const [referrals, setReferrals] = useState([]);
+    const [referralCode, setReferralCode] = useState('');
 
     useEffect(() => {
         // Получаем Telegram ID через initDataUnsafe
@@ -22,6 +23,7 @@ function Friends() {
 
                     if (data.success) {
                         setReferrals(data.referrals);
+                        setReferralCode(data.referralCode); // Предположим, что API возвращает referralCode
                     } else {
                         console.error(data.message); // Лог ошибки с сервера
                     }
@@ -36,6 +38,20 @@ function Friends() {
         }
     }, []);
 
+    const handleCopyClick = () => {
+        if (referralCode) {
+            navigator.clipboard.writeText(referralCode)
+                .then(() => {
+                    console.log('Реферальный код скопирован:', referralCode);
+                    alert('Реферальный код скопирован в буфер обмена!');
+                })
+                .catch(err => {
+                    console.error('Ошибка при копировании реферального кода:', err);
+                    alert('Не удалось скопировать реферальный код.');
+                });
+        }
+    };
+
     return (
         <div className='friendsPage'>
             <div className='whiteContainerQuest friendsItems'>
@@ -49,7 +65,9 @@ function Friends() {
                 </div>
                 <div className='linkCopyWrapper'>
                     <button className='linkBtn'>Link</button>
-                    <button className='copyBtn'><img src={copy} alt=""/></button>
+                    <button className='copyBtn' onClick={handleCopyClick}>
+                        <img src={copy} alt=""/>
+                    </button>
                 </div>
             </div>
 
