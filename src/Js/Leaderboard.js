@@ -5,31 +5,55 @@ import avatar from '../IMG/avatar.png';
 
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
+    const [userRank, setUserRank] = useState(null);
+    const [userCoins, setUserCoins] = useState(null);
 
     useEffect(() => {
-        // Функция для получения данных с сервера
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
-                const data = await response.json();
-                setLeaderboardData(data);
-            } catch (error) {
-                console.error('Ошибка при загрузке данных лидерборда:', error);
-            }
-        };
+        // Получаем Telegram ID автоматически через Telegram WebApp
+        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+        const telegramIdFromApp = initDataUnsafe?.user?.id;
 
-        fetchData();
+        if (telegramIdFromApp) {
+            const fetchLeaderboard = async () => {
+                try {
+                    const response = await fetch('https://anypatbackend-production.up.railway.app//leaderboard');
+                    const data = await response.json();
+                    setLeaderboardData(data);
+                } catch (error) {
+                    console.error('Ошибка при загрузке данных лидерборда:', error);
+                }
+            };
+
+            const fetchUserRank = async () => {
+                try {
+                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramIdFromApp}`);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        setUserRank(data.rank);
+                        setUserCoins(data.user.coins);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при загрузке ранга пользователя:', error);
+                }
+            };
+
+            fetchLeaderboard();
+            fetchUserRank();
+        } else {
+            console.error('Telegram ID не найден');
+        }
     }, []);
 
     return (
         <div className='leaderboardContainer'>
             <div className='blueContainer'>
                 <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>#1</p>
+                    <p className='blueContainerItemTitle'>#{userRank || '-'}</p> {/* Отображение ранга */}
                     <p className='blueContainerItemSubtitle'>Your rank</p>
                 </div>
                 <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>60.8K</p>
+                    <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : '-'}</p> {/* Отображение монет */}
                     <p className='blueContainerItemSubtitle'>Your points</p>
                 </div>
             </div>
