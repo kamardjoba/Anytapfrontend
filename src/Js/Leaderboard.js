@@ -9,9 +9,9 @@ function Leaderboard() {
     const [userCoins, setUserCoins] = useState(null);
 
     useEffect(() => {
-        // Получаем Telegram ID автоматически через Telegram WebApp
-        const urlParams = new URLSearchParams(window.location.search);
-        const telegramId = urlParams.get('telegramId');
+        // Получаем Telegram ID через initDataUnsafe
+        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+        const telegramId = initDataUnsafe?.user?.id;
 
         if (telegramId) {
             const fetchLeaderboard = async () => {
