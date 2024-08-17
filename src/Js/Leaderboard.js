@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../Css/Leaderboard.css';
 import small_diam from '../IMG/small_diam.png';
 import avatar from '../IMG/avatar.png';
+import nophoto from '../IMG/noprofilephoto.png'
+
 
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
@@ -24,9 +26,6 @@ function Leaderboard() {
                 }
             };
 
-            const telegramId = initDataUnsafe?.user?.id;
-
-            if (telegramId) {
                 console.log(`Используется telegramId: ${telegramId}`); // Лог на клиенте
                 const fetchUserRank = async () => {
                     try {
@@ -45,7 +44,7 @@ function Leaderboard() {
                 };
             
                 fetchUserRank();
-            }
+            
             
 
             fetchLeaderboard();
@@ -73,7 +72,7 @@ function Leaderboard() {
                         <li className='leaderboardItem' key={user.telegramId}>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
-                                    <img src={user.photoUrl || avatar} alt="" className='leaderboardAvatarImg' />
+                                    <img src={user.photoUrl || nophoto} alt="" className='leaderboardAvatarImg' />
                                 </div>
                                 <div>
                                     <p className='leaderboardTitle'>{user.nickname || 'no_name'}</p>
