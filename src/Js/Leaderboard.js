@@ -16,7 +16,7 @@ function Leaderboard() {
         if (telegramIdFromApp) {
             const fetchLeaderboard = async () => {
                 try {
-                    const response = await fetch('https://anypatbackend-production.up.railway.app//leaderboard');
+                    const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
                 } catch (error) {
