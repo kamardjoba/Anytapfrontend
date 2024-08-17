@@ -10,10 +10,10 @@ function Leaderboard() {
 
     useEffect(() => {
         // Получаем Telegram ID автоматически через Telegram WebApp
-        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-        const telegramIdFromApp = initDataUnsafe?.user?.id;
+        const urlParams = new URLSearchParams(window.location.search);
+        const telegramId = urlParams.get('telegramId');
 
-        if (telegramIdFromApp) {
+        if (telegramId) {
             const fetchLeaderboard = async () => {
                 try {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
@@ -26,7 +26,7 @@ function Leaderboard() {
 
             const fetchUserRank = async () => {
                 try {
-                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramIdFromApp}`);
+                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
                     const data = await response.json();
 
                     if (data.success) {
