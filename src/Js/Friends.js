@@ -8,7 +8,8 @@ import small_diam from "../IMG/small_diam.png";
 
 function Friends() {
     const [referrals, setReferrals] = useState([]);
-    const [referralCode, setReferralCode] = useState('');
+
+    const [referralLink, setReferralLink] = useState('');
 
     useEffect(() => {
         // Получаем Telegram ID через initDataUnsafe
@@ -23,7 +24,8 @@ function Friends() {
 
                     if (data.success) {
                         setReferrals(data.referrals);
-                        setReferralCode(data.referralCode); // Устанавливаем реферальный код
+                       ;
+                        setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`); // Формируем полную ссылку
                     } else {
                         console.error(data.message); // Лог ошибки с сервера
                     }
@@ -39,15 +41,15 @@ function Friends() {
     }, []);
 
     const handleCopyClick = () => {
-        if (referralCode) {
-            navigator.clipboard.writeText(referralCode)
+        if (referralLink) {
+            navigator.clipboard.writeText(referralLink)
                 .then(() => {
-                    console.log('Реферальный код скопирован:', referralCode);
-                    alert('Реферальный код скопирован в буфер обмена!');
+                    console.log('Реферальная ссылка скопирована:', referralLink);
+                    alert('Реферальная ссылка скопирована в буфер обмена!');
                 })
                 .catch(err => {
-                    console.error('Ошибка при копировании реферального кода:', err);
-                    alert('Не удалось скопировать реферальный код.');
+                    console.error('Ошибка при копировании реферальной ссылки:', err);
+                    alert('Не удалось скопировать реферальную ссылку.');
                 });
         }
     };
