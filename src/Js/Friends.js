@@ -3,13 +3,13 @@ import '../Css/Friends.css';
 import inv_fr1 from '../IMG/inv_fr1.svg';
 import inv_fr2 from '../IMG/inv_fr2.svg';
 import copy from '../IMG/copy.svg';
-import avatar from "../IMG/avatar.png";
+import avatar from "../IMG/avatar.png"; // Фото по умолчанию
 import small_diam from "../IMG/small_diam.png";
 
 function Friends() {
     const [referrals, setReferrals] = useState([]);
-
     const [referralLink, setReferralLink] = useState('');
+    const [userPhoto, setUserPhoto] = useState(avatar); // Добавляем состояние для фото пользователя
 
     useEffect(() => {
         // Получаем Telegram ID через initDataUnsafe
@@ -19,13 +19,15 @@ function Friends() {
         if (telegramId) {
             const fetchReferrals = async () => {
                 try {
-                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
+                    const response = await fetch(`https://your-server-url/user-referrals?telegramId=${telegramId}`);
                     const data = await response.json();
 
                     if (data.success) {
                         setReferrals(data.referrals);
-                       ;
-                        setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`); // Формируем полную ссылку
+                        setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`);
+                        if (data.photoUrl) {
+                            setUserPhoto(data.photoUrl); // Устанавливаем фото пользователя
+                        }
                     } else {
                         console.error(data.message); // Лог ошибки с сервера
                     }
@@ -78,9 +80,14 @@ function Friends() {
                     {referrals.map((referral, index) => (
                         <li className='leaderboardItem' key={index}>
                             <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={avatar} alt="" className='leaderboardAvatarImg'/>
-                                </div>
+                            <div className='leaderboardAvatar'>
+                                 <img 
+                                    src={referral.photoUrl ? referral.photoUrl : userPhoto} 
+                                    alt="referral avatar" 
+                                    className='leaderboardAvatarImg'
+                                 />
+                            </div>
+
                                 <div>
                                     <p className='leaderboardTitle'>{referral.nickname || 'no_name'}</p>
                                     <p className='leaderboardSubtitle'>{referral.earnedCoins.toLocaleString()} <img src={small_diam} alt=""/></p>
