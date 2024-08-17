@@ -12,7 +12,6 @@ import Friends from "./Friends";
 import Quests from "./Quests";
 import nophoto from '../IMG/noprofilephoto.png';
 
-
 function App() {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({ firstName: '', coins: 0, photoUrl: '' });
@@ -30,7 +29,7 @@ function App() {
             setUserInfo({
               firstName: data.firstName,
               coins: data.coins,
-              photoUrl: data.photoUrl// Используем URL фото из ответа или дефолтный аватар
+              photoUrl: data.photoUrl
             });
           } else {
             console.error('Ошибка при получении данных о пользователе:', data.message);
@@ -40,7 +39,13 @@ function App() {
           console.error('Ошибка при запросе:', error);
         });
     }
-  }, []);
+
+    // Перенаправляем на /home, если текущий путь это корневой путь "/"
+    if (window.location.pathname === "/") {
+      navigate("/home");
+    }
+
+  }, [navigate]);
 
   const handleNavigation = (path, index) => {
     navigate(path);
