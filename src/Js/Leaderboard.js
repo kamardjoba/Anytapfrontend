@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Css/Leaderboard.css';
 import small_diam from '../IMG/small_diam.png';
-import avatar from '../IMG/avatar.png';
+
 import nophoto from '../IMG/noprofilephoto.png'
 
 
