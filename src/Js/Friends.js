@@ -90,11 +90,11 @@ function Friends() {
 
                                 <div>
                                     <p className='leaderboardTitle'>{referral.nickname || 'no_name'}</p>
-                                    <p className='leaderboardSubtitle'>{referral.earnedCoins.toLocaleString()} <img src={small_diam} alt=""/></p>
+                                    <p className='leaderboardSubtitle'>{referral.coins.toLocaleString()} <img src={small_diam} alt=""/></p>
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                {referral.earnedCoins}
+                                {referral.coins} {/* Используем количество монет у реферала */}
                             </div>
                         </li>
                     ))}
