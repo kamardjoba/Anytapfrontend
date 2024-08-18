@@ -43,22 +43,11 @@ function App() {
                 .catch(error => {
                     console.error('Ошибка при запросе:', error);
                 });
-        }
-
-        // Перенаправляем на /home, если текущий путь это корневой путь "/"
-        if (location.pathname === "/") {
-            navigate("/home");
-            setActiveItem(0); // Устанавливаем активный элемент как Home
-        } else if (location.pathname === "/home") {
-            setActiveItem(0); // Устанавливаем активный элемент как Home, если уже на /home
-        } else if (location.pathname === "/leaderboard") {
-            setActiveItem(1);
-        } else if (location.pathname === "/quests") {
-            setActiveItem(2);
-        } else if (location.pathname === "/friends") {
-            setActiveItem(3);
-        }
-
+            }
+            if (location.pathname === "/") {
+                navigate("/home");
+                setActiveItem(0); 
+            }
     }, [navigate, location]);
 
     const handleNavigation = (path, index) => {
