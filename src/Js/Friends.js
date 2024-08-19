@@ -7,7 +7,6 @@ import small_diam from "../IMG/small_diam.png";
 
 function Friends({ userPhoto, referralLink, referrals }) {
 
-
     const handleCopyClick = () => {
         if (referralLink) {
             navigator.clipboard.writeText(referralLink)

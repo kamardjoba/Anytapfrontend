@@ -69,17 +69,16 @@ function Quests() {
             Frends_val ||
             Wallet_val || 
             WeeklyNft_val || 
-            TonTran_val) {
-            setVisiblaComplatedTask(true);
-        }
-    }, [TgChanel_val, 
-        TgOcties_val, 
-        X_val, 
-        StartNft_val, 
-        Frends_val, 
-        Wallet_val, 
-        TonTran_val, 
-        WeeklyNft_val]);
+            TonTran_val) 
+            {setVisiblaComplatedTask(true);}}, 
+            [TgChanel_val, 
+            TgOcties_val, 
+            X_val, 
+            StartNft_val, 
+            Frends_val, 
+            Wallet_val, 
+            TonTran_val, 
+            WeeklyNft_val]);
 
 
     useEffect(() => {
