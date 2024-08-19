@@ -11,6 +11,7 @@ import NoFriends from "./NoFriends";
 import Friends from "./Friends";
 import Quests from "./Quests";
 import nophoto from '../IMG/noprofilephoto.png';
+import avatar from "../IMG/avatar.png"; // Фото по умолчанию
 
 function App() {
     const navigate = useNavigate();
@@ -55,6 +56,48 @@ function App() {
         setActiveItem(index);
     };
 
+
+    // ________________________________________________
+
+   
+    const [referrals, setReferrals] = useState([]);
+    const [referralLink, setReferralLink] = useState('');
+    const [userPhoto, setUserPhoto] = useState(avatar); // Добавляем состояние для фото пользователя
+
+    useEffect(() => {
+        // Получаем Telegram ID через initDataUnsafe
+        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+        const telegramId = initDataUnsafe?.user?.id;
+
+        if (telegramId) {
+            const fetchReferrals = async () => {
+                try {
+                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        setReferrals(data.referrals);
+                        setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`);
+                        if (data.photoUrl) {
+                            setUserPhoto(data.photoUrl); // Устанавливаем фото пользователя
+                        }
+                    } else {
+                        console.error(data.message); // Лог ошибки с сервера
+                    }
+                } catch (error) {
+                    console.error('Ошибка при загрузке рефералов:', error);
+                }
+            };
+
+            fetchReferrals();
+        } else {
+            console.error('Telegram ID не найден');
+        }
+    }, []);
+
+
+    //______________________________________________________________
+
     return (
         <div className='appWrapper'>
             <header className='headerWrapper'>
@@ -68,39 +111,41 @@ function App() {
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/nofriends" element={<NoFriends />} />
-                    <Route path="/friends" element={<Friends />} />
+                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto}/>} />
                     <Route path="/quests" element={<Quests />} />
                 </Routes>
             </div>
 
             <footer className='footer'>
-                <ul className='footerItems'>
-                    <li className={`footerItem ${activeItem === 0 ? 'active' : ''}`} onClick={() => handleNavigation('/home', 0)}>
-                        <div className='footerItemImgWrapper'>
-                            <img src={home} alt="home" className='footerItemImg' />
-                        </div>
-                        <p className='footerItemLabel'>Home</p>
-                    </li>
-                    <li className={`footerItem ${activeItem === 1 ? 'active' : ''}`} onClick={() => handleNavigation('/leaderboard', 1)}>
-                        <div className='footerItemImgWrapper'>
-                            <img src={leaderboard} alt="leaderboard" className='footerItemImg' />
-                        </div>
-                        <p className='footerItemLabel'>Leaderboard</p>
-                    </li>
-                    <li className={`footerItem ${activeItem === 2 ? 'active' : ''}`} onClick={() => handleNavigation('/quests', 2)}>
-                        <div className='footerItemImgWrapper'>
-                            <img src={quests} alt="quests" className='footerItemImg' />
-                        </div>
-                        <p className='footerItemLabel'>Quests</p>
-                    </li>
-                    <li className={`footerItem ${activeItem === 3 ? 'active' : ''}`} onClick={() => handleNavigation('/friends', 3)}>
-                        <div className='footerItemImgWrapper'>
-                            <img src={friends} alt="friends" className='footerItemImg' />
-                        </div>
-                        <p className='footerItemLabel'>Friends</p>
-                    </li>
-                </ul>
-            </footer>
+    <ul className='footerItems'>
+        <li className={`footerItem ${activeItem === 0 ? 'active' : ''}`} onClick={() => handleNavigation('/home', 0)}>
+            <div className='footerItemImgWrapper'>
+                <img src={home} alt="home" className='footerItemImg' />
+            </div>
+            <p className='footerItemLabel'>Home</p>
+        </li>
+        <li className={`footerItem ${activeItem === 1 ? 'active' : ''}`} onClick={() => handleNavigation('/leaderboard', 1)}>
+            <div className='footerItemImgWrapper'>
+                <img src={leaderboard} alt="leaderboard" className='footerItemImg' />
+            </div>
+            <p className='footerItemLabel'>Leaderboard</p>
+        </li>
+        <li className={`footerItem ${activeItem === 2 ? 'active' : ''}`} onClick={() => handleNavigation('/quests', 2)}>
+            <div className='footerItemImgWrapper'>
+                <img src={quests} alt="quests" className='footerItemImg' />
+            </div>
+            <p className='footerItemLabel'>Quests</p>
+        </li>
+        <li className={`footerItem ${activeItem === 3 ? 'active' : ''}`} 
+            onClick={() => handleNavigation(referrals.length > 0 ? '/friends' : '/nofriends', 3)}>
+            <div className='footerItemImgWrapper'>
+                <img src={friends} alt="friends" className='footerItemImg' />
+            </div>
+            <p className='footerItemLabel'>Friends</p>
+        </li>
+    </ul>
+</footer>
+
         </div>
     );
 }
