@@ -62,10 +62,9 @@ function App() {
 
     const [referrals, setReferrals] = useState([]);
     const [referralLink, setReferralLink] = useState('');
-    const [userPhoto, setUserPhoto] = useState(avatar); // Добавляем состояние для фото пользователя
+    const [userPhoto, setUserPhoto] = useState(avatar); 
 
     useEffect(() => {
-        // Получаем Telegram ID через initDataUnsafe
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
 
@@ -79,10 +78,10 @@ function App() {
                         setReferrals(data.referrals);
                         setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`);
                         if (data.photoUrl) {
-                            setUserPhoto(data.photoUrl); // Устанавливаем фото пользователя
+                            setUserPhoto(data.photoUrl); 
                         }
                     } else {
-                        console.error(data.message); // Лог ошибки с сервера
+                        console.error(data.message); 
                     }
                 } catch (error) {
                     console.error('Ошибка при загрузке рефералов:', error);
@@ -106,7 +105,7 @@ function App() {
                     <img className='userAvatarImg' src={userInfo.photoUrl || nophoto} alt="userAvatar" />
                 </div>
             </header>
-            
+
             <div className='centeredBlock'>
                 <Routes>
                     <Route path="/home" element={<HomePage />} />

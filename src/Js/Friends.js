@@ -5,8 +5,8 @@ import inv_fr2 from '../IMG/inv_fr2.svg';
 import copy from '../IMG/copy.svg';
 import small_diam from "../IMG/small_diam.png";
 
-function Friends({userPhoto, referralLink, referrals}) {
-   
+function Friends({ userPhoto, referralLink, referrals }) {
+
 
     const handleCopyClick = () => {
         if (referralLink) {
@@ -26,17 +26,17 @@ function Friends({userPhoto, referralLink, referrals}) {
         <div className='friendsPage'>
             <div className='whiteContainerQuest friendsItems'>
                 <div className='friendsItem'>
-                    <img src={inv_fr1} alt=""/>
+                    <img src={inv_fr1} alt="" />
                     <p className='friendsItemText'>Get 10% of your friends’ points!</p>
                 </div>
                 <div className='friendsItem'>
-                    <img src={inv_fr2} alt=""/>
+                    <img src={inv_fr2} alt="" />
                     <p className='friendsItemText'>Invite 10 friends and receive a unique NFT!</p>
                 </div>
                 <div className='linkCopyWrapper'>
                     <button className='linkBtn'>Link</button>
                     <button className='copyBtn' onClick={handleCopyClick}>
-                        <img src={copy} alt=""/>
+                        <img src={copy} alt="" />
                     </button>
                 </div>
             </div>
@@ -46,19 +46,19 @@ function Friends({userPhoto, referralLink, referrals}) {
                     {referrals.map((referral, index) => (
                         <li className='leaderboardItem' key={index}>
                             <div className='leaderboardItemLeft'>
-                            <div className='leaderboardAvatar'>
-                                 <img 
-                                    src={referral.photoUrl ? referral.photoUrl : userPhoto} 
-                                    alt="referral avatar" 
-                                    className='leaderboardAvatarImg'
-                                 />
-                            </div>
+                                <div className='leaderboardAvatar'>
+                                    <img
+                                        src={referral.photoUrl ? referral.photoUrl : userPhoto}
+                                        alt="referral avatar"
+                                        className='leaderboardAvatarImg'
+                                    />
+                                </div>
 
                                 <div>
                                     <p className='leaderboardTitle'>{referral.nickname || 'no_name'}</p>
                                     <p className='leaderboardSubtitle'>
-                                        {referral.coins !== undefined ? referral.coins.toLocaleString() : 'N/A'} 
-                                        <img src={small_diam} alt=""/>
+                                        {referral.coins !== undefined ? referral.coins.toLocaleString() : 'N/A'}
+                                        <img src={small_diam} alt="" />
                                     </p>
                                 </div>
                             </div>
