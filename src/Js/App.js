@@ -37,6 +37,12 @@ function App() {
                             coins: data.coins,
                             photoUrl: data.photoUrl
                         });
+
+                        setReferrals(data.referrals);
+                        setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`);
+                        if (data.photoUrl) {
+                            setUserPhoto(data.photoUrl); // Устанавливаем фото пользователя
+                        }
                     } else {
                         console.error('Ошибка при получении данных о пользователе:', data.message);
                     }
@@ -64,36 +70,36 @@ function App() {
     const [referralLink, setReferralLink] = useState('');
     const [userPhoto, setUserPhoto] = useState(avatar); // Добавляем состояние для фото пользователя
 
-    useEffect(() => {
-        // Получаем Telegram ID через initDataUnsafe
-        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-        const telegramId = initDataUnsafe?.user?.id;
+    // useEffect(() => {
+    //     // Получаем Telegram ID через initDataUnsafe
+    //     const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+    //     const telegramId = initDataUnsafe?.user?.id;
 
-        if (telegramId) {
-            const fetchReferrals = async () => {
-                try {
-                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
-                    const data = await response.json();
+    //     if (telegramId) {
+    //         const fetchReferrals = async () => {
+    //             try {
+    //                 const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
+    //                 const data = await response.json();
 
-                    if (data.success) {
-                        setReferrals(data.referrals);
-                        setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`);
-                        if (data.photoUrl) {
-                            setUserPhoto(data.photoUrl); // Устанавливаем фото пользователя
-                        }
-                    } else {
-                        console.error(data.message); // Лог ошибки с сервера
-                    }
-                } catch (error) {
-                    console.error('Ошибка при загрузке рефералов:', error);
-                }
-            };
+    //                 if (data.success) {
+    //                     setReferrals(data.referrals);
+    //                     setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`);
+    //                     if (data.photoUrl) {
+    //                         setUserPhoto(data.photoUrl); // Устанавливаем фото пользователя
+    //                     }
+    //                 } else {
+    //                     console.error(data.message); // Лог ошибки с сервера
+    //                 }
+    //             } catch (error) {
+    //                 console.error('Ошибка при загрузке рефералов:', error);
+    //             }
+    //         };
 
-            fetchReferrals();
-        } else {
-            console.error('Telegram ID не найден');
-        }
-    }, []);
+    //         fetchReferrals();
+    //     } else {
+    //         console.error('Telegram ID не найден');
+    //     }
+    // }, []);
 
 
     //______________________________________________________________
