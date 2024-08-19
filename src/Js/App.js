@@ -23,6 +23,10 @@ function App() {
     });
     const [activeItem, setActiveItem] = useState(null);
 
+    const [referrals, setReferrals] = useState([]);
+    const [referralLink, setReferralLink] = useState('');
+    const [userPhoto, setUserPhoto] = useState(avatar); 
+
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const telegramId = urlParams.get('telegramId');
@@ -66,9 +70,7 @@ function App() {
     // ________________________________________________
 
    
-    const [referrals, setReferrals] = useState([]);
-    const [referralLink, setReferralLink] = useState('');
-    const [userPhoto, setUserPhoto] = useState(avatar); // Добавляем состояние для фото пользователя
+    // Добавляем состояние для фото пользователя
 
     // useEffect(() => {
     //     // Получаем Telegram ID через initDataUnsafe
