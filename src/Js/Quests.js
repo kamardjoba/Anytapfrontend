@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Quests.css';
+import axios from 'axios';
 import TgQuest from '../Quests/questTg';
 import TgOctiesQuest from '../Quests/questOctiesTg';
 import XQuest from '../Quests/questX';
