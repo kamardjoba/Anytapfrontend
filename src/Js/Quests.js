@@ -37,7 +37,7 @@ function Quests() {
                 const checkSubscription = async () => {
                     try {
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
-                        if (response.data.success && response.data.isSubscribed) {
+                        if (response.data.success && response.data.isSubscribedToChannel) {
                             setTgChanel_val(true);
                         }
                         if (response.data.success && response.data.isSubscribedToOctiesChannel) {
