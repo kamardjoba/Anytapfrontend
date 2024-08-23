@@ -41,7 +41,7 @@ function Quests() {
                             setTgChanel_val(true);
                         }
                         if (response.data.success && response.data.isSubscribedToOctiesChannel) {
-                            TgOcties_val(true);
+                           setTgOcties_val(true);
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
