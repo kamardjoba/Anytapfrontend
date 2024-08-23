@@ -78,27 +78,25 @@ function Quests() {
     }
 
     function GoX() {
+        window.open('https://x.com/Octies_GameFI', '_blank'); // Замените на ссылку на ваш Twitter
+    
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
     
             if (user) {
                 const telegramId = user.id;
     
-                // Отправляем запрос на сервер для обновления isSubscribedToTwitter
-                const updateTwitterSubscription = async () => {
+                // Устанавливаем таймер на 5 секунд
+                setTimeout(async () => {
                     try {
                         await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
                         setX_val(true); // Обновляем состояние в React после успешного запроса
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
-                };
-    
-                updateTwitterSubscription();
+                }, 5000); // 5000 миллисекунд = 5 секунд
             }
         }
-    
-        window.open('https://x.com/Octies_GameFI', '_blank'); // Замените на ссылку на ваш Twitter
     }
     
     
