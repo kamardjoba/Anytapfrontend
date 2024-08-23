@@ -27,20 +27,26 @@ function Quests() {
     const [Inst_val, setInst_val] = useState(false);
    
 
-    useEffect(async (userId) => {
-        const checkSubscription = async () => {
-            try {
-                const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription',{ userId });
-                if (response.data.success && response.data.isSubscribed) {
-                    setTgChanel_val(true);
-                   
-                }
-            } catch (error) {
-                console.error('Ошибка при проверке подписки:', error);
-            }
-        };
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const telegramId = urlParams.get('telegramId');
     
-        checkSubscription();
+        if (telegramId) {
+            const checkSubscription = async () => {
+                try {
+                    const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
+                    if (response.data.success && response.data.isSubscribed) {
+                        setTgChanel_val(true);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при проверке подписки:', error);
+                }
+            };
+        
+            checkSubscription();
+        } else {
+            console.error('Не удалось получить telegramId из URL');
+        }
     }, []);
     
 
