@@ -43,6 +43,9 @@ function Quests() {
                         if (response.data.success && response.data.isSubscribedToOctiesChannel) {
                            setTgOcties_val(true);
                         }
+                        if (response.data.isSubscribedToTwitter) {
+                            setX_val(true);
+                        }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
@@ -75,8 +78,30 @@ function Quests() {
     }
 
     function GoX() {
-        setX_val(true);
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    
+            if (user) {
+                const telegramId = user.id;
+    
+                // Отправляем запрос на сервер для обновления isSubscribedToTwitter
+                const updateTwitterSubscription = async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
+                        setX_val(true); // Обновляем состояние в React после успешного запроса
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                };
+    
+                updateTwitterSubscription();
+            }
+        }
+    
+        window.open('https://x.com/Octies_GameFI', '_blank'); // Замените на ссылку на ваш Twitter
     }
+    
+    
 
     function GoStartNft() {
         setStartNft_val(true);
