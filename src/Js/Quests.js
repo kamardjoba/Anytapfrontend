@@ -25,60 +25,36 @@ function Quests() {
     const [TonTran_val, setTonTran_val] = useState(false);
     const [Wallet_val, setWallet_val] = useState(false);
     const [Inst_val, setInst_val] = useState(false);
-    const userId = new URLSearchParams(window.location.search).get('userId');
 
-   
 
     useEffect(() => {
-        
+        if (window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
     
-        if (userId) {
-            const checkSubscription = async () => {
-                try {
-                    const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { userId });
-                    if (response.data.success && response.data.isSubscribed) {
-                        setTgChanel_val(true);
+            if (user) {
+                const telegramId = user.id;
+                const checkSubscription = async () => {
+                    try {
+                        const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
+                        if (response.data.success && response.data.isSubscribed) {
+                            setTgChanel_val(true);
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при проверке подписки:', error);
                     }
-                } catch (error) {
-                    console.error('Ошибка при проверке подписки:', error);
-                }
-            };
-        
-            checkSubscription();
+                };
+    
+                checkSubscription();
+            } else {
+                console.error('Не удалось получить данные пользователя из WebApp');
+            }
         } else {
-            console.error('Не удалось получить telegramId из URL');
+            console.error('Telegram WebApp API не доступен');
         }
     }, []);
     
 
-
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const telegramId = urlParams.get('telegramId');
-
-        if (telegramId) {
-            fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        setUserInfo({
-                            firstName: data.firstName,
-                            coins: data.coins,
-                            photoUrl: data.photoUrl
-                        });
-                    } else {
-                        console.error('Ошибка при получении данных о пользователе:', data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Ошибка при запросе:', error);
-                });
-        }
-        if (location.pathname === "/") {
-            navigate("/home");
-            setActiveItem(0);
-        }
-    }, [navigate, location]);
     function GoInst() {
         setInst_val(true);
     }
