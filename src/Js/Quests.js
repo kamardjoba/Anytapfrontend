@@ -61,10 +61,28 @@ function Quests() {
     }, []);
     
 
-    function GoInst() {
-        setInst_val(true);
+    function GoX() {
+        window.open('https://www.instagram.com/kvdvall', '_blank'); // Замените на ссылку на ваш Twitter
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    
+            if (user) {
+                const telegramId = user.id;
+    
+                // Устанавливаем таймер на 5 секунд
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-instagram-subscription', { telegramId });
+                        setInst_val(true); // Обновляем состояние в React после успешного запроса
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                }, 5000); // 5000 миллисекунд = 5 секунд
+            }
+        }
     }
-
+    
     function GoWallet() {
         setWallet_val(true);
     }
