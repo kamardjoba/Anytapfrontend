@@ -25,6 +25,23 @@ function Quests() {
     const [Wallet_val, setWallet_val] = useState(false);
     const [Inst_val, setInst_val] = useState(false);
 
+    useEffect(() => {
+        const checkSubscription = async () => {
+            try {
+                const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId: 'user_telegram_id' });
+                if (response.data.success && response.data.isSubscribed) {
+                    setTgChanel_val(true);
+                    setCoins(response.data.coins);
+                }
+            } catch (error) {
+                console.error('Ошибка при проверке подписки:', error);
+            }
+        };
+    
+        checkSubscription();
+    }, []);
+    
+
     function GoInst() {
         setInst_val(true);
     }
