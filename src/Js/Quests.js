@@ -46,6 +46,9 @@ function Quests() {
                         if (response.data.isSubscribedToTwitter) {
                             setX_val(true);
                         }
+                        if (response.data.isSubscribedToInstagram) {
+                            setInst_val(true);
+                        }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
