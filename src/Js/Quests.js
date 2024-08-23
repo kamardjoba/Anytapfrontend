@@ -40,6 +40,9 @@ function Quests() {
                         if (response.data.success && response.data.isSubscribed) {
                             setTgChanel_val(true);
                         }
+                        if (response.data.success && response.data.isSubscribedToOctiesChannel) {
+                            TgOcties_val(true);
+                        }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
@@ -68,7 +71,7 @@ function Quests() {
     }
 
     function GoOct() {
-        setTgOcties_val(true);
+        window.open('https://t.me/octies_channel', '_blank');
     }
 
     function GoX() {
