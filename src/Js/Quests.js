@@ -27,8 +27,8 @@ function Quests() {
     const [Inst_val, setInst_val] = useState(false);
    
 
-    useEffect(() => {
-        const checkSubscription = async (userId) => {
+    useEffect(async (userId) => {
+        const checkSubscription = async () => {
             try {
                 const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription',{ userId });
                 if (response.data.success && response.data.isSubscribed) {
