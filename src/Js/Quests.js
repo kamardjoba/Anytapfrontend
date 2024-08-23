@@ -53,7 +53,7 @@ function Quests() {
                         console.error('Ошибка при проверке подписки:', error);
                     }
                 };
-    
+
                 checkSubscription();
             } else {
                 console.error('Не удалось получить данные пользователя из WebApp');
