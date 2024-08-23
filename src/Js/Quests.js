@@ -24,6 +24,7 @@ function Quests() {
     const [TonTran_val, setTonTran_val] = useState(false);
     const [Wallet_val, setWallet_val] = useState(false);
     const [Inst_val, setInst_val] = useState(false);
+    const [coins, setCoins] = useState(0);
 
     useEffect(() => {
         const checkSubscription = async () => {
@@ -51,7 +52,7 @@ function Quests() {
     }
 
     function GoTg() {
-        setTgChanel_val(true);
+        window.open('https://t.me/any_tap', '_blank');
     }
 
     function GoOct() {
