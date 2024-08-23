@@ -25,16 +25,17 @@ function Quests() {
     const [TonTran_val, setTonTran_val] = useState(false);
     const [Wallet_val, setWallet_val] = useState(false);
     const [Inst_val, setInst_val] = useState(false);
+    const userId = new URLSearchParams(window.location.search).get('userId');
+
    
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const telegramId = urlParams.get('telegramId');
+        
     
-        if (telegramId) {
+        if (userId) {
             const checkSubscription = async () => {
                 try {
-                    const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
+                    const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { userId });
                     if (response.data.success && response.data.isSubscribed) {
                         setTgChanel_val(true);
                     }
@@ -50,6 +51,34 @@ function Quests() {
     }, []);
     
 
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const telegramId = urlParams.get('telegramId');
+
+        if (telegramId) {
+            fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        setUserInfo({
+                            firstName: data.firstName,
+                            coins: data.coins,
+                            photoUrl: data.photoUrl
+                        });
+                    } else {
+                        console.error('Ошибка при получении данных о пользователе:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при запросе:', error);
+                });
+        }
+        if (location.pathname === "/") {
+            navigate("/home");
+            setActiveItem(0);
+        }
+    }, [navigate, location]);
     function GoInst() {
         setInst_val(true);
     }
