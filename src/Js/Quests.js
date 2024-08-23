@@ -61,7 +61,7 @@ function Quests() {
     }, []);
     
 
-    function GoX() {
+    function GoInst() {
         window.open('https://www.instagram.com/kvdvall', '_blank'); // Замените на ссылку на ваш Twitter
     
         if (window.Telegram.WebApp) {
