@@ -30,7 +30,7 @@ function Quests() {
     useEffect(() => {
         const checkSubscription = async () => {
             try {
-                const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId: 'user_telegram_id' });
+                const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId: '561009411' });
                 if (response.data.success && response.data.isSubscribed) {
                     setTgChanel_val(true);
                    
