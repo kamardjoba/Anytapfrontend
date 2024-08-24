@@ -101,7 +101,7 @@ function Quests() {
     
 
     function GoWallet() {
-        setWallet_val(true); 
+        setWallet_val(true);
     }
     
 
