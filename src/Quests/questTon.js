@@ -4,9 +4,10 @@ import arrows from '../IMG/arrows.svg';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
 const TonTrans = ({ TonTran_val }) => {
-    const { sendTransaction } = useTonConnectUI();
+    const tonConnectContext = useTonConnectUI();
+    console.log('TonConnect Context:', tonConnectContext);
 
-    console.log('sendTransaction:', sendTransaction);
+    const { sendTransaction } = tonConnectContext;
 
     const GoTon = async () => {
         try {
@@ -15,11 +16,11 @@ const TonTrans = ({ TonTran_val }) => {
             }
 
             const transaction = {
-                validUntil: Date.now() + 5 * 60 * 1000, // Время, до которого транзакция действительна (5 минут с момента создания)
+                validUntil: Date.now() + 5 * 60 * 1000,
                 messages: [
                     {
-                        address: 'UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG', // Адрес получателя
-                        amount: '10000', // 0.01 TON в нанотонах (1 TON = 1e9 нанотонов)
+                        address: 'EQD6p7QkZK1npse29QdZ5ehTo1o3nEXW9fb-5aHkKX5gTonConnectAddress',
+                        amount: '10000', // 0.01 TON в нанотонах
                     },
                 ],
             };
