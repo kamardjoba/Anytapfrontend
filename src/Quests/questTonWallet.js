@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../Css/Quests.css';
 import wallet from '../IMG/wallet.svg';
-import { connectWallet, getWalletAddress } from '../Js/TonConnect'; 
+import { connectWallet, getWalletAddress } from '../TonConnect';
+ 
 
 const TonW = ({ GoWallet }) => {
   const [walletAddress, setWalletAddress] = useState(getWalletAddress());

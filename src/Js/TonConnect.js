@@ -1,5 +1,7 @@
 // src/TonConnect.js
 import { TonConnect } from '@tonconnect/sdk';
+console.log("TonConnect.js loaded");
+console.log("connectWallet function:", typeof connectWallet);
 
 const connector = new TonConnect({
     manifestUrl: 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json',
