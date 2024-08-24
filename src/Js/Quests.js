@@ -10,7 +10,7 @@ import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
-import { TonConnect } from '@tonconnect/sdk';
+
 
 function Quests() {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
@@ -100,25 +100,11 @@ function Quests() {
     
     
 
-
-
-
     function GoWallet() {
-        const tonConnect = new TonConnect({
-            manifestUrl: 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json'
-        });
-    
-        tonConnect.connect()
-            .then((wallet) => {
-                console.log('Кошелек подключен:', wallet);
+       
                 setWallet_val(true);
-                // Возможно, вам потребуется сделать больше действий после подключения
-            })
-            .catch((error) => {
-                console.error('Ошибка при подключении кошелька:', error);
-            });
+              
     }
-    
     
 
     function GoTg() {
