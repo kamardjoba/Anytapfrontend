@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Css/Quests.css';
 import arrows from '../IMG/arrows.svg';
-import { useTonConnectUI, TonConnectUIProvider } from '@tonconnect/ui-react';
+import { useTonConnectUI } from '@tonconnect/ui-react';
 
 const TonTrans = ({ TonTran_val }) => {
     const { sendTransaction } = useTonConnectUI();
@@ -31,9 +31,8 @@ const TonTrans = ({ TonTran_val }) => {
             alert('Transaction failed: ' + error.message);
         }
     };
-    const manifestUrl = 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json';
+
     return (
-        <TonConnectUIProvider manifestUrl={manifestUrl}>
         <div className='questItem'>
             <div className='questItemLeft'>
                 <div className='questIcon'>
@@ -48,8 +47,6 @@ const TonTrans = ({ TonTran_val }) => {
                 {!TonTran_val && (<button className='questBtn' onClick={GoTon}>GO!</button>)}
             </div>
         </div>
-
-    </TonConnectUIProvider>
     );
 };
 
