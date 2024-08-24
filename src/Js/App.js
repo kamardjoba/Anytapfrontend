@@ -28,7 +28,7 @@ function App() {
 
     useEffect(() => {
         const handlePageLoad = () => {
-          setLoading(true);
+          setLoading(false);
         };
   
       window.addEventListener('load', handlePageLoad);
