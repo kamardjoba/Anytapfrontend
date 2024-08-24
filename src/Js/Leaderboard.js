@@ -58,12 +58,11 @@ function Leaderboard() {
         <div className='leaderboardContainer'>
             <div className='blueContainer'>
                 <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>#{userRank || 'Loading...'}</p> {/* Отображение ранга */}
+                    <p className='blueContainerItemTitle'>#{userRank || 'Loading...'}</p> 
                     <p className='blueContainerItemSubtitle'>Your rank</p>
                 </div>
                 <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p> {/* Отображение монет */}
-                    <p className='blueContainerItemSubtitle'>Your points</p>
+                    <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p> 
                 </div>
             </div>
             <div className='whiteContainerLeaderboard'>
