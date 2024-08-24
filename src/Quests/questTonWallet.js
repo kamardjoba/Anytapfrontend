@@ -19,8 +19,7 @@ const TonW = ({GoWallet, Wallet_val}) => {
             </div>
         </div>
         <div className='questItemRight'>
-        {!Wallet_val &&(<button className='questBtn' onClick={GoWallet}>Connect</button>)}
-        <TonConnectButton/>
+        {!Wallet_val &&(<TonConnectButton/>)}
         </div>
     </div>
     </TonConnectUIProvider>
