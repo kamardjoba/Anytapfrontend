@@ -16,15 +16,24 @@ function Quests() {
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
     const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
 
-    const [TgChanel_val, setTgChanel_val] = useState(false);
-    const [TgOcties_val, setTgOcties_val] = useState(false);
-    const [X_val, setX_val] = useState(false);
+    if (!localStorage.getItem('TgChanel_val')) {localStorage.setItem('TgChanel_val', 'false');}
+    const TgChanel_val = localStorage.getItem('TgChanel_val') === 'true';
+
+    if (!localStorage.getItem('TgOcties_val')) {localStorage.setItem('TgOcties_val', 'false');}
+    const TgOcties_val = localStorage.getItem('TgOcties_val') === 'true';
+
+    if (!localStorage.getItem('X_val')) {localStorage.setItem('X_val', 'false');}
+    const X_val = localStorage.getItem('X_val') === 'true';
+
+    if (!localStorage.getItem('Inst_val')) {localStorage.setItem('Inst_val', 'false');}
+    const Inst_val = localStorage.getItem('Inst_val') === 'true';
+
+    
     const [StartNft_val, setStartNft_val] = useState(false);
     const [Frends_val, setFrends_val] = useState(false);
     const [WeeklyNft_val, setWeeklyNft_val] = useState(false);
     const [TonTran_val, setTonTran_val] = useState(false);
     const [Wallet_val, setWallet_val] = useState(false);
-    const [Inst_val, setInst_val] = useState(false);
 
   
       
@@ -40,16 +49,16 @@ function Quests() {
                     try {
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
                         if (response.data.success && response.data.isSubscribedToChannel) {
-                            setTgChanel_val(true);
+                            localStorage.setItem('TgChanel_val', 'true');
                         }
                         if (response.data.success && response.data.isSubscribedToOctiesChannel) {
-                           setTgOcties_val(true);
+                            localStorage.setItem('TgOcties_val', 'true');
                         }
                         if (response.data.isSubscribedToTwitter) {
-                            setX_val(true);
+                            localStorage.setItem('X_val', 'true');
                         }
                         if (response.data.isSubscribedToInstagram) {
-                            setInst_val(true);
+                            localStorage.setItem('Inst_val', 'true');
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
@@ -79,7 +88,7 @@ function Quests() {
                 setTimeout(async () => {
                     try {
                         await axios.post('https://anypatbackend-production.up.railway.app/update-instagram-subscription', { telegramId });
-                        setInst_val(true); // Обновляем состояние в React после успешного запроса
+                        localStorage.setItem('Inst_val', 'true'); // Обновляем состояние в React после успешного запроса
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
@@ -113,7 +122,7 @@ function Quests() {
                 setTimeout(async () => {
                     try {
                         await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
-                        setX_val(true); // Обновляем состояние в React после успешного запроса
+                        localStorage.setItem('X_val', 'true'); // Обновляем состояние в React после успешного запроса
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
