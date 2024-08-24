@@ -23,21 +23,10 @@ function App() {
         photoUrl: ''
     });
     const [activeItem, setActiveItem] = useState(null);
-//================================================Loading    
+  
     const [isLoading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const handlePageLoad = () => {
-          setLoading(false);
-        };
-  
-      window.addEventListener('load', handlePageLoad);
-  
-      return () => {
-        window.removeEventListener('load', handlePageLoad);
-      };
-    }, []);
-//========================================================
+
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const telegramId = urlParams.get('telegramId');
@@ -51,13 +40,17 @@ function App() {
                             firstName: data.firstName,
                             coins: data.coins,
                             photoUrl: data.photoUrl
+                            
                         });
+                        setLoading(false);
                     } else {
                         console.error('Ошибка при получении данных о пользователе:', data.message);
+                        setLoading(false);
                     }
                 })
                 .catch(error => {
                     console.error('Ошибка при запросе:', error);
+                    setLoading(false);
                 });
         }
         if (location.pathname === "/") {

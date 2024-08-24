@@ -8,7 +8,6 @@ function LoadingScreen() {
         <div className="loading-screen">
             <img src={ppnngg} alt=''/>
             <div id="loading-wrapper">
-
                 <div id="loading-content"></div>
             </div>
 

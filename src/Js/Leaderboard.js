@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Css/Leaderboard.css';
 import small_diam from '../IMG/small_diam.png';
-
-import nophoto from '../IMG/noprofilephoto.png'
-
+import nophoto from '../IMG/noprofilephoto.png';
 
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
@@ -11,7 +9,6 @@ function Leaderboard() {
     const [userCoins, setUserCoins] = useState(null);
 
     useEffect(() => {
-        // Получаем Telegram ID через initDataUnsafe
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
 
@@ -21,36 +18,35 @@ function Leaderboard() {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
+                    
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
+                   
                 }
             };
 
-                console.log(`Используется telegramId: ${telegramId}`); // Лог на клиенте
-                const fetchUserRank = async () => {
-                    try {
-                        const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
-                        const data = await response.json();
-            
-                        if (data.success) {
-                            setUserRank(data.rank);
-                            setUserCoins(data.user.coins);
-                        } else {
-                            console.error(data.message); // Лог ошибки с сервера
-                        }
-                    } catch (error) {
-                        console.error('Ошибка при загрузке ранга пользователя:', error);
-                    }
-                };
-            
-                fetchUserRank();
-            
-            
+            console.log(`Используется telegramId: ${telegramId}`);
+            const fetchUserRank = async () => {
+                try {
+                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
+                    const data = await response.json();
 
+                    if (data.success) {
+                        setUserRank(data.rank);
+                        setUserCoins(data.user.coins);
+                    } else {
+                        console.error(data.message);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при загрузке ранга пользователя:', error);
+                }
+            };
+
+            fetchUserRank();
             fetchLeaderboard();
-           
         } else {
             console.error('Telegram ID не найден');
+            
         }
     }, []);
 
@@ -58,11 +54,11 @@ function Leaderboard() {
         <div className='leaderboardContainer'>
             <div className='blueContainer'>
                 <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>#{userRank || '-'}</p> {/* Отображение ранга */}
+                    <p className='blueContainerItemTitle'>#{userRank || 'Loading...'}</p> 
                     <p className='blueContainerItemSubtitle'>Your rank</p>
                 </div>
                 <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : '-'}</p> {/* Отображение монет */}
+                    <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
                     <p className='blueContainerItemSubtitle'>Your points</p>
                 </div>
             </div>
