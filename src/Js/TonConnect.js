@@ -2,7 +2,7 @@
 import { TonConnect } from '@tonconnect/sdk';
 
 const connector = new TonConnect({
-    manifestUrl: 'https://yourdomain.com/tonconnect-manifest.json',
+    manifestUrl: 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json',
 });
 
 export const connectWallet = async () => {
