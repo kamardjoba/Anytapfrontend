@@ -87,9 +87,11 @@ function Leaderboard() {
                 </ul>
             </div> 
             ) : (
+                <div class="outer-container">
                 <div className="white_Container_Leaderboard_Load" >
                     <LoadingScreen wrapperClass="loading-wrapper-leaderboard" />
                 
+              </div>
               </div>)}
 
         </div>
