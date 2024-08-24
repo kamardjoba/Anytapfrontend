@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Quests.css';
 import axios from 'axios';
-import TgQuest from '../Quests/questTg';
-import TgOctiesQuest from '../Quests/questOctiesTg';
-import XQuest from '../Quests/questX';
-import MintStartNft from '../Quests/questStartNft';
-import FrendsQuest from '../Quests/questFriends';
-import WeeklyNft from '../Quests/questWeeklyNft';
-import TonTrans from '../Quests/questTon';
-import TonW from '../Quests/questTonWallet';
-import InstQuest from '../Quests/questInst';
+import TgQuest from './Quests/questTg';
+import TgOctiesQuest from './Quests/questOctiesTg';
+import XQuest from './Quests/questX';
+import MintStartNft from './Quests/questStartNft';
+import FrendsQuest from './Quests/questFriends';
+import WeeklyNft from './Quests/questWeeklyNft';
+import TonTrans from './Quests/questTon';
+import TonW from './Quests/questTonWallet';
+import InstQuest from './Quests/questInst';
+import { TonConnect } from '@tonconnect/sdk';
 
 function Quests() {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
@@ -97,9 +98,24 @@ function Quests() {
         }
     }
     
+    
+
     function GoWallet() {
-        setWallet_val(true);
+        const tonConnect = new TonConnect({
+            manifestUrl: 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json'
+        });
+    
+        tonConnect.connectWallet()
+            .then(wallet => {
+                console.log('Кошелек подключен:', wallet);
+                setWallet_val(true);
+                // Дополнительные действия после подключения кошелька, если необходимо
+            })
+            .catch(error => {
+                console.error('Ошибка подключения кошелька:', error);
+            });
     }
+    
 
     function GoTg() {
         window.open('https://t.me/any_tap', '_blank');
