@@ -23,21 +23,10 @@ function App() {
         photoUrl: ''
     });
     const [activeItem, setActiveItem] = useState(null);
-//================================================Loading    
+  
     const [isLoading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const handlePageLoad = () => {
-        
-        };
-  
-      window.addEventListener('load', handlePageLoad);
-  
-      return () => {
-        window.removeEventListener('load', handlePageLoad);
-      };
-    }, []);
-//========================================================
+
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const telegramId = urlParams.get('telegramId');
