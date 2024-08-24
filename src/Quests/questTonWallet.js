@@ -1,44 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../Css/Quests.css';
+import { TonConnectButton, TonConnectUIProvider } from '@tonconnect/ui-react';
 import wallet from '../IMG/wallet.svg';
-import { connectWallet, getWalletAddress } from '../Js/TonConnect'; 
 
-const TonW = ({ GoWallet }) => {
-  const [walletAddress, setWalletAddress] = useState(getWalletAddress());
+const manifestUrl = 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json'; // URL к манифесту
 
-  const handleConnect = async () => {
-    try {
-      console.log('Attempting to connect wallet...');
-      const wallet = await connectWallet();
-      if (wallet) {
-        setWalletAddress(getWalletAddress());
-        GoWallet();
-        console.log('Wallet connected:', wallet);
-      } else {
-        console.log('Wallet connection failed or was cancelled.');
-      }
-    } catch (error) {
-      console.error("Failed to connect wallet:", error);
-    }
-  };
-  
+const TonW = ({ Wallet_val }) => {
   return (
-    <div className='questItem'>
-      <div className='questItemLeft'>
-        <div className='questIcon'>
-          <img src={wallet} alt="" />
+    <TonConnectUIProvider manifestUrl={manifestUrl}>
+      <div className='questItem'>
+        <div className='questItemLeft'>
+          <div className='questIcon'>
+            <img src={wallet} alt="wallet icon"/>
+          </div>
+          <div className='questItemLeftContent'>
+            <p className='questTitle'>Ton Wallet Connect</p>
+            <p className='questSubtitle'>+500 points</p>
+          </div>
         </div>
-        <div className='questItemLeftContent'>
-          <p className='questTitle'>Ton Wallet Connect</p>
-          <p className='questSubtitle'>+500 points</p>
+        <div className='questItemRight'>
+          {!Wallet_val && (
+            <TonConnectButton />
+          )}
         </div>
       </div>
-      <div className='questItemRight'>
-        <button className='questBtn' onClick={handleConnect}>
-          {walletAddress ? `Connected: ${walletAddress}` : 'Connect'}
-        </button>
-      </div>
-    </div>
+    </TonConnectUIProvider>
   );
 };
 

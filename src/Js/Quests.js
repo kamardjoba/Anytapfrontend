@@ -11,6 +11,7 @@ import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 
+
 function Quests() {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
@@ -97,9 +98,14 @@ function Quests() {
         }
     }
     
+    
+
     function GoWallet() {
-        setWallet_val(true);
+       
+                setWallet_val(true);
+              
     }
+    
 
     function GoTg() {
         window.open('https://t.me/any_tap', '_blank');
