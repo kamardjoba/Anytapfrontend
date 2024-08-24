@@ -1,7 +1,7 @@
 import React, {useEffect}from 'react';
 import '../Css/Quests.css';
 import arrows from'../IMG/arrows.svg';
-import { TonConnectUIProvider, TonConnectButton} from '@tonconnect/ui-react';
+import { TonConnectUIProvider} from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
 
