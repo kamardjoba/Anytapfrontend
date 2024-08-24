@@ -100,12 +100,15 @@ function Quests() {
     
     
 
+
+
     function GoWallet() {
         const tonConnect = new TonConnect({
             manifestUrl: 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json'
         });
     
-        tonConnect.connectWallet()
+        // Убедитесь, что метод `connect` правильно используется
+        tonConnect.connect()
             .then(wallet => {
                 console.log('Кошелек подключен:', wallet);
                 setWallet_val(true);
