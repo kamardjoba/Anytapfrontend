@@ -11,9 +11,14 @@ export const connectWallet = async () => {
         await connector.restoreConnection();
         console.log("Connector connected:", connector.connected);
 
-        // Если не подключено, возможно, нужно вызвать другой метод или инициировать подключение
+        // Подписка на изменение статуса
+        connector.onStatusChange((status) => {
+            console.log("Connection status changed:", status);
+        });
+
         if (!connector.connected) {
             console.log("Trying to establish a new connection...");
+            // Используйте доступные методы для попытки соединения
             const wallet = await connector.wallet;
             console.log("Wallet object:", wallet);
             if (wallet) {
