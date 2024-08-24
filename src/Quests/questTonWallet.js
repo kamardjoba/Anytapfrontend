@@ -1,8 +1,36 @@
 import React, { useState } from 'react';
 import '../Css/Quests.css';
 import wallet from '../IMG/wallet.svg';
-import { connectWallet, getWalletAddress } from './TonConnect';
- 
+import { TonConnect } from '@tonconnect/sdk';
+
+
+const connector = new TonConnect({
+    manifestUrl: 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json',
+});
+
+export const connectWallet = async () => {
+    try {
+        await connector.restoreConnection();
+        if (!connector.connected) {
+            await connector.connectWallet();
+        }
+        return connector.wallet;
+    } catch (error) {
+        console.error("Failed to connect wallet:", error);
+        return null;
+    }
+};
+
+console.log("TonConnect.js loaded");
+console.log("connectWallet function:", typeof connectWallet);
+
+export const disconnectWallet = () => {
+    connector.disconnect();
+};
+
+export const getWalletAddress = () => {
+    return connector.connected ? connector.wallet?.account.address : null;
+};
 
 const TonW = ({ GoWallet }) => {
   const [walletAddress, setWalletAddress] = useState(getWalletAddress());
