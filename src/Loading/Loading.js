@@ -7,12 +7,10 @@ function LoadingScreen() {
     return (
         <div className="loading-screen">
             <img src={ppnngg} alt=''/>
-            <div class="container">
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-</div>
+            <div id="loading-wrapper">
+
+                <div id="loading-content"></div>
+            </div>
 
         </div>
     );
