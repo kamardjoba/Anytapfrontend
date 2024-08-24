@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import '../Css/Leaderboard.css';
 import small_diam from '../IMG/small_diam.png';
 import nophoto from '../IMG/noprofilephoto.png';
+import LoadingScreen from '../Loading/Loading.js';
 
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
+    const [isLoadingLider, setisLoadingLider] = useState(true);
+    
+    
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
@@ -30,7 +34,7 @@ function Leaderboard() {
                 try {
                     const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
                     const data = await response.json();
-
+                    setisLoadingLider(true)
                     if (data.success) {
                         setUserRank(data.rank);
                         setUserCoins(data.user.coins);
@@ -62,7 +66,7 @@ function Leaderboard() {
                     <p className='blueContainerItemSubtitle'>Your points</p>
                 </div>
             </div>
-            <div className='whiteContainerLeaderboard'>
+            {isLoadingLider ? (<div className='whiteContainerLeaderboard'>
                 <ul className='whiteContainerContent leaderboardScroll'>
                     {leaderboardData.map((user, index) => (
                         <li className='leaderboardItem' key={user.telegramId}>
@@ -81,7 +85,13 @@ function Leaderboard() {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div> 
+            ) : (
+                <div className="white_Container_Leaderboard_Load" >
+                    <LoadingScreen wrapperClass="loading-wrapper-leaderboard" />
+                
+              </div>)}
+
         </div>
     );
 }

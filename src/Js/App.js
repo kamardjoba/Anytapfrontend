@@ -24,7 +24,7 @@ function App() {
     });
     const [activeItem, setActiveItem] = useState(null);
   
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(false);
 
 
     useEffect(() => {
@@ -104,7 +104,7 @@ function App() {
 
     return (
         <div className="App">
-        {isLoading && <LoadingScreen/>}
+        {isLoading && <LoadingScreen wrapperClass="loading-wrapper-app" />}
         <div className={`appWrapper ${isLoading ? 'hidden' : ''}`}>
             <header className='headerWrapper'>
                 <p className='userName'>{userInfo.firstName}</p>
