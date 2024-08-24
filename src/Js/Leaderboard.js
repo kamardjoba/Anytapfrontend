@@ -8,7 +8,7 @@ function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
-    const [loading, setLoading] = useState(false); // Добавляем состояние загрузки
+    const [loading, setLoading] = useState(true); // Добавляем состояние загрузки
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
