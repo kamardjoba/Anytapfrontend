@@ -24,6 +24,3 @@ export const disconnectWallet = () => {
 export const getWalletAddress = () => {
     return connector.connected ? connector.wallet?.account.address : null;
 };
-
-console.log("TonConnect.js loaded");
-console.log("connectWallet function:", typeof connectWallet);
