@@ -28,7 +28,7 @@ function App() {
 
     useEffect(() => {
         const handlePageLoad = () => {
-          setLoading(false);
+        
         };
   
       window.addEventListener('load', handlePageLoad);
@@ -51,13 +51,17 @@ function App() {
                             firstName: data.firstName,
                             coins: data.coins,
                             photoUrl: data.photoUrl
+                            
                         });
+                        setLoading(false);
                     } else {
                         console.error('Ошибка при получении данных о пользователе:', data.message);
+                        setLoading(false);
                     }
                 })
                 .catch(error => {
                     console.error('Ошибка при запросе:', error);
+                    setLoading(false);
                 });
         }
         if (location.pathname === "/") {

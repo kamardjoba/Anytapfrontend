@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../Css/Leaderboard.css';
 import small_diam from '../IMG/small_diam.png';
-import LoadingScreen from '../Loading/Loading.js';
 import nophoto from '../IMG/noprofilephoto.png';
 
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
-    const [loading, setLoading] = useState(true); // Добавляем состояние загрузки
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
@@ -20,10 +18,10 @@ function Leaderboard() {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
-                    setLoading(false); // Снимаем состояние загрузки после получения данных
+                    
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
-                    setLoading(false); // Даже при ошибке нужно снять состояние загрузки
+                   
                 }
             };
 
@@ -48,13 +46,9 @@ function Leaderboard() {
             fetchLeaderboard();
         } else {
             console.error('Telegram ID не найден');
-            setLoading(false); // Если Telegram ID не найден, убираем загрузку
+            
         }
     }, []);
-
-    if (loading) {
-        return <LoadingScreen />; // Показываем экран загрузки, если данные еще загружаются
-    }
 
     return (
         <div className='leaderboardContainer'>
