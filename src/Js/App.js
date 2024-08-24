@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Css/App.css';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import LoadingScreen from '../Loading/Loading.js';
 import home from '../IMG/footerLogo/HM.png';
 import leaderboard from '../IMG/footerLogo/LB.png';
 import quests from '../IMG/footerLogo/QE.png';
@@ -22,7 +23,23 @@ function App() {
         photoUrl: ''
     });
     const [activeItem, setActiveItem] = useState(null);
+//================================================Loading    
+    const [isLoading, setLoading] = useState(true);
 
+    useEffect(() => {
+        const handlePageLoad = () => {
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000); // Задержка в 2 секунды
+        };
+  
+      window.addEventListener('load', handlePageLoad);
+  
+      return () => {
+        window.removeEventListener('load', handlePageLoad);
+      };
+    }, []);
+//========================================================
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const telegramId = urlParams.get('telegramId');
@@ -56,9 +73,7 @@ function App() {
         setActiveItem(index);
     };
 
-
     // ________________________________________________
-
 
     const [referrals, setReferrals] = useState([]);
     const [referralLink, setReferralLink] = useState('');
@@ -94,11 +109,12 @@ function App() {
         }
     }, []);
 
-
     //______________________________________________________________
 
     return (
-        <div className='appWrapper'>
+        <div className="App">
+        {isLoading && <LoadingScreen/>}
+        <div className={`appWrapper ${isLoading ? 'hidden' : ''}`}>
             <header className='headerWrapper'>
                 <p className='userName'>{userInfo.firstName}</p>
                 <div className='userAvatarWrapper'>
@@ -145,6 +161,7 @@ function App() {
                     </li>
                 </ul>
             </footer>
+        </div>
         </div>
     );
 }
