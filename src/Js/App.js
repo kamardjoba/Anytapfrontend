@@ -28,9 +28,7 @@ function App() {
 
     useEffect(() => {
         const handlePageLoad = () => {
-          setTimeout(() => {
-            setLoading(false);
-          }, 2000); // Задержка в 2 секунды
+          setLoading(true);
         };
   
       window.addEventListener('load', handlePageLoad);
