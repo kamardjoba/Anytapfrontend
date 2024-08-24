@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import '../Css/Leaderboard.css';
 import small_diam from '../IMG/small_diam.png';
-
-import nophoto from '../IMG/noprofilephoto.png'
-
+import LoadingScreen from '../Loading/Loading.js';
+import nophoto from '../IMG/noprofilephoto.png';
 
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
+    const [loading, setLoading] = useState(false); // Добавляем состояние загрузки
 
     useEffect(() => {
-        // Получаем Telegram ID через initDataUnsafe
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
 
@@ -21,38 +20,41 @@ function Leaderboard() {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
+                    setLoading(false); // Снимаем состояние загрузки после получения данных
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
+                    setLoading(false); // Даже при ошибке нужно снять состояние загрузки
                 }
             };
 
-                console.log(`Используется telegramId: ${telegramId}`); // Лог на клиенте
-                const fetchUserRank = async () => {
-                    try {
-                        const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
-                        const data = await response.json();
-            
-                        if (data.success) {
-                            setUserRank(data.rank);
-                            setUserCoins(data.user.coins);
-                        } else {
-                            console.error(data.message); // Лог ошибки с сервера
-                        }
-                    } catch (error) {
-                        console.error('Ошибка при загрузке ранга пользователя:', error);
-                    }
-                };
-            
-                fetchUserRank();
-            
-            
+            console.log(`Используется telegramId: ${telegramId}`);
+            const fetchUserRank = async () => {
+                try {
+                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
+                    const data = await response.json();
 
+                    if (data.success) {
+                        setUserRank(data.rank);
+                        setUserCoins(data.user.coins);
+                    } else {
+                        console.error(data.message);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при загрузке ранга пользователя:', error);
+                }
+            };
+
+            fetchUserRank();
             fetchLeaderboard();
-           
         } else {
             console.error('Telegram ID не найден');
+            setLoading(false); // Если Telegram ID не найден, убираем загрузку
         }
     }, []);
+
+    if (loading) {
+        return <LoadingScreen />; // Показываем экран загрузки, если данные еще загружаются
+    }
 
     return (
         <div className='leaderboardContainer'>
