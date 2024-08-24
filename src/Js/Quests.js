@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Quests.css';
 import axios from 'axios';
-import TgQuest from './Quests/questTg';
-import TgOctiesQuest from './Quests/questOctiesTg';
-import XQuest from './Quests/questX';
-import MintStartNft from './Quests/questStartNft';
-import FrendsQuest from './Quests/questFriends';
-import WeeklyNft from './Quests/questWeeklyNft';
-import TonTrans from './Quests/questTon';
-import TonW from './Quests/questTonWallet';
-import InstQuest from './Quests/questInst';
+import TgQuest from '../Quests/questTg';
+import TgOctiesQuest from '../Quests/questOctiesTg';
+import XQuest from '../Quests/questX';
+import MintStartNft from '../Quests/questStartNft';
+import FrendsQuest from '../Quests/questFriends';
+import WeeklyNft from '../Quests/questWeeklyNft';
+import TonTrans from '../Quests/questTon';
+import TonW from '../Quests/questTonWallet';
+import InstQuest from '../Quests/questInst';
 import { TonConnect } from '@tonconnect/sdk';
 
 function Quests() {
