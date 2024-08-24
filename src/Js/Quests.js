@@ -11,6 +11,7 @@ import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 
+
 function Quests() {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
@@ -26,6 +27,8 @@ function Quests() {
     const [Wallet_val, setWallet_val] = useState(false);
     const [Inst_val, setInst_val] = useState(false);
 
+  
+      
 
     useEffect(() => {
         if (window.Telegram.WebApp) {
