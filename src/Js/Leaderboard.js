@@ -8,7 +8,7 @@ function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
-    const [isLoadingLider, setisLoadingLider] = useState(true);
+    const [isLoadingLider, setisLoadingLider] = useState(false);
     
     
 
