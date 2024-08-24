@@ -11,10 +11,11 @@ export const connectWallet = async () => {
         await connector.restoreConnection();
         console.log("Connector connected:", connector.connected);
 
-        // Проверьте, есть ли другой метод для подключения кошелька
+        // Используйте другой метод для выполнения подключения
         if (!connector.connected) {
-            const wallet = await connector.requestSign();
-            console.log("Wallet request sign:", wallet);
+            // Пытаемся использовать доступные методы объекта connector
+            console.log("Wallet object:", connector.wallet);
+            // Проверка, возвращает ли wallet какой-либо объект или статус
         }
 
         return connector.wallet;
@@ -23,6 +24,7 @@ export const connectWallet = async () => {
         return null;
     }
 };
+
 
 export const disconnectWallet = () => {
     connector.disconnect();
