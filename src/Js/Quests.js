@@ -102,22 +102,23 @@ function Quests() {
 
 
 
+
     function GoWallet() {
         const tonConnect = new TonConnect({
             manifestUrl: 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json'
         });
     
-        // Убедитесь, что метод `connect` правильно используется
         tonConnect.connect()
-            .then(wallet => {
+            .then((wallet) => {
                 console.log('Кошелек подключен:', wallet);
                 setWallet_val(true);
-                // Дополнительные действия после подключения кошелька, если необходимо
+                // Возможно, вам потребуется сделать больше действий после подключения
             })
-            .catch(error => {
-                console.error('Ошибка подключения кошелька:', error);
+            .catch((error) => {
+                console.error('Ошибка при подключении кошелька:', error);
             });
     }
+    
     
 
     function GoTg() {
