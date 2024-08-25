@@ -60,7 +60,10 @@ function Friends({ userPhoto, referralLink, referrals, invite, MintStart}) {
                                 </div>
                             </div>
                             <div className='leaderboardItemRight'>
-                                {referral.coins !== undefined ? referral.coins : 'N/A'}
+                                <p>
+                                    {referral.coins !== undefined ? referral.coins : 'N/A'}
+                                    <img src={small_diam} alt="" />
+                                </p>
                             </div>
                         </li>
                     ))}
