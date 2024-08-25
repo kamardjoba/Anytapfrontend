@@ -132,6 +132,7 @@ function App() {
                             
                         });
                         setLoading(false);
+                        updateCoins(telegramId, data.coins); 
                     } else {
                         console.error('Ошибка при получении данных о пользователе:', data.message);
                         setLoading(false);
@@ -189,7 +190,27 @@ function App() {
         }
     }, []);
 
-    //______________________________________________________________
+    const updateCoins = async (telegramId, coins) => {
+        try {
+            const response = await fetch('https://anypatbackend-production.up.railway.app/update-coins', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ telegramId, coins }),
+            });
+    
+            const data = await response.json();
+            if (data.success) {
+                console.log('Монеты успешно обновлены');
+            } else {
+                console.error('Ошибка при обновлении монет:', data.message);
+            }
+        } catch (error) {
+            console.error('Ошибка при выполнении запроса:', error);
+        }
+    };
+    
 
     return (
         <div className="App">
