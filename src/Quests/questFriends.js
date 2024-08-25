@@ -6,21 +6,7 @@ import axios from 'axios';
 
 const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
     const [tonConnectUI] = useTonConnectUI();
-    const [referralCount, setReferralCount] = useState(0);
-
-    useEffect(() => {
-        const fetchReferralCount = async () => {
-            try {
-                const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
-                const data = await response.json();
-                console.log(data);  // Логируем ответ от API
-                setReferralCount(data?.referrals?.length || 0);
-            } catch (error) {
-                console.error('Ошибка при получении количества рефералов:', error);
-            }
-        };
-            fetchReferralCount();        
-    }, [telegramId]);
+    
 
     const GoFriendNft = async () => {
         const walletInfo = tonConnectUI.walletInfo;
@@ -54,13 +40,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
         }
     };
 
-    const handleMintClick = () => {
-        if (referralCount < 5) {
-            alert('Вы не можете совершить транзакцию из-за того, что у вас меньше 10 рефералов.');
-        } else {
-            GoFriendNft();
-        }
-    };
+
 
     return (
         <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
@@ -76,7 +56,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
                 </div>
                 <div className='questItemRight'>
                     {!Frends_val && (
-                        <button className='questBtn' onClick={handleMintClick}>
+                        <button className='questBtn' onClick={GoFriendNft}>
                             Mint
                         </button>
                     )}
