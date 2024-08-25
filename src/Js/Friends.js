@@ -19,6 +19,12 @@ function Friends({ userPhoto, referralLink, referrals, invite, MintStart}) {
         }
     };
 
+    const handleShareLink = () => {
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent('Присоединяйся к нашему приложению и получай бонусы!')}`;
+        window.open(telegramUrl, '_blank');
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    };
+
     return (
         <div className='friendsPage'>
             <div className='whiteContainerQuest friendsItems'>
@@ -31,7 +37,7 @@ function Friends({ userPhoto, referralLink, referrals, invite, MintStart}) {
                     <p className='friendsItemText'>Invite 10 friends and receive a unique NFT!</p>
                 </div>
                 <div className='linkCopyWrapper'>
-                    <button className='linkBtn'>Link</button>
+                    <button className='linkBtn' onClick = {handleShareLink}>Link</button>
                     <button className='copyBtn' onClick={handleCopyClick}>
                         <img src={copy} alt="" />
                     </button>
