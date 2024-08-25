@@ -14,6 +14,7 @@ function Friends({ userPhoto, referralLink, invite, MintStart }) {
             const fetchReferrals = async () => {
                 try {
                     const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
+
                     const data = await response.json();
     
                     if (data.success) {
