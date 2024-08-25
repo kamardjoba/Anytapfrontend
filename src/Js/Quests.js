@@ -101,33 +101,6 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
         }
     }
 
-    function GoTg() {
-        window.open('https://t.me/any_tap', '_blank');
-    }
-
-    function GoOct() {
-        window.open('https://t.me/octies_channel', '_blank');
-    }
-
-    function GoInst() {
-        window.open('https://www.instagram.com/anytap_dapps?igsh=MW1oaHNxYXR5eWxrOA%3D%3D&utm_source=qr', '_blank');
-        if (window.Telegram.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-    
-            if (user) {
-                const telegramId = user.id;
-                setTimeout(async () => {
-                    try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-instagram-subscription', { telegramId });
-                        localStorage.setItem('Inst_val', 'true'); 
-                    } catch (error) {
-                        console.error('Ошибка при обновлении подписки на Twitter:', error);
-                    }
-                }, 5000); 
-            }
-        }
-    }
-    
     function GoX() {
         window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
     
@@ -147,6 +120,15 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
         }
     }
 
+
+    function GoTg() {
+        window.open('https://t.me/any_tap', '_blank');
+    }
+
+    function GoOct() {
+        window.open('https://t.me/octies_channel', '_blank');
+    }
+    
     useEffect(() => {
         if (TgChanel_val ||
             TgOcties_val || 
