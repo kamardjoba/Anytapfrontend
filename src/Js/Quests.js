@@ -12,36 +12,10 @@ import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 
 
-function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
-    const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
-    const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
-    const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
-
-    if (!localStorage.getItem('TgChanel_val')) {localStorage.setItem('TgChanel_val', 'false');}
-    const TgChanel_val = localStorage.getItem('TgChanel_val') === 'true';
-
-    if (!localStorage.getItem('TgOcties_val')) {localStorage.setItem('TgOcties_val', 'false');}
-    const TgOcties_val = localStorage.getItem('TgOcties_val') === 'true';
-
-    if (!localStorage.getItem('X_val')) {localStorage.setItem('X_val', 'false');}
-    const X_val = localStorage.getItem('X_val') === 'true';
-
-    if (!localStorage.getItem('Inst_val')) {localStorage.setItem('Inst_val', 'false');}
-    const Inst_val = localStorage.getItem('Inst_val') === 'true';
-    
-    if (!localStorage.getItem('StartNft_val')) {localStorage.setItem('StartNft_val', 'false');}
-    const StartNft_val = localStorage.getItem('StartNft_val') === 'true';
-    
-    if (!localStorage.getItem('WeeklyNft_val')) {localStorage.setItem('WeeklyNft_val', 'false');}
-    const WeeklyNft_val = localStorage.getItem('WeeklyNft_val') === 'true';
-    
-    if (!localStorage.getItem('TonTran_val')) {localStorage.setItem('TonTran_val', 'false');}
-    const TonTran_val = localStorage.getItem('TonTran_val') === 'true';
-    
-    if (!localStorage.getItem('Frends_val')) {localStorage.setItem('Frends_val', 'false');}
-    const Frends_val = localStorage.getItem('Frends_val') === 'true';
-
-    const [Wallet_val, setWallet_val] = useState(false);
+function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
+    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val,  Wallet_val, WeeklyNft_val, TonTran_val, Inst_val,
+    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask
+}) {
 
     useEffect(() => {
         if (window.Telegram.WebApp) {
@@ -129,37 +103,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
         window.open('https://t.me/octies_channel', '_blank');
     }
     
-    useEffect(() => {
-        if (TgChanel_val ||
-            TgOcties_val || 
-            X_val ||
-            StartNft_val || 
-            Frends_val ||
-            Wallet_val || 
-            WeeklyNft_val || 
-            TonTran_val) 
-            {setVisiblaComplatedTask(true);}}, 
-            [TgChanel_val, 
-            TgOcties_val, 
-            X_val, 
-            StartNft_val, 
-            Frends_val, 
-            Wallet_val, 
-            TonTran_val, 
-            WeeklyNft_val]);
 
-
-    useEffect(() => {
-        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Wallet_val) {
-            setVisiblaBasedTask(false);
-        }
-    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Wallet_val]);
-
-    useEffect(() => {
-        if (WeeklyNft_val && TonTran_val) {
-            setVisiblaWeekTask(false);
-        }
-    }, [WeeklyNft_val, TonTran_val]);
+ 
 
     const [telegramId, setTelegramId] = useState(null);
 
@@ -181,7 +126,10 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-                {!Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={telegramId} />}
+
+
+                {!Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
+
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
@@ -206,7 +154,10 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
                     <p>Complеted task</p>
                 </div>
 
-                {Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={telegramId} />}
+
+
+                {Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
+
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}

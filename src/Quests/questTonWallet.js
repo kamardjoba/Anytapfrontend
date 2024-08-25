@@ -4,7 +4,7 @@ import { TonConnectUIProvider, TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 import axios from 'axios';
 
-const TonW = ({ Wallet_val, setWallet_val, telegramId, wallet }) => {
+const TonW = ({ Wallet_val, telegramId, wallet }) => {
   const [tonConnectUI] = useTonConnectUI();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const TonW = ({ Wallet_val, setWallet_val, telegramId, wallet }) => {
         tonConnectUI.onStatusChange(async (walletInfo) => {
             if (walletInfo) {
                 console.log('Кошелек подключен!', walletInfo);
-                setWallet_val(true);  // Устанавливаем Wallet_val в true
+                localStorage.setItem('Wallet_val', 'true');
 
                 // Отправляем запрос на сервер для добавления 500 монет
                 try {
@@ -28,7 +28,7 @@ const TonW = ({ Wallet_val, setWallet_val, telegramId, wallet }) => {
             }
         });
     }
-  }, [tonConnectUI, setWallet_val, telegramId]);
+  }, [tonConnectUI, telegramId]);
 
   return (
     <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
