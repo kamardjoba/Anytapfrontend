@@ -2,7 +2,7 @@ import React from 'react';
 import diamond from '../IMG/diamond.png';
 import '../Css/NoFriends.css';
 
-function NoFriends(invite, MintStart) {
+function NoFriends({invite, MintStart}) {
     return (
         <div className='startpageContainer'>
             <div className='startpageWrapper' id='noFriendsWrapper'>
