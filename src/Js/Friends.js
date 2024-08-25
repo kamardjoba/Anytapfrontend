@@ -9,14 +9,13 @@ function Friends({ userPhoto, referralLink, invite, MintStart }) {
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
-
+    
         if (telegramId) {
-            // Функция для получения данных о рефералах
             const fetchReferrals = async () => {
                 try {
                     const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
                     const data = await response.json();
-
+    
                     if (data.success) {
                         setReferrals(data.referrals);
                     } else {
@@ -26,19 +25,20 @@ function Friends({ userPhoto, referralLink, invite, MintStart }) {
                     console.error('Ошибка при загрузке рефералов:', error);
                 }
             };
-
+    
             // Первый запрос на загрузку рефералов
             fetchReferrals();
-
+    
             // Интервал для обновления данных каждые 10 секунд
             const intervalId = setInterval(fetchReferrals, 10000);
-
+    
             // Очистка интервала при размонтировании компонента
             return () => clearInterval(intervalId);
         } else {
             console.error('Telegram ID не найден');
         }
     }, []);
+    
 
     const handleCopyClick = () => {
         if (referralLink) {
