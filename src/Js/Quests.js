@@ -82,6 +82,36 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
         }
     }, []);
     
+    function GoInst() {
+        window.open('https://www.instagram.com/anytap_dapps?igsh=MW1oaHNxYXR5eWxrOA%3D%3D&utm_source=qr', '_blank'); // Замените на ссылку на ваш Twitter
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    
+            if (user) {
+                const telegramId = user.id;
+    
+                // Устанавливаем таймер на 5 секунд
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-instagram-subscription', { telegramId });
+                        localStorage.setItem('Inst_val', 'true'); // Обновляем состояние в React после успешного запроса
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                }, 5000); // 5000 миллисекунд = 5 секунд
+            }
+        }
+    }
+    
+    
+
+    // function GoWallet() {
+    //     setWallet_val(true);
+    // }
+    
+
+
     function GoTg() {
         window.open('https://t.me/any_tap', '_blank');
     }
@@ -172,13 +202,14 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-                {!Wallet_val && <TonW GoWallet={GoWallet} setWallet_val={setWallet_val} wallet={wallet}/>}
+                {!Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={userInfo.telegramId} />}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
                 {!StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart}/>}
                 {!Frends_val && <FrendsQuest invite={invite}/>}
+
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
@@ -199,7 +230,7 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
-                {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart}/>}
+                {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={userInfo.telegramId}/>}
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} invite={invite}/>}
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} arrows={arrows} />}
