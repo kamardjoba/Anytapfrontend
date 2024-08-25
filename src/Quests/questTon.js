@@ -2,8 +2,9 @@ import React from 'react';
 import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
+import axios from 'axios';
 
-const TonTrans = ({TonTran_val, arrows }) => {
+const TonTrans = ({TonTran_val, arrows, telegramId}) => {
     const [tonConnectUI] = useTonConnectUI();
 
     const GoTon = async () => {
@@ -24,6 +25,12 @@ const TonTrans = ({TonTran_val, arrows }) => {
             };
 
             await tonConnectUI.sendTransaction(transaction);
+            try {
+                await axios.post('https://anypatbackend-production.up.railway.app/make-ton-transaction', { telegramId });
+                console.log('5000 монет добавлено пользователю');
+            } catch (error) {
+                console.error('Ошибка при добавлении монет:', error);
+            }
             alert('Transaction sent successfully!');
             localStorage.setItem('TonTran_val', 'true');
         } catch (error) {
