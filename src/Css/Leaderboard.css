@@ -176,11 +176,13 @@
         font-size: 2vh;
     }
 
+    .outer-container {
+        height: 50%;
+    }
+
     .blueContainer {height: 30%;}
 
     .whiteContainerLeaderboard {max-height: 50%;}
-
-    .white_Container_Leaderboard_Load{height: 50%;}
 
     .blueContainerItemTitle {font-size: 5vh;}
     
