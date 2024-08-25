@@ -100,9 +100,9 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
     
     
 
-    function GoWallet() {
-        setWallet_val(true);
-    }
+    // function GoWallet() {
+    //     setWallet_val(true);
+    // }
     
 
     function GoTg() {
