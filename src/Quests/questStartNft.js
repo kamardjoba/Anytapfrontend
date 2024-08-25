@@ -1,13 +1,17 @@
 import React from 'react';
 import '../Css/Quests.css';
-import MintStart from'../IMG/mint.svg';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
-const MintStartNft = ({GoStartNft, StartNft_val, setStartNft_val}) => {
+const MintStartNft = ({GoStartNft, StartNft_val, setStartNft_val, MintStart}) => {
     const [tonConnectUI] = useTonConnectUI();
-
+   
     GoStartNft = async () => {
+        const walletInfo = tonConnectUI.walletInfo;
+        if (!walletInfo) { // Если кошелек не подключен
+            alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
+            return; // Останавливаем выполнение функции
+          }
         try {
             const transaction = {
                 validUntil: Date.now() + 5 * 60 * 1000,

@@ -1,13 +1,17 @@
 import React from 'react';
 import '../Css/Quests.css';
-import arrows from '../IMG/arrows.svg';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
-const TonTrans = ({ GoTon, TonTran_val, setTonTranVal }) => {
+const TonTrans = ({ GoTon, TonTran_val, setTonTranVal, arrows }) => {
     const [tonConnectUI] = useTonConnectUI();
 
     GoTon = async () => {
+        const walletInfo = tonConnectUI.walletInfo;
+        if (!walletInfo) { // Если кошелек не подключен
+            alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
+            return; // Останавливаем выполнение функции
+          }
         try {
             const transaction = {
                 validUntil: Date.now() + 5 * 60 * 1000,

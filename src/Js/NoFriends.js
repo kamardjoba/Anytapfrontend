@@ -1,10 +1,8 @@
 import React from 'react';
 import diamond from '../IMG/diamond.png';
 import '../Css/NoFriends.css';
-import inv_fr1 from '../IMG/inv_fr1.svg';
-import inv_fr2 from '../IMG/inv_fr2.svg';
 
-function NoFriends(props) {
+function NoFriends(invite, MintStart) {
     return (
         <div className='startpageContainer'>
             <div className='startpageWrapper' id='noFriendsWrapper'>
@@ -13,12 +11,12 @@ function NoFriends(props) {
                 </div>
                 <div className='inviteFriendsWrapper'>
                     <div className='inviteFriendsItem'>
-                        <img src={inv_fr1} alt=""/>
+                        <img src={invite} alt=""/>
                         <p className='inviteFriendsText'>Get 10% of your friends’ points!</p>
                     </div>
 
                     <div className='inviteFriendsItem'>
-                        <img src={inv_fr2} alt=""/>
+                        <img src={MintStart} alt=""/>
                         <p className='inviteFriendsText'>Invite 10 friends and receive a unique NFT!</p>
                     </div>
                 </div>

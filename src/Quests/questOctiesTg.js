@@ -1,8 +1,7 @@
 import React from 'react';
 import '../Css/Quests.css';
-import telegram from'../IMG/telegram.svg';
 
-const tgOctiesQuest = ({GoOct,TgOcties_val}) => {
+const tgOctiesQuest = ({GoOct,TgOcties_val, telegram}) => {
 
   return (
     <div className='questItem'>

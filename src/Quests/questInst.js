@@ -1,8 +1,8 @@
 import React from 'react';
 import '../Css/Quests.css';
-import inst from'../IMG/inst.svg';
 
-const InstQuest = ({GoInst, Inst_val}) => {
+
+const InstQuest = ({GoInst, Inst_val, inst}) => {
 
   return (
     <div className='questItem'>

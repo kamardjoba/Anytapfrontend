@@ -12,7 +12,7 @@ import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 
 
-function Quests() {
+function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}) {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
     const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
@@ -77,7 +77,7 @@ function Quests() {
     
 
     function GoInst() {
-        window.open('https://www.instagram.com/kvdvall', '_blank'); // Замените на ссылку на ваш Twitter
+        window.open('https://www.instagram.com/anytap_dapps?igsh=MW1oaHNxYXR5eWxrOA%3D%3D&utm_source=qr', '_blank'); // Замените на ссылку на ваш Twitter
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -114,7 +114,7 @@ function Quests() {
     }
 
     function GoX() {
-        window.open('https://x.com/Octies_GameFI', '_blank'); // Замените на ссылку на ваш Twitter
+        window.open('https://x.com/anytap_dapps?s=21', '_blank'); // Замените на ссылку на ваш Twitter
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -191,37 +191,38 @@ function Quests() {
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-                {!Wallet_val && <TonW GoWallet={GoWallet}/>}
-                {!TgChanel_val && <TgQuest GoTg={GoTg} />}
-                {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} />}
-                {!X_val && <XQuest GoX={GoX} />}
-                {!Inst_val && <InstQuest GoInst={GoInst} />}
-                {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} />}
-                {!Frends_val && <FrendsQuest GoFrands={GoFrands} />}
+                {!Wallet_val && <TonW GoWallet={GoWallet} setWallet_val={setWallet_val} wallet={wallet}/>}
+                {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
+                {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
+                {!X_val && <XQuest GoX={GoX} X={X}/>}
+                {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
+                {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} StartNft_val={StartNft_val} setStartNft_val={setStartNft_val} MintStart={MintStart}/>}
+                {!Frends_val && <FrendsQuest GoFrands={GoFrands} invite={invite}/>}
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
                 <div className='txtNf'>
                     <p>Weekly task</p>
                 </div>
-                {!WeeklyNft_val && <WeeklyNft GoWeekNft={GoWeekNft}/>}
-                {!TonTran_val && <TonTrans GoTon={GoTon} TonTran_val={TonTran_val} setTonTranVal={setTonTran_val} />}
+                {!WeeklyNft_val && <WeeklyNft GoWeekNft={GoWeekNft} WeeklyNft_val = {WeeklyNft_val} setWeeklyNft_val={setWeeklyNft_val} arrows={arrows}/>}
+                {!TonTran_val && <TonTrans GoTon={GoTon} TonTran_val={TonTran_val} setTonTranVal={setTonTran_val}  arrows={arrows} />}
 
+               
             </div>}
 
             {VisiblaComplatedTask && <div id='complatedtask'>
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
-                {Wallet_val && <TonW Wallet_val={Wallet_val}/>}
-                {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} />}
-                {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} />}
-                {X_val && <XQuest X_val={X_val} />}
-                {StartNft_val && <MintStartNft StartNft_val={StartNft_val} />}
-                {Frends_val && <FrendsQuest Frends_val={Frends_val} />}
-                {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} />}
-                {TonTran_val && <TonTrans TonTran_val={TonTran_val} />}
-                {Inst_val && <InstQuest Inst_val={Inst_val}/>}
+                {Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={userInfo.telegramId} />}
+                {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
+                {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
+                {X_val && <XQuest X_val={X_val} X={X} />}
+                {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart}/>}
+                {Frends_val && <FrendsQuest Frends_val={Frends_val} invite={invite}/>}
+                {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} setWeeklyNft_val={setWeeklyNft_val} arrows={arrows} />}
+                {TonTran_val && <TonTrans GoTon={GoTon} TonTran_val={TonTran_val} setTonTranVal={setTonTran_val} arrows={arrows} />}
+                {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
             </div>}
         </div>
     );
