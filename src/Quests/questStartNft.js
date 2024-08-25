@@ -18,8 +18,8 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
                 validUntil: Date.now() + 5 * 60 * 1000,
                 messages: [
                     {
-                        address: 'UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG',
-                        amount: '1000000', // 1 TON в нанотонах
+                        address: 'EQCHDYSdSCwGrWyQsIHRqdFg1z2HPHPfyK6QdyPkpAmGmvd4',
+                        amount: '10000000', // 1 TON в нанотонах
                     },
                 ],
             };
