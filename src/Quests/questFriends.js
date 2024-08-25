@@ -57,7 +57,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
     };
 
     const handleMintClick = () => {
-        if (referralCount < 1) {
+        if (referralCount < 5) {
             alert('Вы не можете совершить транзакцию из-за того, что у вас меньше 10 рефералов.');
         } else {
             GoFriendNft();
