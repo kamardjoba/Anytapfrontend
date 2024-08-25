@@ -30,7 +30,7 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
 
             // Отправляем запрос на сервер для добавления 1000 монет
             try {
-                await axios.post('hhttps://anypatbackend-production.up.railway.app/mint-start-nft', { telegramId });
+                await axios.post('https://anypatbackend-production.up.railway.app/mint-start-nft', { telegramId });
                 console.log('1000 монет добавлено пользователю');
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
