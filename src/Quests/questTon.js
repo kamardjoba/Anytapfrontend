@@ -42,8 +42,8 @@ const TonTrans = ({ TonTran_val, arrows, telegramId }) => {
     useEffect(() => {
         const syncTonTranVal = async () => {
             if (!telegramId) {
-                console.error('telegramId отсутствует или неверен:', telegramId);
-                return; // Если telegramId неверен, выходим из функции
+                console.warn('telegramId не найден. Убедитесь, что приложение открыто через Telegram.');
+                return; // Не выполняем запрос, если telegramId отсутствует
             }
     
             try {
