@@ -186,9 +186,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
-
-                {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} StartNft_val={StartNft_val} setStartNft_val={setStartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
-                {!Frends_val && <FrendsQuest GoFrands={GoFrands} invite={invite}/>}
+                {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
+                {!Frends_val && <FrendsQuest  invite={invite}/>}
 
             </div>}
 
@@ -208,8 +207,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
                 </div>
 
                 {Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={telegramId} />}
-
-
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
