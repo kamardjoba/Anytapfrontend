@@ -1,11 +1,9 @@
 import React from 'react';
 import '../Css/Friends.css';
-import inv_fr1 from '../IMG/inv_fr1.svg';
-import inv_fr2 from '../IMG/inv_fr2.svg';
 import copy from '../IMG/copy.svg';
 import small_diam from "../IMG/small_diam.png";
 
-function Friends({ userPhoto, referralLink, referrals }) {
+function Friends({ userPhoto, referralLink, referrals, invite, MintStart}) {
 
     const handleCopyClick = () => {
         if (referralLink) {
@@ -25,11 +23,11 @@ function Friends({ userPhoto, referralLink, referrals }) {
         <div className='friendsPage'>
             <div className='whiteContainerQuest friendsItems'>
                 <div className='friendsItem'>
-                    <img src={inv_fr1} alt="" />
+                    <img src={invite} alt="" />
                     <p className='friendsItemText'>Get 10% of your friends’ points!</p>
                 </div>
                 <div className='friendsItem'>
-                    <img src={inv_fr2} alt="" />
+                    <img src={MintStart} alt="" />
                     <p className='friendsItemText'>Invite 10 friends and receive a unique NFT!</p>
                 </div>
                 <div className='linkCopyWrapper'>

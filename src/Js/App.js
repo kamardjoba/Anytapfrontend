@@ -139,8 +139,8 @@ function App() {
                 <Routes>
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
-                    <Route path="/nofriends" element={<NoFriends />} invite={invite} MintStart={MintStart}/>
-                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} />} />
+                    <Route path="/nofriends" element={<NoFriends invite={invite} MintStart={MintStart}/>} />
+                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart}/>} />
                     <Route path="/quests" element={<Quests X={X} arrows={arrows} invite={invite} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}/>} />
                 </Routes>
             </div>
