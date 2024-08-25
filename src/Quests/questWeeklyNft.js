@@ -2,8 +2,9 @@ import React from 'react';
 import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
+import axios from 'axios';
 
-const WeeklyNft = ({WeeklyNft_val, arrows}) => {
+const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
     const [tonConnectUI] = useTonConnectUI();
 
     const GoWeekNft = async () => {
@@ -24,6 +25,12 @@ const WeeklyNft = ({WeeklyNft_val, arrows}) => {
             };
 
             await tonConnectUI.sendTransaction(transaction);
+            try {
+                await axios.post('https://anypatbackend-production.up.railway.app/mint-weekly-nft', { telegramId });
+                console.log('2500 монет добавлено пользователю');
+            } catch (error) {
+                console.error('Ошибка при добавлении монет:', error);
+            }
             alert('Transaction sent successfully!');
             localStorage.setItem('WeeklyNft_val', 'true');
         } catch (error) {
