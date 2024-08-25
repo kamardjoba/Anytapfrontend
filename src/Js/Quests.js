@@ -196,7 +196,7 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
-                {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} StartNft_val={StartNft_val} setStartNft_val={setStartNft_val} MintStart={MintStart}/>}
+                {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} StartNft_val={StartNft_val} setStartNft_val={setStartNft_val} MintStart={MintStart} telegramId={userInfo.telegramId}/>}
                 {!Frends_val && <FrendsQuest GoFrands={GoFrands} invite={invite}/>}
             </div>}
 
@@ -218,7 +218,7 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
-                {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart}/>}
+                {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={userInfo.telegramId}/>}
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} invite={invite}/>}
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} setWeeklyNft_val={setWeeklyNft_val} arrows={arrows} />}
                 {TonTran_val && <TonTrans GoTon={GoTon} TonTran_val={TonTran_val} setTonTranVal={setTonTran_val} arrows={arrows} />}
