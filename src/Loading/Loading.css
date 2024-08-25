@@ -20,9 +20,9 @@
     height: 100%;
     left: 0;
     bottom: 0;
+    margin-bottom: 1vh;
 }
 
-/* Modified Loading Wrapper for Leaderboard */
 .loading-wrapper-leaderboard {
   position: fixed;
   width: 100%;
@@ -30,16 +30,6 @@
   left: 0;
   bottom: 0;
 }
-  
-  #loading-content-leaderboard {
-    display: block;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 15vh;
-    height: 15vh;
-    margin: -6vh 0 0 -7vh;
-  }
 
   #loading-content {
     display: block;
@@ -48,29 +38,29 @@
     top: 50%;
     width: 18vh;
     height: 18vh;
-    margin: -9.5vh 0 0 -9vh;
+    margin: -8.5vh 0 0 -9vh;
   }
   
   #loading-content:after {
     content: "";
     position: absolute;
-    left: 15px;
-    right: 15px;
-    top: 15px;
-    bottom: 15px;
+    left: 2vh;
+    right: 2vh;
+    top: 2vh;
+    bottom: 2vh;
   }
   
   #loading-content:before {
     content: "";
     position: absolute;
-    left: 5px;
-    right: 5px;
-    top: 5px;
-    bottom: 5px;
+    left: 0.65vh;
+    right: 0.65vh;
+    top: 0.65vh;
+    bottom: 0.65vh;
   }
   
   #loading-content {
-    border: 3px solid transparent;
+    border: 0.4vh solid transparent;
     border-top-color: #1AADFA;
     border-bottom-color: #1AADFA;
     border-radius: 50%;
@@ -81,7 +71,7 @@
   }
   
   #loading-content:before {
-    border: 3px solid transparent;
+    border: 0.4vh solid transparent;
     border-top-color: black;
     border-bottom-color: black;
     border-radius: 50%;
@@ -92,7 +82,7 @@
   }
   
   #loading-content:after {
-    border: 3px solid transparent;
+    border: 0.4vh solid transparent;
     border-top-color: #C2C2C2;
     border-bottom-color: #C2C2C2;
     border-radius: 50%;
@@ -135,7 +125,6 @@
   
 .loading-screen img {
     z-index: 10000;
-
     height: 8vh;
     animation: imgAnimation 2s  infinite ease-in-out;
 }
