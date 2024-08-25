@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
