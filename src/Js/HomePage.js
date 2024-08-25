@@ -9,7 +9,7 @@ function HomePage(props) {
                 <p className='welcomeText'>Welcome to <br/>Anytap!</p>
                 <div className='amountWrapper'>
                     <p className='amount'>500</p>
-                    <img src={diamond} alt="" className='diamondImgHomepage'/>
+                    <img src={diamond} alt="" className='diamondImgHomepage'  onClick={(event) => {localStorage.clear();}}/>
                 </div>
                 <p className='homepageDescr'>
                     Earn points, mint NFTs, <br/>and receive valuable <br/>  rewards for your activity!
