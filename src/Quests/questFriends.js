@@ -14,8 +14,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
             try {
                 const response = await axios.get('https://anypatbackend-production.up.railway.app/user-referrals', {
                     params: { telegramId }
-                });
-                
+                });                
                 setReferralCount(response.data.referrals.length);
             } catch (error) {
                 console.error('Ошибка при получении количества рефералов:', error);
@@ -44,7 +43,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
 
             await tonConnectUI.sendTransaction(transaction);
             try {
-                const response = await axios.get('https://anypatbackend-production.up.railway.app/mint-friend-nft', { params: { telegramId } });
+                const response = await axios.post('https://anypatbackend-production.up.railway.app/mint-friend-nft', { telegramId });
                 console.log('Ответ сервера:', response.data); // Вы можете использовать ответ по вашему усмотрению
                 console.log('5000 монет добавлено пользователю');
             } catch (error) {
