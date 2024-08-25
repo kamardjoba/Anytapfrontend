@@ -12,14 +12,10 @@ import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 
 
- HEAD
 function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val,  Wallet_val, WeeklyNft_val, TonTran_val, Inst_val,
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask
 }) {
-
-
-    
 
     useEffect(() => {
         if (window.Telegram.WebApp) {
