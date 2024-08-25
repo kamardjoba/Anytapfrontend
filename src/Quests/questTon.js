@@ -1,12 +1,11 @@
 import React, {useEffect}from 'react';
 import '../Css/Quests.css';
-import arrows from'../IMG/arrows.svg';
 import { TonConnectUIProvider} from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
 
 
-const TonTrans = ({GoTon, TonTran_val}) => {
+const TonTrans = ({GoTon, TonTran_val, arrows}) => {
     const [tonConnectUI] = useTonConnectUI();
     useEffect(() => {
         if (window.TON_CONNECT_UI) {

@@ -12,7 +12,7 @@ import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 
 
-function Quests() {
+function Quests({X, arrows}) {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
     const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
@@ -196,7 +196,7 @@ function Quests() {
                 {!Wallet_val && <TonW GoWallet={GoWallet}/>}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} />}
-                {!X_val && <XQuest GoX={GoX} />}
+                {!X_val && <XQuest GoX={GoX} X={X}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} />}
                 {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} />}
                 {!Frends_val && <FrendsQuest GoFrands={GoFrands} />}
@@ -206,8 +206,8 @@ function Quests() {
                 <div className='txtNf'>
                     <p>Weekly task</p>
                 </div>
-                {!WeeklyNft_val && <WeeklyNft GoWeekNft={GoWeekNft}/>}
-                {!TonTran_val && <TonTrans GoTon={GoTon}/>}
+                {!WeeklyNft_val && <WeeklyNft GoWeekNft={GoWeekNft} arrows={arrows}/>}
+                {!TonTran_val && <TonTrans GoTon={GoTon} arrows={arrows} />}
             </div>}
 
             {VisiblaComplatedTask && <div id='complatedtask'>
@@ -217,11 +217,11 @@ function Quests() {
                 {Wallet_val && <TonW Wallet_val={Wallet_val}/>}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} />}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} />}
-                {X_val && <XQuest X_val={X_val} />}
+                {X_val && <XQuest X_val={X_val} X={X} />}
                 {StartNft_val && <MintStartNft StartNft_val={StartNft_val} />}
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} />}
-                {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} />}
-                {TonTran_val && <TonTrans TonTran_val={TonTran_val} />}
+                {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} arrows={arrows} />}
+                {TonTran_val && <TonTrans TonTran_val={TonTran_val} arrows={arrows}/>}
                 {Inst_val && <InstQuest Inst_val={Inst_val}/>}
             </div>}
         </div>

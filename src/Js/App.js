@@ -14,6 +14,9 @@ import Quests from "./Quests";
 import nophoto from '../IMG/noprofilephoto.png';
 import avatar from "../IMG/avatar.png";
 
+import X from'../IMG/x_chan.svg';
+import arrows from'../IMG/arrows.svg';
+
 function App() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -24,10 +27,19 @@ function App() {
     });
     const [activeItem, setActiveItem] = useState(null);
   
-    const [isLoading, setLoading] = useState(true);
-
+    const [isLoading, setLoading] = useState(false);
+    
+    
 
     useEffect(() => {
+
+        const preloadImage = (src) => {
+            const img = new Image();
+            img.src = src;
+        };
+        preloadImage(X); 
+        preloadImage(arrows); 
+
         const urlParams = new URLSearchParams(window.location.search);
         const telegramId = urlParams.get('telegramId');
 
@@ -119,7 +131,7 @@ function App() {
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/nofriends" element={<NoFriends />} />
                     <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} />} />
-                    <Route path="/quests" element={<Quests />} />
+                    <Route path="/quests" element={<Quests X={X} arrows={arrows}/>} />
                 </Routes>
             </div>
 

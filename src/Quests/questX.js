@@ -1,14 +1,14 @@
 
 import React from 'react';
 import '../Css/Quests.css';
-import X from'../IMG/x_chan.svg';
 
-const XQuest = ({ GoX, X_val }) => {
+
+const XQuest = ({ GoX, X_val ,X}) => {
   return (
     <div className='questItem'>
         <div className='questItemLeft'>
             <div className='questIcon'>
-                <img src={X} alt=""/>
+            <img src={X} alt="Description of x_chan" loading="lazy" />
             </div>
             <div className='questItemLeftContent'>
                 <p className='questTitle'>Subscribe X channel</p>

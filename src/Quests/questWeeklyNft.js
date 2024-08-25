@@ -1,8 +1,7 @@
 import React from 'react';
 import '../Css/Quests.css';
-import arrows from'../IMG/arrows.svg';
 
-const WeeklyNft = ({GoWeekNft, WeeklyNft_val}) => {
+const WeeklyNft = ({GoWeekNft, WeeklyNft_val, arrows}) => {
 
   return (
     <div className='questItem'>
