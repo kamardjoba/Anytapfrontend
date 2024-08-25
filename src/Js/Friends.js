@@ -20,7 +20,7 @@ function Friends({ userPhoto, referralLink, referrals, invite, MintStart}) {
     };
 
     const handleShareLink = () => {
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent}`;
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(referralLink)}`;
         window.open(telegramUrl, '_blank');
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
