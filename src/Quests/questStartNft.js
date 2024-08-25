@@ -18,15 +18,14 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
                 validUntil: Date.now() + 5 * 60 * 1000,
                 messages: [
                     {
-                        address: 'EQCHDYSdSCwGrWyQsIHRqdFg1z2HPHPfyK6QdyPkpAmGmvd4',
-                        amount: '10000000', // 1 TON в нанотонах
+                        address: 'UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG',
+                        amount: '1000000', // 1 TON в нанотонах
                     },
                 ],
             };
 
             await tonConnectUI.sendTransaction(transaction);
             alert('Transaction sent successfully!');
-            localStorage.setItem('StartNft_val', 'true');
   
 
             // Отправляем запрос на сервер для добавления 1000 монет
@@ -36,7 +35,6 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
             }
-
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
