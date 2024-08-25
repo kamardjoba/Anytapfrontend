@@ -2,8 +2,9 @@ import React from 'react';
 import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
+import axios from 'axios';
 
-const MintStartNft = ({ StartNft_val, MintStart}) => {
+const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
     const [tonConnectUI] = useTonConnectUI();
    
     const GoStartNft = async () => {
@@ -11,7 +12,7 @@ const MintStartNft = ({ StartNft_val, MintStart}) => {
         if (!walletInfo) { // Если кошелек не подключен
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
             return; // Останавливаем выполнение функции
-          }
+        }
         try {
             const transaction = {
                 validUntil: Date.now() + 5 * 60 * 1000,
@@ -25,7 +26,15 @@ const MintStartNft = ({ StartNft_val, MintStart}) => {
 
             await tonConnectUI.sendTransaction(transaction);
             alert('Transaction sent successfully!');
-            localStorage.setItem('StartNft_val', 'true');
+  
+
+            // Отправляем запрос на сервер для добавления 1000 монет
+            try {
+                await axios.post('hhttps://anypatbackend-production.up.railway.app/mint-start-nft', { telegramId });
+                console.log('1000 монет добавлено пользователю');
+            } catch (error) {
+                console.error('Ошибка при добавлении монет:', error);
+            }
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
