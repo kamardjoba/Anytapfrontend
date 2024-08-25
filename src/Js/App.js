@@ -23,6 +23,74 @@ import inst from'../IMG/inst.svg';
 import telegram from'../IMG/telegram.svg';
 
 function App() {
+
+    const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
+    const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
+    const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
+
+    if (!localStorage.getItem('TgChanel_val')) {localStorage.setItem('TgChanel_val', 'false');}
+    const TgChanel_val = localStorage.getItem('TgChanel_val') === 'true';
+
+    if (!localStorage.getItem('TgOcties_val')) {localStorage.setItem('TgOcties_val', 'false');}
+    const TgOcties_val = localStorage.getItem('TgOcties_val') === 'true';
+
+    if (!localStorage.getItem('X_val')) {localStorage.setItem('X_val', 'false');}
+    const X_val = localStorage.getItem('X_val') === 'true';
+
+    if (!localStorage.getItem('Inst_val')) {localStorage.setItem('Inst_val', 'false');}
+    const Inst_val = localStorage.getItem('Inst_val') === 'true';
+    
+    if (!localStorage.getItem('StartNft_val')) {localStorage.setItem('StartNft_val', 'false');}
+    const StartNft_val = localStorage.getItem('StartNft_val') === 'true';
+    
+    if (!localStorage.getItem('WeeklyNft_val')) {localStorage.setItem('WeeklyNft_val', 'false');}
+    const WeeklyNft_val = localStorage.getItem('WeeklyNft_val') === 'true';
+    
+    if (!localStorage.getItem('TonTran_val')) {localStorage.setItem('TonTran_val', 'false');}
+    const TonTran_val = localStorage.getItem('TonTran_val') === 'true';
+    
+    if (!localStorage.getItem('Frends_val')) {localStorage.setItem('Frends_val', 'false');}
+    const Frends_val = localStorage.getItem('Frends_val') === 'true';
+    
+    if (!localStorage.getItem('Wallet_val')) {localStorage.setItem('Wallet_val', 'false');}
+    const Wallet_val = localStorage.getItem('Wallet_val') === 'true';
+
+    useEffect(() => {
+        if (TgChanel_val ||
+            TgOcties_val || 
+            X_val ||
+            StartNft_val || 
+            Frends_val ||
+            Wallet_val || 
+            WeeklyNft_val || 
+            TonTran_val || 
+            Inst_val) 
+            {setVisiblaComplatedTask(true);}}, 
+            [TgChanel_val, 
+            TgOcties_val, 
+            X_val, 
+            StartNft_val, 
+            Frends_val, 
+            Wallet_val, 
+            TonTran_val, 
+            WeeklyNft_val,
+            Inst_val]);
+
+
+    useEffect(() => {
+        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Wallet_val && Inst_val) {
+            setVisiblaBasedTask(false);
+        }
+    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Wallet_val, Inst_val]);
+
+    useEffect(() => {
+        if (WeeklyNft_val && TonTran_val) {
+            setVisiblaWeekTask(false);
+        }
+    }, [WeeklyNft_val, TonTran_val]);
+
+
+
     const navigate = useNavigate();
     const location = useLocation();
     const [userInfo, setUserInfo] = useState({
@@ -140,7 +208,9 @@ function App() {
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/nofriends" element={<NoFriends />} invite={invite} MintStart={MintStart}/>
                     <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} />} />
-                    <Route path="/quests" element={<Quests X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}/>} />
+                    <Route path="/quests" element={<Quests X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
+                    TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  Wallet_val={Wallet_val} WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
+                    VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
                 </Routes>
             </div>
 
