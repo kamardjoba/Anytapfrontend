@@ -1,8 +1,7 @@
 import React from 'react';
 import '../Css/Quests.css';
-import MintStart from'../IMG/mint.svg';
 
-const MintStartNft = ({GoStartNft, StartNft_val}) => {
+const MintStartNft = ({GoStartNft, StartNft_val, MintStart}) => {
 
   return (
     <div className='questItem'>

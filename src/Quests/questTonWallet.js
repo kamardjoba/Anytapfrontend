@@ -1,10 +1,9 @@
 import React from 'react';
 import '../Css/Quests.css';
-import wallet from'../IMG/wallet.svg';
 import { TonConnectUIProvider, TonConnectButton} from '@tonconnect/ui-react';
 
 
-const TonW = ({GoWallet, Wallet_val}) => {
+const TonW = ({GoWallet, Wallet_val ,wallet}) => {
 
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">

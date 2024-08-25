@@ -16,6 +16,11 @@ import avatar from "../IMG/avatar.png";
 
 import X from'../IMG/x_chan.svg';
 import arrows from'../IMG/arrows.svg';
+import invite from'../IMG/invite.svg';
+import MintStart from'../IMG/mint.svg';
+import wallet from'../IMG/wallet.svg';
+import inst from'../IMG/inst.svg';
+import telegram from'../IMG/telegram.svg';
 
 function App() {
     const navigate = useNavigate();
@@ -39,6 +44,11 @@ function App() {
         };
         preloadImage(X); 
         preloadImage(arrows); 
+        preloadImage(invite);
+        preloadImage(MintStart);
+        preloadImage(wallet);
+        preloadImage(inst);
+        preloadImage(telegram);
 
         const urlParams = new URLSearchParams(window.location.search);
         const telegramId = urlParams.get('telegramId');
@@ -129,9 +139,9 @@ function App() {
                 <Routes>
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
-                    <Route path="/nofriends" element={<NoFriends />} />
+                    <Route path="/nofriends" element={<NoFriends />} invite={invite} MintStart={MintStart}/>
                     <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} />} />
-                    <Route path="/quests" element={<Quests X={X} arrows={arrows}/>} />
+                    <Route path="/quests" element={<Quests X={X} arrows={arrows} invite={invite} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}/>} />
                 </Routes>
             </div>
 

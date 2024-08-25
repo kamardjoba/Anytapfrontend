@@ -1,8 +1,8 @@
 import React from 'react';
 import '../Css/Quests.css';
-import invite from'../IMG/invite.svg';
 
-const FrendsQuest = ({GoFrands, Frends_val}) => {
+
+const FrendsQuest = ({GoFrands, Frends_val, invite}) => {
 
   return (
     <div className='questItem'>
