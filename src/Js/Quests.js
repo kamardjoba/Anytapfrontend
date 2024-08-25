@@ -28,16 +28,20 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
 
     if (!localStorage.getItem('Inst_val')) {localStorage.setItem('Inst_val', 'false');}
     const Inst_val = localStorage.getItem('Inst_val') === 'true';
-
     
-    const [StartNft_val, setStartNft_val] = useState(false);
-    const [Frends_val, setFrends_val] = useState(false);
-    const [WeeklyNft_val, setWeeklyNft_val] = useState(false);
-    const [TonTran_val, setTonTran_val] = useState(false);
-    const [Wallet_val, setWallet_val] = useState(false);
+    if (!localStorage.getItem('StartNft_val')) {localStorage.setItem('StartNft_val', 'false');}
+    const StartNft_val = localStorage.getItem('StartNft_val') === 'true';
+    
+    if (!localStorage.getItem('WeeklyNft_val')) {localStorage.setItem('WeeklyNft_val', 'false');}
+    const WeeklyNft_val = localStorage.getItem('WeeklyNft_val') === 'true';
+    
+    if (!localStorage.getItem('TonTran_val')) {localStorage.setItem('TonTran_val', 'false');}
+    const TonTran_val = localStorage.getItem('TonTran_val') === 'true';
+    
+    if (!localStorage.getItem('Frends_val')) {localStorage.setItem('Frends_val', 'false');}
+    const Frends_val = localStorage.getItem('Frends_val') === 'true';
 
-  
-      
+    const [Wallet_val, setWallet_val] = useState(false);
 
     useEffect(() => {
         if (window.Telegram.WebApp) {
@@ -75,7 +79,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
         }
     }, []);
     
-
     function GoInst() {
         window.open('https://www.instagram.com/anytap_dapps?igsh=MW1oaHNxYXR5eWxrOA%3D%3D&utm_source=qr', '_blank'); // Замените на ссылку на ваш Twitter
     
@@ -97,13 +100,26 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
             }
         }
     }
-    
-    
 
-    // function GoWallet() {
-    //     setWallet_val(true);
-    // }
+    function GoX() {
+        window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
     
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                const telegramId = user.id;
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
+                        localStorage.setItem('X_val', 'true'); 
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                }, 5000); 
+            }
+        }
+    }
+
 
     function GoTg() {
         window.open('https://t.me/any_tap', '_blank');
@@ -112,45 +128,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
     function GoOct() {
         window.open('https://t.me/octies_channel', '_blank');
     }
-
-    function GoX() {
-        window.open('https://x.com/anytap_dapps?s=21', '_blank'); // Замените на ссылку на ваш Twitter
     
-        if (window.Telegram.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-    
-            if (user) {
-                const telegramId = user.id;
-    
-                // Устанавливаем таймер на 5 секунд
-                setTimeout(async () => {
-                    try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
-                        localStorage.setItem('X_val', 'true'); // Обновляем состояние в React после успешного запроса
-                    } catch (error) {
-                        console.error('Ошибка при обновлении подписки на Twitter:', error);
-                    }
-                }, 5000); // 5000 миллисекунд = 5 секунд
-            }
-        }
-    }
-    
-    function GoStartNft() {
-        setStartNft_val(true);
-    }
-
-    function GoFrands() {
-        setFrends_val(true);
-    }
-
-    function GoWeekNft() {
-        setWeeklyNft_val(true);
-    }
-    
-    function GoTon() {
-        setTonTran_val(true);
-    }
-
     useEffect(() => {
         if (TgChanel_val ||
             TgOcties_val || 
@@ -196,6 +174,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
         }
     }, []);
 
+
     return (
         <div className='questsPage'>
             {VisiblaBasedTask && <div className='basedtask'>
@@ -207,16 +186,18 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
+
                 {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} StartNft_val={StartNft_val} setStartNft_val={setStartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest GoFrands={GoFrands} invite={invite}/>}
+
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
                 <div className='txtNf'>
                     <p>Weekly task</p>
                 </div>
-                {!WeeklyNft_val && <WeeklyNft GoWeekNft={GoWeekNft} WeeklyNft_val = {WeeklyNft_val} setWeeklyNft_val={setWeeklyNft_val} arrows={arrows}/>}
-                {!TonTran_val && <TonTrans GoTon={GoTon} TonTran_val={TonTran_val} setTonTranVal={setTonTran_val}  arrows={arrows} />}
+                {!WeeklyNft_val && <WeeklyNft WeeklyNft_val = {WeeklyNft_val} arrows={arrows}/>}
+                {!TonTran_val && <TonTrans TonTran_val={TonTran_val} arrows={arrows} />}
 
                
             </div>}
@@ -225,14 +206,17 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
+
                 {Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={telegramId} />}
+
+
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
                 {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} invite={invite}/>}
-                {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} setWeeklyNft_val={setWeeklyNft_val} arrows={arrows} />}
-                {TonTran_val && <TonTrans GoTon={GoTon} TonTran_val={TonTran_val} setTonTranVal={setTonTran_val} arrows={arrows} />}
+                {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} arrows={arrows} />}
+                {TonTran_val && <TonTrans TonTran_val={TonTran_val} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
             </div>}
         </div>

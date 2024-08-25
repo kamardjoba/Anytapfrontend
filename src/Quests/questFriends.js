@@ -2,7 +2,7 @@ import React from 'react';
 import '../Css/Quests.css';
 
 
-const FrendsQuest = ({GoFrands, Frends_val, invite}) => {
+const FrendsQuest = ({ Frends_val, invite}) => {
 
   return (
     <div className='questItem'>
@@ -16,7 +16,7 @@ const FrendsQuest = ({GoFrands, Frends_val, invite}) => {
             </div>
         </div>
         <div className='questItemRight'>
-            {!Frends_val && (<button className='questBtn' onClick={GoFrands}>Mint</button>)}
+            {!Frends_val && (<button className='questBtn'>Mint</button>)}
         </div>
     </div>
   );

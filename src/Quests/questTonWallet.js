@@ -4,7 +4,7 @@ import { TonConnectUIProvider, TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 import axios from 'axios';
 
-const TonW = ({ Wallet_val, wallet, setWallet_val, telegramId }) => {
+const TonW = ({ Wallet_val, setWallet_val, telegramId, wallet }) => {
   const [tonConnectUI] = useTonConnectUI();
 
   useEffect(() => {

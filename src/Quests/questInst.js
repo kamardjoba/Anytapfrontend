@@ -1,7 +1,6 @@
 import React from 'react';
 import '../Css/Quests.css';
 
-
 const InstQuest = ({GoInst, Inst_val, inst}) => {
 
   return (

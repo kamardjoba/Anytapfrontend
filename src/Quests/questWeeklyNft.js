@@ -3,10 +3,10 @@ import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
-const WeeklyNft = ({GoWeekNft, WeeklyNft_val, setWeeklyNft_val, arrows}) => {
+const WeeklyNft = ({WeeklyNft_val, arrows}) => {
     const [tonConnectUI] = useTonConnectUI();
 
-    GoWeekNft = async () => {
+    const GoWeekNft = async () => {
         const walletInfo = tonConnectUI.walletInfo;
         if (!walletInfo) { // Если кошелек не подключен
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
@@ -25,7 +25,7 @@ const WeeklyNft = ({GoWeekNft, WeeklyNft_val, setWeeklyNft_val, arrows}) => {
 
             await tonConnectUI.sendTransaction(transaction);
             alert('Transaction sent successfully!');
-            setWeeklyNft_val(true);  
+            localStorage.setItem('WeeklyNft_val', 'true');
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
