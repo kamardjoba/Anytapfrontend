@@ -171,7 +171,7 @@ function App() {
 
                     if (data.success) {
                         setReferrals(data.referrals);
-                        setReferralLink(`https://t.me/Anytap_FrontTest_bot?start=${data.referralCode}`);
+                        setReferralLink(`https://t.me/AnyTap_bot?start=${data.referralCode}`);
                         if (data.photoUrl) {
                             setUserPhoto(data.photoUrl); 
                         }
