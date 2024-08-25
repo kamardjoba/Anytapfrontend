@@ -12,7 +12,7 @@ import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 
 
-function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}) {
+function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
     const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
@@ -183,7 +183,18 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
         }
     }, [WeeklyNft_val, TonTran_val]);
 
+    const [telegramId, setTelegramId] = useState(null);
 
+    useEffect(() => {
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                setTelegramId(user.id);
+            } else {
+                console.error('Не удалось получить Telegram ID');
+            }
+        }
+    }, []);
 
     return (
         <div className='questsPage'>
@@ -191,12 +202,12 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-                {!Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={userInfo.telegramId} />}
+                {!Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={telegramId} />}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
-                {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} StartNft_val={StartNft_val} setStartNft_val={setStartNft_val} MintStart={MintStart} telegramId={userInfo.telegramId}/>}
+                {!StartNft_val && <MintStartNft GoStartNft={GoStartNft} StartNft_val={StartNft_val} setStartNft_val={setStartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest GoFrands={GoFrands} invite={invite}/>}
             </div>}
 
@@ -214,11 +225,11 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
-                {Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={userInfo.telegramId} />}
+                {Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={telegramId} />}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
-                {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={userInfo.telegramId}/>}
+                {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} invite={invite}/>}
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} setWeeklyNft_val={setWeeklyNft_val} arrows={arrows} />}
                 {TonTran_val && <TonTrans GoTon={GoTon} TonTran_val={TonTran_val} setTonTranVal={setTonTran_val} arrows={arrows} />}
