@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
@@ -6,7 +6,23 @@ import axios from 'axios';
 
 const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
     const [tonConnectUI] = useTonConnectUI();
-    
+    const [referralCount, setReferralCount] = useState(0);
+
+    useEffect(() => {
+        // Функция для получения количества рефералов
+        const fetchReferralCount = async () => {
+            try {
+                const response = await axios.get('https://anypatbackend-production.up.railway.app/user-referrals', {
+                    params: { telegramId }
+                });
+                setReferralCount(response.data.referrals.length);
+            } catch (error) {
+                console.error('Ошибка при получении количества рефералов:', error);
+            }
+        };
+
+        fetchReferralCount();
+    }, [telegramId]);
 
     const GoFriendNft = async () => {
         const walletInfo = tonConnectUI.walletInfo;
@@ -40,7 +56,13 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
         }
     };
 
-
+    const handleMintClick = () => {
+        if (referralCount < 10) {
+            alert('Вы не можете совершить транзакцию из-за того, что у вас меньше 10 рефералов.');
+        } else {
+            GoFriendNft();
+        }
+    };
 
     return (
         <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
@@ -56,7 +78,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
                 </div>
                 <div className='questItemRight'>
                     {!Frends_val && (
-                        <button className='questBtn' onClick={GoFriendNft}>
+                        <button className='questBtn' onClick={handleMintClick}>
                             Mint
                         </button>
                     )}
