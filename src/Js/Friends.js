@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Css/Friends.css';
 import copy from '../IMG/copy.svg';
 import small_diam from "../IMG/small_diam.png";
 
-function Friends({ userPhoto, referralLink, referrals, invite, MintStart}) {
+function Friends({ userPhoto, referralLink, invite, MintStart }) {
+    const [referrals, setReferrals] = useState([]);
+
+    useEffect(() => {
+        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+        const telegramId = initDataUnsafe?.user?.id;
+
+        if (telegramId) {
+            // Функция для получения данных о рефералах
+            const fetchReferrals = async () => {
+                try {
+                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        setReferrals(data.referrals);
+                    } else {
+                        console.error(data.message);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при загрузке рефералов:', error);
+                }
+            };
+
+            // Первый запрос на загрузку рефералов
+            fetchReferrals();
+
+            // Интервал для обновления данных каждые 10 секунд
+            const intervalId = setInterval(fetchReferrals, 10000);
+
+            // Очистка интервала при размонтировании компонента
+            return () => clearInterval(intervalId);
+        } else {
+            console.error('Telegram ID не найден');
+        }
+    }, []);
 
     const handleCopyClick = () => {
         if (referralLink) {
