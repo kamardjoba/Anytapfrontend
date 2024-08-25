@@ -207,8 +207,9 @@ function App() {
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/nofriends" element={<NoFriends invite={invite} MintStart={MintStart}/>} />
-                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} />} />
-                    <Route path="/quests" element={<Quests X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
+                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} />} />
+                    <Route path="/quests" element={<Quests 
+                    X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
                     TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  Wallet_val={Wallet_val} WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
                     VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
                 </Routes>
