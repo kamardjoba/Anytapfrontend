@@ -12,9 +12,9 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
         // Функция для получения количества рефералов
         const fetchReferralCount = async () => {
             try {
-                const response = await axios.get('https://anypatbackend-production.up.railway.app/user-referrals', {
-                    params: { telegramId }
-                });
+                const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
+               
+
                 setReferralCount(response.data.referrals.length);
             } catch (error) {
                 console.error('Ошибка при получении количества рефералов:', error);
