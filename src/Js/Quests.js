@@ -195,7 +195,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
                 <div className='txtNf'>
                     <p>Weekly task</p>
                 </div>
-                {!WeeklyNft_val && <WeeklyNft WeeklyNft_val = {WeeklyNft_val} arrows={arrows}/>}
+                {!WeeklyNft_val && <WeeklyNft WeeklyNft_val = {WeeklyNft_val} telegramId={telegramId} arrows={arrows}/>}
                 {!TonTran_val && <TonTrans TonTran_val={TonTran_val} arrows={arrows} />}
 
                
@@ -212,7 +212,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram}) {
                 {X_val && <XQuest X_val={X_val} X={X} />}
                 {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} invite={invite}/>}
-                {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} arrows={arrows} />}
+                {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
             </div>}
