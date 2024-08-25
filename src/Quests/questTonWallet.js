@@ -7,7 +7,7 @@ import { TonConnectUIProvider, TonConnectButton} from '@tonconnect/ui-react';
 const TonW = ({GoWallet, Wallet_val}) => {
 
   return (
-    <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
     <div className='questItem'>
         <div className='questItemLeft'>
             <div className='questIcon'>
