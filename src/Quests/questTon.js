@@ -41,6 +41,11 @@ const TonTrans = ({ TonTran_val, arrows, telegramId }) => {
 
     useEffect(() => {
         const syncTonTranVal = async () => {
+            if (!telegramId) {
+                console.error('telegramId отсутствует или неверен:', telegramId);
+                return; // Если telegramId неверен, выходим из функции
+            }
+    
             try {
                 const response = await axios.get(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`);
                 if (response.data.success) {
@@ -53,11 +58,12 @@ const TonTrans = ({ TonTran_val, arrows, telegramId }) => {
                 console.error('Ошибка при синхронизации TonTran_val:', error);
             }
         };
-
+    
         const intervalId = setInterval(syncTonTranVal, 60000); // проверяем каждую минуту
-
+    
         return () => clearInterval(intervalId); // Очистка интервала при размонтировании компонента
     }, [telegramId]);
+    
 
     return (
         <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
