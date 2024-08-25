@@ -135,8 +135,6 @@ function Quests() {
         }
     }
     
-    
-
     function GoStartNft() {
         setStartNft_val(true);
     }
@@ -207,7 +205,8 @@ function Quests() {
                     <p>Weekly task</p>
                 </div>
                 {!WeeklyNft_val && <WeeklyNft GoWeekNft={GoWeekNft}/>}
-                {!TonTran_val && <TonTrans GoTon={GoTon}/>}
+                {!TonTran_val && <TonTrans GoTon={GoTon} TonTran_val={TonTran_val} setTonTranVal={setTonTran_val} />}
+
             </div>}
 
             {VisiblaComplatedTask && <div id='complatedtask'>

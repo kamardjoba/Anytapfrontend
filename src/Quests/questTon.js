@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import '../Css/Quests.css';
 import arrows from '../IMG/arrows.svg';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
@@ -6,23 +6,6 @@ import { useTonConnectUI } from '@tonconnect/ui-react';
 
 const TonTrans = ({ GoTon, TonTran_val, setTonTranVal }) => {
     const [tonConnectUI] = useTonConnectUI();
-
-    useEffect(() => {
-        if (window.TON_CONNECT_UI) {
-            const tonConnectUI = new window.TON_CONNECT_UI.TonConnectUI({
-                manifestUrl: 'https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json',
-                buttonRootId: 'TonMainConBtn'
-            });
-
-            tonConnectUI.onStatusChange((walletInfo) => {
-                if (walletInfo) {
-                    console.log('Кошелек подключен!', walletInfo);
-                } else {
-                    console.log('Кошелек отключен!');
-                }
-            });
-        }
-    }, []);
 
     GoTon = async () => {
         try {
