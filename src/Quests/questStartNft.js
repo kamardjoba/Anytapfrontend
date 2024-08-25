@@ -26,6 +26,7 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
 
             await tonConnectUI.sendTransaction(transaction);
             alert('Transaction sent successfully!');
+            localStorage.setItem('StartNft_val', 'true');
   
 
             // Отправляем запрос на сервер для добавления 1000 монет
@@ -35,6 +36,7 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
             }
+
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
