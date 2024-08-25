@@ -43,9 +43,6 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
 
     const [Wallet_val, setWallet_val] = useState(false);
 
-  
-      
-
     useEffect(() => {
         if (window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
@@ -103,14 +100,6 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
             }
         }
     }
-    
-    
-
-    // function GoWallet() {
-    //     setWallet_val(true);
-    // }
-    
-
 
     function GoTg() {
         window.open('https://t.me/any_tap', '_blank');
@@ -158,10 +147,6 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
         }
     }
 
-    function GoWallet() {
-        setWallet_val(true);
-    }
-
     useEffect(() => {
         if (TgChanel_val ||
             TgOcties_val || 
@@ -193,8 +178,6 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
             setVisiblaWeekTask(false);
         }
     }, [WeeklyNft_val, TonTran_val]);
-
-
 
     return (
         <div className='questsPage'>
