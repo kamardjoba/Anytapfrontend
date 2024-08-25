@@ -3,10 +3,10 @@ import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
-const MintStartNft = ({GoStartNft, StartNft_val, setStartNft_val, MintStart}) => {
+const MintStartNft = ({ StartNft_val, MintStart}) => {
     const [tonConnectUI] = useTonConnectUI();
    
-    GoStartNft = async () => {
+    const GoStartNft = async () => {
         const walletInfo = tonConnectUI.walletInfo;
         if (!walletInfo) { // Если кошелек не подключен
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
@@ -25,7 +25,7 @@ const MintStartNft = ({GoStartNft, StartNft_val, setStartNft_val, MintStart}) =>
 
             await tonConnectUI.sendTransaction(transaction);
             alert('Transaction sent successfully!');
-            setStartNft_val(true);  // Устанавливаем TonTran_val в true
+            localStorage.setItem('StartNft_val', 'true');
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);

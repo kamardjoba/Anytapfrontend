@@ -3,10 +3,10 @@ import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
-const TonTrans = ({ GoTon, TonTran_val, setTonTranVal, arrows }) => {
+const TonTrans = ({TonTran_val, arrows }) => {
     const [tonConnectUI] = useTonConnectUI();
 
-    GoTon = async () => {
+    const GoTon = async () => {
         const walletInfo = tonConnectUI.walletInfo;
         if (!walletInfo) { // Если кошелек не подключен
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
@@ -25,7 +25,7 @@ const TonTrans = ({ GoTon, TonTran_val, setTonTranVal, arrows }) => {
 
             await tonConnectUI.sendTransaction(transaction);
             alert('Transaction sent successfully!');
-            setTonTranVal(true);  // Устанавливаем TonTran_val в true
+            localStorage.setItem('TonTran_val', 'true');
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
