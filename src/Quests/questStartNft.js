@@ -35,6 +35,8 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
             }
+            alert('Transaction sent successfully!');
+            localStorage.setItem('StartNft_val', 'true');
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
