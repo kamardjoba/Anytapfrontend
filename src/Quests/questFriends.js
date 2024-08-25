@@ -41,7 +41,11 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
 
             await tonConnectUI.sendTransaction(transaction);
             try {
-                await axios.post('https://anypatbackend-production.up.railway.app/mint-friend-nft', { telegramId });
+                const response = await axios.get('https://anypatbackend-production.up.railway.app/some-endpoint', { params: { telegramId } });
+                console.log('Ответ сервера:', response.data); // Вы можете использовать ответ по вашему усмотрению
+                
+                
+
                 console.log('5000 монет добавлено пользователю');
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
