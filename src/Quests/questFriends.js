@@ -9,19 +9,17 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
     const [referralCount, setReferralCount] = useState(0);
 
     useEffect(() => {
-        // Функция для получения количества рефералов
         const fetchReferralCount = async () => {
             try {
                 const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
-               
-
-                setReferralCount(response.data.referrals.length);
+                const data = await response.json();
+                console.log(data);  // Логируем ответ от API
+                setReferralCount(data?.referrals?.length || 0);
             } catch (error) {
                 console.error('Ошибка при получении количества рефералов:', error);
             }
         };
-
-        fetchReferralCount();
+            fetchReferralCount();        
     }, [telegramId]);
 
     const GoFriendNft = async () => {
