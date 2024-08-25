@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 import axios from 'axios';
 
-const FrendsQuest = ({ Frends_val, invite, telegramId}) => {
-
+const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
     const [tonConnectUI] = useTonConnectUI();
+    const [referralCount, setReferralCount] = useState(0);
 
-    const GoWeekNft = async () => {
+    useEffect(() => {
+        // Функция для получения количества рефералов
+        const fetchReferralCount = async () => {
+            try {
+                const response = await axios.get('https://anypatbackend-production.up.railway.app/user-referrals', {
+                    params: { telegramId }
+                });
+                setReferralCount(response.data.referrals.length);
+            } catch (error) {
+                console.error('Ошибка при получении количества рефералов:', error);
+            }
+        };
+
+        fetchReferralCount();
+    }, [telegramId]);
+
+    const GoFriendNft = async () => {
         const walletInfo = tonConnectUI.walletInfo;
         if (!walletInfo) { // Если кошелек не подключен
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
             return; // Останавливаем выполнение функции
-          }
+        }
         try {
             const transaction = {
                 validUntil: Date.now() + 5 * 60 * 1000,
@@ -40,24 +56,36 @@ const FrendsQuest = ({ Frends_val, invite, telegramId}) => {
         }
     };
 
-  return (
-    <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
-    <div className='questItem'>
-        <div className='questItemLeft'>
-            <div className='questIcon'>
-                <img src={invite} alt=""/>
+    const handleMintClick = () => {
+        if (referralCount < 1) {
+            alert('Вы не можете совершить транзакцию из-за того, что у вас меньше 10 рефералов.');
+        } else {
+            GoFriendNft();
+        }
+    };
+
+    return (
+        <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
+            <div className='questItem'>
+                <div className='questItemLeft'>
+                    <div className='questIcon'>
+                        <img src={invite} alt="" />
+                    </div>
+                    <div className='questItemLeftContent'>
+                        <p className='questTitle'>Invite 10 friends</p>
+                        <p className='questSubtitle'>+5000 Points and Referral NFT</p>
+                    </div>
+                </div>
+                <div className='questItemRight'>
+                    {!Frends_val && (
+                        <button className='questBtn' onClick={handleMintClick}>
+                            Mint
+                        </button>
+                    )}
+                </div>
             </div>
-            <div className='questItemLeftContent'>
-                <p className='questTitle'>Invite 10 friends</p>
-                <p className='questSubtitle'>+5000 Points and Referral NFT</p>
-            </div>
-        </div>
-        <div className='questItemRight'>
-            {!Frends_val && (<button className='questBtn' onClick={GoWeekNft}>Mint</button>)}
-        </div>
-    </div>
-    </TonConnectUIProvider>
-  );
+        </TonConnectUIProvider>
+    );
 };
 
 export default FrendsQuest;
