@@ -16,8 +16,12 @@ const TonW = ({ Wallet_val, wallet, setWallet_val, telegramId }) => {
 
                 // Отправляем запрос на сервер для добавления 500 монет
                 try {
-                    await axios.post('https://anypatbackend-production.up.railway.app/wallet-connected', { telegramId });
-                    console.log('500 монет добавлено пользователю');
+                    const response = await axios.post('https://anypatbackend-production.up.railway.app/wallet-connected', { telegramId });
+                    if (response.data.success) {
+                        console.log('500 монет добавлено пользователю');
+                    } else {
+                        console.error('Ошибка при начислении монет:', response.data.message);
+                    }
                 } catch (error) {
                     console.error('Ошибка при добавлении монет:', error);
                 }

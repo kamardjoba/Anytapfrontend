@@ -191,7 +191,7 @@ function Quests({userInfo, X, arrows, invite, MintStart, wallet, inst, telegram}
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-                {!Wallet_val && <TonW GoWallet={GoWallet} setWallet_val={setWallet_val} wallet={wallet}/>}
+                {!Wallet_val && <TonW Wallet_val={Wallet_val} setWallet_val={setWallet_val} wallet={wallet} telegramId={userInfo.telegramId} />}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
