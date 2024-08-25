@@ -124,8 +124,8 @@
 
 .questItemRight{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
 }
 
 button[data-tc-connect-button="true"]{
