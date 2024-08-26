@@ -51,7 +51,7 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
 
 
   return (
-    <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="http://anytap.org/tonconnect-manifest.json">
     <div className='questItem'>
         <div className='questItemLeft'>
             <div className='questIcon'>

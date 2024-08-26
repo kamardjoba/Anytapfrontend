@@ -40,7 +40,7 @@ const TonW = ({ Wallet_val, telegramId, wallet }) => {
   }, [tonConnectUI, telegramId]);
 
   return (
-    <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="http://anytap.org/tonconnect-manifest.json">
       <div className='questItem'>
           <div className='questItemLeft'>
               <div className='questIcon'>
