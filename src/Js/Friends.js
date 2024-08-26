@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Friends.css';
 import small_diam from "../IMG/small_diam.png";
+import LoadingScreen from '../Loading/Loading.js';
 
 function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
     const [referrals, setReferrals] = useState([]);
+    const [isFrendsZapros, setisFrendsZapros] = useState(false);
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
@@ -24,6 +26,7 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                             };
                         });
                         setReferrals(updatedReferrals);
+                        setisFrendsZapros(true);
                     } else {
                         console.error(data.message);
                     }
@@ -84,7 +87,7 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                 </div>
             </div>
 
-            <div className='friendsUsers'>
+            {isFrendsZapros && <div className='friendsUsers'>
                 <ul className='whiteContainerContent leaderboardScroll'>
                     {referrals.map((referral, index) => (
                         <li className='leaderboardItem' key={index}>
@@ -118,6 +121,11 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                         </li>
                     ))}
                 </ul>
+            </div>}
+            <div class="outer-containerF">
+                
+                    <LoadingScreen wrapperClass="loading-wrapper-friends" />  
+                
             </div>
         </div>
     );

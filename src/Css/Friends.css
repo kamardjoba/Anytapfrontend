@@ -118,6 +118,12 @@
     overflow-y: scroll;
 }
 
+.outer-containerF{
+    height: 70%;
+    position: relative;
+    overflow: hidden;
+}
+
 @media (orientation: landscape) {
 
     .whiteContainerQuest{
@@ -139,5 +145,12 @@
 
     .linkBtn {
         font-size: 3.8vh;   
+    }
+
+    .outer-containerF{
+        height: 50%;
+        background: transparent;
+        position: relative;
+        overflow: hidden;
     }
 }
