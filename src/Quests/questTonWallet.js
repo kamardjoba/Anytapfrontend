@@ -47,7 +47,7 @@ const TonW = ({ Wallet_val, telegramId, wallet }) => {
                   <img src={wallet} alt=""/>
               </div>
               <div className='questItemLeftContent'>
-                  <p className='questTitle'>Ton Wallet Connect</p>
+                  <p className='questTitle'>Wallet Connect</p>
                   <p className='questSubtitle'>+500 points</p>
               </div>
           </div>
