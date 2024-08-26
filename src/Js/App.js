@@ -21,11 +21,12 @@ import MintStart from'../IMG/mint.svg';
 import wallet from'../IMG/wallet.svg';
 import inst from'../IMG/inst.svg';
 import telegram from'../IMG/telegram.svg';
+import copy from '../IMG/copy.svg';
 
 function App() {
 
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
-    const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
+    const [VisiblaWeekTask, setVisiblaWeekTask] = useState(false);
     const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
 
     if (!localStorage.getItem('TgChanel_val')) {localStorage.setItem('TgChanel_val', 'false');}
@@ -116,6 +117,7 @@ function App() {
         preloadImage(wallet);
         preloadImage(inst);
         preloadImage(telegram);
+        preloadImage(copy);
 
         const urlParams = new URLSearchParams(window.location.search);
         const telegramId = urlParams.get('telegramId');
@@ -207,7 +209,7 @@ function App() {
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/nofriends" element={<NoFriends invite={invite} referralLink={referralLink} MintStart={MintStart}/>} />
-                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} />} />
+                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} copy={copy}/>} />
                     <Route path="/quests" element={<Quests 
                     X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
                     TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  Wallet_val={Wallet_val} WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
