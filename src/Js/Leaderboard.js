@@ -75,9 +75,10 @@ function Leaderboard() {
                 <img src={user.photoUrl || nophoto} alt="" className='leaderboardAvatarImg' />
             </div>
             <div>
-                <p className='leaderboardTitle'>
-                    {user.nickname || user.firstName || 'Anonymous'}
-                </p>
+            <p className='leaderboardTitle'>
+    {user.nickname && !/^user_\d+$/.test(user.nickname) ? user.nickname : user.firstName || 'Anonymous'}
+</p>
+
                 <p className='leaderboardSubtitle'>
                     {user.coins.toLocaleString()} <img src={small_diam} alt=""/>
                 </p>
