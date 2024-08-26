@@ -17,7 +17,14 @@ function Friends({ userPhoto, referralLink, invite, MintStart }) {
                     const data = await response.json();
     
                     if (data.success) {
-                        setReferrals(data.referrals);
+                        const updatedReferrals = data.referrals.map(referral => {
+                            const dynamicEarnedCoins = Math.floor(referral.coins * 0.1); // Вычисляем 10% от текущих монет реферала
+                            return {
+                                ...referral,
+                                earnedCoins: dynamicEarnedCoins
+                            };
+                        });
+                        setReferrals(updatedReferrals);
                     } else {
                         console.error(data.message);
                     }
@@ -92,9 +99,9 @@ function Friends({ userPhoto, referralLink, invite, MintStart }) {
                                 </div>
 
                                 <div>
-                                <p className='leaderboardTitle'>
-    {referral.nickname && !/^user_\d+$/.test(referral.nickname) ? referral.nickname : referral.firstName || 'no_name'}
-</p>
+                                    <p className='leaderboardTitle'>
+                                        {referral.nickname && !/^user_\d+$/.test(referral.nickname) ? referral.nickname : referral.firstName || 'no_name'}
+                                    </p>
 
                                     <p className='leaderboardSubtitle'>
                                         {referral.coins !== undefined ? referral.coins.toLocaleString() : 'N/A'}
