@@ -17,7 +17,41 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask
 }) {
 
-   
+    useEffect(() => {
+        if (window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    
+            if (user) {
+                const telegramId = user.id;
+                const checkSubscription = async () => {
+                    try {
+                        const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
+                        if (response.data.success && response.data.isSubscribedToChannel) {
+                            localStorage.setItem('TgChanel_val', 'true');
+                        }
+                        if (response.data.success && response.data.isSubscribedToOctiesChannel) {
+                            localStorage.setItem('TgOcties_val', 'true');
+                        }
+                        if (response.data.isSubscribedToTwitter) {
+                            localStorage.setItem('X_val', 'true');
+                        }
+                        if (response.data.isSubscribedToInstagram) {
+                            localStorage.setItem('Inst_val', 'true');
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при проверке подписки:', error);
+                    }
+                };
+
+                checkSubscription();
+            } else {
+                console.error('Не удалось получить данные пользователя из WebApp');
+            }
+        } else {
+            console.error('Telegram WebApp API не доступен');
+        }
+    }, []);
     
     function GoInst() {
         window.open('https://www.instagram.com/anytap_dapps?igsh=MW1oaHNxYXR5eWxrOA%3D%3D&utm_source=qr', '_blank'); // Замените на ссылку на ваш Twitter
