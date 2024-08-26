@@ -9,7 +9,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
     const [isEligible, setIsEligible] = useState(false);
 
     useEffect(() => {
-        if (referralsCount >= 10) {
+        if (referralsCount >= 0) {
             setIsEligible(true);
         } else {
             setIsEligible(false);
