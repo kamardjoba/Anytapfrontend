@@ -77,7 +77,6 @@ function App() {
             WeeklyNft_val,
             Inst_val]);
 
-
     useEffect(() => {
         if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Wallet_val && Inst_val) {
             setVisiblaBasedTask(false);
@@ -89,6 +88,10 @@ function App() {
             setVisiblaWeekTask(false);
         }
     }, [WeeklyNft_val, TonTran_val]);
+
+    useEffect(() => {
+        // Код, который необходимо выполнить при изменении зависимостей
+      }, [Wallet_val, TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val]);
 
 
 

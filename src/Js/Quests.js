@@ -218,8 +218,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-
-
                 {!Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
@@ -234,29 +232,22 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     <p>Weekly task</p>
                 </div>
                 {!WeeklyNft_val && <WeeklyNft WeeklyNft_val = {WeeklyNft_val} telegramId={telegramId} arrows={arrows}/>}
-                {!TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
-
-               
+                {!TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}     
             </div>}
 
             {VisiblaComplatedTask && <div id='complatedtask'>
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
-
-
-
                 {Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
                 {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
                 {Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
-
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
-                
             </div>}
         </div>
     );
