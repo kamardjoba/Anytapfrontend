@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Friends.css';
-import copy from '../IMG/copy.svg';
 import small_diam from "../IMG/small_diam.png";
 
-function Friends({ userPhoto, referralLink, invite, MintStart }) {
+function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
     const [referrals, setReferrals] = useState([]);
 
     useEffect(() => {

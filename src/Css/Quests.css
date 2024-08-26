@@ -133,7 +133,6 @@ button[data-tc-connect-button="true"]{
     align-items: center;
     justify-content: center;
     background: rgba(88, 88, 88, 1);
-    width: 44vw;
     height: 2.8vh;
     border-radius: 2vh;
   }
@@ -183,5 +182,10 @@ button[data-tc-connect-button="true"]{
         padding: 1.5vh 2.5vh;
         font-size: 2.5vh;
     }
+
+    button[data-tc-connect-button="true"]{
+        height: 5.5vh;
+        border-radius: 2vh;
+      }
     
 }
