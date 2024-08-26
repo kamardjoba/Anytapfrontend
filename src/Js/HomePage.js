@@ -15,7 +15,9 @@ function HomePage(props) {
                 .then(data => {
                     if (data.success) {
                         setUserCoins(data.coins);
-                    } 
+                    } else {
+                        console.error('Failed to fetch user coins:', data.message);
+                    }
                 })
                 .catch(error => {
                     console.error('Error fetching user info:', error);
@@ -28,8 +30,8 @@ function HomePage(props) {
             <div className='homepageWrapper'>
                 <p className='welcomeText'>Welcome to <br/>Anytap!</p>
                 <div className='amountWrapper'>
-                    <p className='amount'>{userCoins}</p>
-                    <img src={diamond} alt="" className='diamondImgHomepage' onClick={(event) => {localStorage.clear();}}/>
+                    <p className='amount'>{userCoins !== null ? userCoins : 'Loading...'}</p>
+                    <img src={diamond} alt="" className='diamondImgHomepage' onClick={() => localStorage.clear()} />
                 </div>
                 <p className='homepageDescr'>
                     Earn points, mint NFTs, <br/>and receive valuable <br/>  rewards for your activity!
