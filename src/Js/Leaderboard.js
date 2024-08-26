@@ -68,22 +68,27 @@ function Leaderboard() {
             </div>
             {isLoadingLider ? (<div className='whiteContainerLeaderboard'>
                 <ul className='whiteContainerContent leaderboardScroll'>
-                    {leaderboardData.map((user, index) => (
-                        <li className='leaderboardItem' key={user.telegramId}>
-                            <div className='leaderboardItemLeft'>
-                                <div className='leaderboardAvatar'>
-                                    <img src={user.photoUrl || nophoto} alt="" className='leaderboardAvatarImg' />
-                                </div>
-                                <div>
-                                    <p className='leaderboardTitle'>{user.nickname || 'no_name'}</p>
-                                    <p className='leaderboardSubtitle'>{user.coins.toLocaleString()} <img src={small_diam} alt=""/></p>
-                                </div>
-                            </div>
-                            <div className='leaderboardItemRight'>
-                                {index + 1}
-                            </div>
-                        </li>
-                    ))}
+                {leaderboardData.map((user, index) => (
+    <li className='leaderboardItem' key={user.telegramId}>
+        <div className='leaderboardItemLeft'>
+            <div className='leaderboardAvatar'>
+                <img src={user.photoUrl || nophoto} alt="" className='leaderboardAvatarImg' />
+            </div>
+            <div>
+                <p className='leaderboardTitle'>
+                    {user.nickname || user.firstName || 'Anonymous'}
+                </p>
+                <p className='leaderboardSubtitle'>
+                    {user.coins.toLocaleString()} <img src={small_diam} alt=""/>
+                </p>
+            </div>
+        </div>
+        <div className='leaderboardItemRight'>
+            {index + 1}
+        </div>
+    </li>
+))}
+
                 </ul>
             </div> 
             ) : (
