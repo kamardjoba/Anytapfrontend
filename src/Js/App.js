@@ -157,22 +157,27 @@ function App() {
 
     // ________________________________________________
 
-    const [referrals, setReferrals] = useState([]);
+    
     const [referralLink, setReferralLink] = useState('');
     const [userPhoto, setUserPhoto] = useState(avatar); 
 
+    const [referrals, setReferrals] = useState([]);
+    const [referralsCount, setReferralsCount] = useState(0);
+    
+    // Далее в useEffect
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
-
+    
         if (telegramId) {
             const fetchReferrals = async () => {
                 try {
                     const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
                     const data = await response.json();
-
+    
                     if (data.success) {
                         setReferrals(data.referrals);
+                        setReferralsCount(data.referrals.length); // Устанавливаем количество рефералов
                         setReferralLink(`https://t.me/AnyTap_bot?start=${data.referralCode}`);
                         if (data.photoUrl) {
                             setUserPhoto(data.photoUrl); 
@@ -184,12 +189,13 @@ function App() {
                     console.error('Ошибка при загрузке рефералов:', error);
                 }
             };
-
+    
             fetchReferrals();
         } else {
             console.error('Telegram ID не найден');
         }
     }, []);
+    
 
     //______________________________________________________________
 
@@ -213,7 +219,7 @@ function App() {
                     <Route path="/quests" element={<Quests 
                     X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
                     TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  Wallet_val={Wallet_val} WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
-                    VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
+                    VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
                 </Routes>
             </div>
 
