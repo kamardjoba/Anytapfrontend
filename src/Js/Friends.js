@@ -4,7 +4,7 @@ import copy from '../IMG/copy.svg';
 import small_diam from "../IMG/small_diam.png";
 
 function Friends({ userPhoto, referralLink, invite, MintStart }) {
-    const [referrals, setReferrals] = useState([]);
+    const [referrals] = useState([]);
 
     const updateCoins = async (telegramId, newCoins) => {
         try {
