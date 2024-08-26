@@ -183,5 +183,11 @@ button[data-tc-connect-button="true"]{
         padding: 1.5vh 2.5vh;
         font-size: 2.5vh;
     }
+
+    button[data-tc-connect-button="true"]{
+        height: 5.5vh;
+        width: 20vw;
+        border-radius: 2vh;
+      }
     
 }
