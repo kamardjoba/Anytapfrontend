@@ -206,7 +206,7 @@ function App() {
 
             <div className='centeredBlock'>
                 <Routes>
-                    <Route path="/home" element={<HomePage />} />
+                <Route path="/home" element={<HomePage coins={userInfo.coins} />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/nofriends" element={<NoFriends invite={invite} referralLink={referralLink} MintStart={MintStart}/>} />
                     <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} copy={copy}/>} />
