@@ -114,7 +114,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
 
 
     function GoTg() {
-        window.open('https://t.me/any_tap', '_blank');
+        window.open('https://t.me/test_sub_check2', '_blank');
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -157,7 +157,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     
     
     function GoOct() {
-        window.open('https://t.me/any_tap', '_blank');
+        window.open('https://t.me/test_sub_check', '_blank');
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -172,7 +172,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         if (response.data.success) {
                             if (response.data.isSubscribedToOctiesChannel) {
                                 if (localStorage.getItem('TgOcties_val') !== 'true') {
-                                    localStorage.setItem('TgChanel_val', 'true');
+                                    localStorage.setItem('TgOcties_val', 'true');
                                     // Начисляем монеты рефереру только при первой подписке
                                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
                                     if (referralUpdateResponse.data.success) {
@@ -182,7 +182,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                                     }
                                 }
                             } else {
-                                localStorage.setItem('TgChanel_val', 'false'); // Если не подписан, ставим false
+                                localStorage.setItem('TgOcties_val', 'false'); // Если не подписан, ставим false
                             }
                         }
                     } catch (error) {
