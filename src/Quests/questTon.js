@@ -32,7 +32,7 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
                 console.error('Ошибка при добавлении монет:', error);
             }
              // Теперь отправляем запрос на обновление монет у реферера
-             const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+             const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 5000 });
              if (referralUpdateResponse.data.success) {
                  console.log('Монеты реферера обновлены');
              } else {

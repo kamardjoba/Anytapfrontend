@@ -28,7 +28,7 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
             alert('Transaction sent successfully!');
   
              // Теперь отправляем запрос на обновление монет у реферера
-             const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+             const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 1000 });
              if (referralUpdateResponse.data.success) {
                  console.log('Монеты реферера обновлены');
              } else {

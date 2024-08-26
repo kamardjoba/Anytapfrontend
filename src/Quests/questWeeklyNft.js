@@ -31,6 +31,13 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
             }
+             // Теперь отправляем запрос на обновление монет у реферера
+             const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 2500 });
+             if (referralUpdateResponse.data.success) {
+                 console.log('Монеты реферера обновлены');
+             } else {
+                 console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+             }
             alert('Transaction sent successfully!');
             localStorage.setItem('WeeklyNft_val', 'true');
         } catch (error) {

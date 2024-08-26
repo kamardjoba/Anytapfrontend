@@ -78,7 +78,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
                      // Теперь отправляем запрос на обновление монет у реферера
-                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
                      if (referralUpdateResponse.data.success) {
                          console.log('Монеты реферера обновлены');
                      } else {
@@ -104,7 +104,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
                      // Теперь отправляем запрос на обновление монет у реферера
-                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
                      if (referralUpdateResponse.data.success) {
                          console.log('Монеты реферера обновлены');
                      } else {
