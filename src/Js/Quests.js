@@ -13,7 +13,7 @@ import InstQuest from '../Quests/questInst';
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
-    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val,  Wallet_val, WeeklyNft_val, TonTran_val, Inst_val,
+    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val,  Wallet_val, WeeklyNft_val, TonTran_val, Inst_val, 
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount
 }) {
 
@@ -97,6 +97,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     try {
                         await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
                         localStorage.setItem('X_val', 'true'); 
+                        
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
@@ -221,7 +222,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 {!Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
-                {!X_val && <XQuest GoX={GoX} X={X}/>}
+                {!X_val && <XQuest GoX={GoX} X={X} setXVal={setXVal}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}

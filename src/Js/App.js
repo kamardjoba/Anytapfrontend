@@ -29,32 +29,37 @@ function App() {
     const [VisiblaWeekTask, setVisiblaWeekTask] = useState(false);
     const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
 
-    if (!localStorage.getItem('TgChanel_val')) {localStorage.setItem('TgChanel_val', 'false');}
-    const TgChanel_val = localStorage.getItem('TgChanel_val') === 'true';
+    const [TgChanel_val, setTgChanel_val] = useState(localStorage.getItem('TgChanel_val') === 'true');
+    const [TgOcties_val, setTgOcties_val] = useState(localStorage.getItem('TgOcties_val') === 'true');
+    const [X_val, setXVal] = useState(localStorage.getItem('X_val') === 'true');
+    const [Inst_val, setInstVal] = useState(localStorage.getItem('Inst_val') === 'true');
+    const [StartNft_val, setStartNftVal] = useState(localStorage.getItem('StartNft_val') === 'true');
+    const [WeeklyNft_val, setWeeklyNftVal] = useState(localStorage.getItem('WeeklyNft_val') === 'true');
+    const [TonTran_val, setTonTranVal] = useState(localStorage.getItem('TonTran_val') === 'true');
+    const [Frends_val, setFrendsVal] = useState(localStorage.getItem('Frends_val') === 'true');
+    const [Wallet_val, setWalletVal] = useState(localStorage.getItem('Wallet_val') === 'true');
 
-    if (!localStorage.getItem('TgOcties_val')) {localStorage.setItem('TgOcties_val', 'false');}
-    const TgOcties_val = localStorage.getItem('TgOcties_val') === 'true';
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setTgChanel_val(localStorage.getItem('TgChanel_val') === 'true');
+            setTgOcties_val(localStorage.getItem('TgOcties_val') === 'true');
+            setXVal(localStorage.getItem('X_val') === 'true');
+            setInstVal(localStorage.getItem('Inst_val') === 'true');
+            setStartNftVal(localStorage.getItem('StartNft_val') === 'true');
+            setWeeklyNftVal(localStorage.getItem('WeeklyNft_val') === 'true');
+            setTonTranVal(localStorage.getItem('TonTran_val') === 'true');
+            setFrendsVal(localStorage.getItem('Frends_val') === 'true');
+            setWalletVal(localStorage.getItem('Wallet_val') === 'true');
+        };
 
-    if (!localStorage.getItem('X_val')) {localStorage.setItem('X_val', 'false');}
-    const X_val = localStorage.getItem('X_val') === 'true';
+        window.addEventListener('storage', handleStorageChange);
 
-    if (!localStorage.getItem('Inst_val')) {localStorage.setItem('Inst_val', 'false');}
-    const Inst_val = localStorage.getItem('Inst_val') === 'true';
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []);
+
     
-    if (!localStorage.getItem('StartNft_val')) {localStorage.setItem('StartNft_val', 'false');}
-    const StartNft_val = localStorage.getItem('StartNft_val') === 'true';
-    
-    if (!localStorage.getItem('WeeklyNft_val')) {localStorage.setItem('WeeklyNft_val', 'false');}
-    const WeeklyNft_val = localStorage.getItem('WeeklyNft_val') === 'true';
-    
-    if (!localStorage.getItem('TonTran_val')) {localStorage.setItem('TonTran_val', 'false');}
-    const TonTran_val = localStorage.getItem('TonTran_val') === 'true';
-    
-    if (!localStorage.getItem('Frends_val')) {localStorage.setItem('Frends_val', 'false');}
-    const Frends_val = localStorage.getItem('Frends_val') === 'true';
-    
-    if (!localStorage.getItem('Wallet_val')) {localStorage.setItem('Wallet_val', 'false');}
-    const Wallet_val = localStorage.getItem('Wallet_val') === 'true';
 
     useEffect(() => {
         if (TgChanel_val ||
@@ -88,12 +93,6 @@ function App() {
             setVisiblaWeekTask(false);
         }
     }, [WeeklyNft_val, TonTran_val]);
-
-    useEffect(() => {
-        // Код, который необходимо выполнить при изменении зависимостей
-      }, [Wallet_val, TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val]);
-
-
 
     const navigate = useNavigate();
     const location = useLocation();
