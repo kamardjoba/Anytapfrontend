@@ -6,42 +6,46 @@ import small_diam from "../IMG/small_diam.png";
 function Friends({ userPhoto, referralLink, invite, MintStart }) {
     const [referrals, setReferrals] = useState([]);
 
+    const updateCoins = async (telegramId, newCoins) => {
+        try {
+            const response = await fetch('https://your-api-url/update-coins', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ telegramId, coins: newCoins }),
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                console.log('Монеты успешно обновлены');
+            } else {
+                console.error('Ошибка при обновлении монет:', data.message);
+            }
+        } catch (error) {
+            console.error('Ошибка при отправке данных:', error);
+        }
+    };
+
     useEffect(() => {
-        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-        const telegramId = initDataUnsafe?.user?.id;
-    
+        const telegramId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+        const initialCoins = 500; // Замените на фактическое начальное количество монет
+
         if (telegramId) {
-            const fetchReferrals = async () => {
-                try {
-                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
-                    const data = await response.json();
-    
-                    if (data.success) {
-                        setReferrals(data.referrals);
-                    } else {
-                        console.error(data.message);
-                    }
-                } catch (error) {
-                    console.error('Ошибка при загрузке рефералов:', error);
-                }
-            };
-    
-            // Первый запрос на загрузку рефералов
-            fetchReferrals();
-    
-            // Интервал для обновления данных каждые 10 секунд
-            const intervalId = setInterval(fetchReferrals, 10000);
-    
+            const intervalId = setInterval(() => {
+                // Получение актуального количества монет пользователя
+                const newCoins = initialCoins; // Здесь можно использовать реальное количество монет пользователя
+
+                // Отправка данных на сервер
+                updateCoins(telegramId, newCoins);
+            }, 60000); // 60000 миллисекунд = 1 минута
+
             // Очистка интервала при размонтировании компонента
             return () => clearInterval(intervalId);
         } else {
             console.error('Telegram ID не найден');
         }
     }, []);
-    
-
-
-    
     
 
     const handleCopyClick = () => {
