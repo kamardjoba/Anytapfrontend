@@ -7,7 +7,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-const manifestUrl = 'http://anytap.org/tonconnect-manifest.json';
+const manifestUrl = 'https://anytap.org/tonconnect-manifest.json';
 
 root.render(
   <React.StrictMode>
