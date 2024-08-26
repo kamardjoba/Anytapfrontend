@@ -8,11 +8,12 @@ function HomePage(props) {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const telegramId = urlParams.get('telegramId');
-
+    
         if (telegramId) {
             fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
                 .then(response => response.json())
                 .then(data => {
+                    console.log('User info fetched:', data); // Log the response
                     if (data.success) {
                         setUserCoins(data.coins);
                     } else {
@@ -24,7 +25,7 @@ function HomePage(props) {
                 });
         }
     }, []);
-
+    
     return (
         <div className='homepageContainer'>
             <div className='homepageWrapper'>
