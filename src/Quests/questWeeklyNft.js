@@ -40,6 +40,7 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
              }
             alert('Transaction sent successfully!');
             localStorage.setItem('WeeklyNft_val', 'true');
+            window.dispatchEvent(new Event('storage'));
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);

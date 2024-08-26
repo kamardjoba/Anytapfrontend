@@ -70,7 +70,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 setTimeout(async () => {
                     try {
                         await axios.post('https://anypatbackend-production.up.railway.app/update-instagram-subscription', { telegramId });
-                        localStorage.setItem('Inst_val', 'true'); // Обновляем состояние в React после успешного запроса
+                        localStorage.setItem('Inst_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));// Обновляем состояние в React после успешного запроса
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
@@ -97,6 +98,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     try {
                         await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
                         localStorage.setItem('X_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));
                         
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
@@ -144,6 +146,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                             }
                         } else {
                             localStorage.setItem('TgChanel_val', 'false');
+                            window.dispatchEvent(new Event('storage'));
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
@@ -184,6 +187,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                             }
                         } else {
                             localStorage.setItem('TgOcties_val', 'false');
+                            window.dispatchEvent(new Event('storage'));
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);

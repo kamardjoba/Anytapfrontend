@@ -13,6 +13,7 @@ const TonW = ({ Wallet_val, telegramId, wallet }) => {
             if (walletInfo) {
                 console.log('Кошелек подключен!', walletInfo);
                 localStorage.setItem('Wallet_val', 'true');
+                window.dispatchEvent(new Event('storage'));
 
                 // Отправляем запрос на сервер для добавления 500 монет пользователю
                 try {

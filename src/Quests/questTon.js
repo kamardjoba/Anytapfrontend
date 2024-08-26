@@ -40,6 +40,7 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
              }
             alert('Transaction sent successfully!');
             localStorage.setItem('TonTran_val', 'true');
+            window.dispatchEvent(new Event('storage'));
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
