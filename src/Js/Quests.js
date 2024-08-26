@@ -40,7 +40,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                             localStorage.setItem('Inst_val', 'true');
                         }
                          // Теперь отправляем запрос на обновление монет у реферера
-                         const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+                         const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId });
                          if (referralUpdateResponse.data.success) {
                              console.log('Монеты реферера обновлены');
                          } else {
