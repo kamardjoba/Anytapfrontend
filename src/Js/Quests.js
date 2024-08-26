@@ -226,8 +226,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
-                {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite}/>}
-
+                {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referrals.length} />}
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
@@ -252,10 +251,12 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
                 {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
-                {Frends_val && <FrendsQuest Frends_val={Frends_val} telegramId={telegramId} invite={invite}/>}
+                {Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referrals.length} />}
+
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
+                
             </div>}
         </div>
     );

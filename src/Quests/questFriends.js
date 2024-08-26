@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Css/Quests.css';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 import axios from 'axios';
 
-const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
+const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
     const [tonConnectUI] = useTonConnectUI();
-    
+    const [isEligible, setIsEligible] = useState(false);
+
+    useEffect(() => {
+        if (referralsCount >= 10) {
+            setIsEligible(true);
+        } else {
+            setIsEligible(false);
+        }
+    }, [referralsCount]);
 
     const GoFriendNft = async () => {
         const walletInfo = tonConnectUI.walletInfo;
@@ -47,8 +55,6 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
         }
     };
 
-
-
     return (
         <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
             <div className='questItem'>
@@ -62,10 +68,12 @@ const FrendsQuest = ({ Frends_val, invite, telegramId }) => {
                     </div>
                 </div>
                 <div className='questItemRight'>
-                    {!Frends_val && (
+                    {!Frends_val && isEligible ? (
                         <button className='questBtn' onClick={GoFriendNft}>
                             Mint
                         </button>
+                    ) : (
+                        <p className='notEligibleText'>У вас недостаточно рефералов для совершения транзакции</p>
                     )}
                 </div>
             </div>
