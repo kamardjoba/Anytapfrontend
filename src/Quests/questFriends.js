@@ -61,7 +61,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
     };
 
     return (
-        <TonConnectUIProvider manifestUrl="https://gleaming-semifreddo-896ccf.netlify.app/tonconnect-manifest.json">
+        <TonConnectUIProvider manifestUrl="https://anytap.org/tonconnect-manifest.json">
             <div className='questItem'>
                 <div className='questItemLeft'>
                     <div className='questIcon'>
