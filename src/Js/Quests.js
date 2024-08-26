@@ -29,9 +29,13 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
                         if (response.data.success && response.data.isSubscribedToChannel) {
                             localStorage.setItem('TgChanel_val', 'true');
+                        }else{
+                            localStorage.setItem('TgChanel_val', 'false');
                         }
                         if (response.data.success && response.data.isSubscribedToOctiesChannel) {
                             localStorage.setItem('TgOcties_val', 'true');
+                        }else{
+                            localStorage.setItem('TgOcties_val', 'false');
                         }
                         if (response.data.isSubscribedToTwitter) {
                             localStorage.setItem('X_val', 'true');
@@ -124,7 +128,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     
                         if (response.data.success) {
                             if (response.data.isSubscribedToChannel) {
-                                if (localStorage.getItem('TgOcties_val') !== 'true') {
+                                if (localStorage.getItem('TgChanel_val') !== 'true') {
                                     localStorage.setItem('TgChanel_val', 'true');
                                     // Начисляем монеты рефереру только при первой подписке
                                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
@@ -135,16 +139,21 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                                     }
                                 }
                             } else {
-                                localStorage.setItem('TgChanel_val', 'false'); // Если не подписан, ставим false
+                                localStorage.setItem('TgChanel_val', 'false'); // Устанавливаем 'false', если не подписан
                             }
+                        } else {
+                            // Если запрос не успешен, вы также можете установить значение в 'false', если нужно.
+                            localStorage.setItem('TgChanel_val', 'false');
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
+                        localStorage.setItem('TgChanel_val', 'false'); // Устанавливаем 'false' при ошибке
                     }
                 }, 5000); // 5000 миллисекунд = 5 секунд
             }
         }
     }
+    
     
     
     function GoOct() {
@@ -161,7 +170,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
     
                         if (response.data.success) {
-                            if (response.data.isSubscribedToChannel) {
+                            if (response.data.isSubscribedToOctiesChannel) {
                                 if (localStorage.getItem('TgOcties_val') !== 'true') {
                                     localStorage.setItem('TgChanel_val', 'true');
                                     // Начисляем монеты рефереру только при первой подписке
