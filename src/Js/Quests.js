@@ -39,6 +39,13 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         if (response.data.isSubscribedToInstagram) {
                             localStorage.setItem('Inst_val', 'true');
                         }
+                         // Теперь отправляем запрос на обновление монет у реферера
+                         const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+                         if (referralUpdateResponse.data.success) {
+                             console.log('Монеты реферера обновлены');
+                         } else {
+                             console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
@@ -70,6 +77,13 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
                 }, 5000); // 5000 миллисекунд = 5 секунд
             }
         }
@@ -89,6 +103,13 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
                 }, 5000); 
             }
         }

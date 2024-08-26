@@ -27,7 +27,13 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
             await tonConnectUI.sendTransaction(transaction);
             alert('Transaction sent successfully!');
   
-
+             // Теперь отправляем запрос на обновление монет у реферера
+             const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+             if (referralUpdateResponse.data.success) {
+                 console.log('Монеты реферера обновлены');
+             } else {
+                 console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+             }
             // Отправляем запрос на сервер для добавления 1000 монет
             try {
                 await axios.post('https://anypatbackend-production.up.railway.app/mint-start-nft', { telegramId });
