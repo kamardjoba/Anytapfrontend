@@ -91,7 +91,7 @@
 .leaderboardItem {
     display: flex;
     justify-content: space-between;
-    padding: 1vh 2vh 1vh 2vh;
+    padding: 1vh 2vh 0vh 2vh;
     align-items: center;
 }
 
