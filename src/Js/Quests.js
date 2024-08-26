@@ -14,7 +14,7 @@ import InstQuest from '../Quests/questInst';
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val,  Wallet_val, WeeklyNft_val, TonTran_val, Inst_val,
-    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask
+    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount
 }) {
 
     useEffect(() => {
@@ -226,8 +226,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
-                {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite}/>}
-
+                {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
@@ -252,10 +251,12 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
                 {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
-                {Frends_val && <FrendsQuest Frends_val={Frends_val} telegramId={telegramId} invite={invite}/>}
+                {Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
+
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
+                
             </div>}
         </div>
     );
