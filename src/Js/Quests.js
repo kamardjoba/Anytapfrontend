@@ -122,39 +122,36 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
             if (user) {
                 const telegramId = user.id;
     
+                // Добавляем таймер на проверку подписки
                 setTimeout(async () => {
                     try {
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
     
-                        if (response.data.success) {
-                            if (response.data.isSubscribedToChannel) {
-                              
-                                    localStorage.setItem('TgChanel_val', 'true');
-                                    // Начисляем монеты рефереру только при первой подписке
-                                    const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
-                                    if (referralUpdateResponse.data.success) {
-                                        console.log('Монеты реферера обновлены');
-                                    } else {
-                                        console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
-                                    }
-                                
-                            } else {
-                                localStorage.setItem('TgChanel_val', 'false'); // Устанавливаем 'false', если не подписан
+                        if (response.data.success && response.data.isSubscribedToChannel) {
+                            localStorage.setItem('TgChanel_val', 'true');
+                            
+                            // Начисляем монеты рефереру только при успешной подписке
+                            try {
+                                const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
+                                if (referralUpdateResponse.data.success) {
+                                    console.log('Монеты реферера обновлены');
+                                } else {
+                                    console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                                }
+                            } catch (error) {
+                                console.error('Ошибка при вызове add-coins-to-referral:', error);
                             }
                         } else {
-                            // Если запрос не успешен, вы также можете установить значение в 'false', если нужно.
                             localStorage.setItem('TgChanel_val', 'false');
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
-                        localStorage.setItem('TgChanel_val', 'false'); // Устанавливаем 'false' при ошибке
+                        localStorage.setItem('TgChanel_val', 'false');
                     }
-                }, 5000); // 5000 миллисекунд = 5 секунд
+                }, 5000); // Проверяем подписку через 5 секунд
             }
         }
     }
-    
-    
     
     function GoOct() {
         window.open('https://t.me/test_sub_check', '_blank');
@@ -165,30 +162,33 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
             if (user) {
                 const telegramId = user.id;
     
+                // Добавляем таймер на проверку подписки
                 setTimeout(async () => {
                     try {
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
     
-                        if (response.data.success) {
-                            if (response.data.isSubscribedToOctiesChannel) {
-                              
-                                    localStorage.setItem('TgOcties_val', 'true');
-                                    // Начисляем монеты рефереру только при первой подписке
-                                    const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
-                                    if (referralUpdateResponse.data.success) {
-                                        console.log('Монеты реферера обновлены');
-                                    } else {
-                                        console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
-                                    }
-                                
-                            } else {
-                                localStorage.setItem('TgOcties_val', 'false'); // Если не подписан, ставим false
+                        if (response.data.success && response.data.isSubscribedToOctiesChannel) {
+                            localStorage.setItem('TgOcties_val', 'true');
+                            
+                            // Начисляем монеты рефереру только при успешной подписке
+                            try {
+                                const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
+                                if (referralUpdateResponse.data.success) {
+                                    console.log('Монеты реферера обновлены');
+                                } else {
+                                    console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                                }
+                            } catch (error) {
+                                console.error('Ошибка при вызове add-coins-to-referral:', error);
                             }
+                        } else {
+                            localStorage.setItem('TgOcties_val', 'false');
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
+                        localStorage.setItem('TgOcties_val', 'false');
                     }
-                }, 5000); // 5000 миллисекунд = 5 секунд
+                }, 5000); // Проверяем подписку через 5 секунд
             }
         }
     }
