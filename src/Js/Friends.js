@@ -92,7 +92,10 @@ function Friends({ userPhoto, referralLink, invite, MintStart }) {
                                 </div>
 
                                 <div>
-                                    <p className='leaderboardTitle'>{referral.nickname || 'no_name'}</p>
+                                <p className='leaderboardTitle'>
+    {referral.nickname && !/^user_\d+$/.test(referral.nickname) ? referral.nickname : referral.firstName || 'no_name'}
+</p>
+
                                     <p className='leaderboardSubtitle'>
                                         {referral.coins !== undefined ? referral.coins.toLocaleString() : 'N/A'}
                                         <img src={small_diam} alt="" />
