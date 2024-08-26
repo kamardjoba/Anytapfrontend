@@ -9,7 +9,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
     const [isEligible, setIsEligible] = useState(false);
 
     useEffect(() => {
-        if (referralsCount >= 0) {
+        if (referralsCount >= 1) {
             setIsEligible(true);
         } else {
             setIsEligible(false);
@@ -17,6 +17,11 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
     }, [referralsCount]);
 
     const GoFriendNft = async () => {
+        if (!isEligible) {
+            alert('У вас недостаточно рефералов для совершения транзакции');
+            return; // Прекращаем выполнение, если недостаточно рефералов
+        }
+
         const walletInfo = tonConnectUI.walletInfo;
         if (!walletInfo) { // Если кошелек не подключен
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
@@ -68,12 +73,10 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
                     </div>
                 </div>
                 <div className='questItemRight'>
-                    {!Frends_val && isEligible ? (
+                    {!Frends_val && (
                         <button className='questBtn' onClick={GoFriendNft}>
                             Mint
                         </button>
-                    ) : (
-                        <p className='notEligibleText'>У вас недостаточно рефералов для совершения транзакции</p>
                     )}
                 </div>
             </div>
