@@ -128,7 +128,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     
                         if (response.data.success) {
                             if (response.data.isSubscribedToChannel) {
-                                if (localStorage.getItem('TgChanel_val') !== 'true') {
+                              
                                     localStorage.setItem('TgChanel_val', 'true');
                                     // Начисляем монеты рефереру только при первой подписке
                                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
@@ -137,7 +137,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                                     } else {
                                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
                                     }
-                                }
+                                
                             } else {
                                 localStorage.setItem('TgChanel_val', 'false'); // Устанавливаем 'false', если не подписан
                             }
@@ -171,7 +171,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     
                         if (response.data.success) {
                             if (response.data.isSubscribedToOctiesChannel) {
-                                if (localStorage.getItem('TgOcties_val') !== 'true') {
+                              
                                     localStorage.setItem('TgOcties_val', 'true');
                                     // Начисляем монеты рефереру только при первой подписке
                                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
@@ -180,7 +180,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                                     } else {
                                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
                                     }
-                                }
+                                
                             } else {
                                 localStorage.setItem('TgOcties_val', 'false'); // Если не подписан, ставим false
                             }
