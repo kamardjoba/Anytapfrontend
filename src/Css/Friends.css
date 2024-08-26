@@ -124,6 +124,13 @@
     overflow: hidden;
 }
 
+.FriendItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5vh 2vh 0.5vh 2vh;
+    align-items: center;
+}
+
 @media (orientation: landscape) {
 
     .whiteContainerQuest{
