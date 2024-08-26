@@ -17,48 +17,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask
 }) {
 
-    useEffect(() => {
-        if (window.Telegram.WebApp) {
-            window.Telegram.WebApp.ready();
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-    
-            if (user) {
-                const telegramId = user.id;
-                const checkSubscription = async () => {
-                    try {
-                        const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
-                        if (response.data.success && response.data.isSubscribedToChannel) {
-                            localStorage.setItem('TgChanel_val', 'true');
-                        }
-                        if (response.data.success && response.data.isSubscribedToOctiesChannel) {
-                            localStorage.setItem('TgOcties_val', 'true');
-                        }
-                        if (response.data.isSubscribedToTwitter) {
-                            localStorage.setItem('X_val', 'true');
-                        }
-                        if (response.data.isSubscribedToInstagram) {
-                            localStorage.setItem('Inst_val', 'true');
-                        }
-                         // Теперь отправляем запрос на обновление монет у реферера
-                         const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
-                         if (referralUpdateResponse.data.success) {
-                             console.log('Монеты реферера обновлены');
-                         } else {
-                             console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
-                         }
-                    } catch (error) {
-                        console.error('Ошибка при проверке подписки:', error);
-                    }
-                };
-
-                checkSubscription();
-            } else {
-                console.error('Не удалось получить данные пользователя из WebApp');
-            }
-        } else {
-            console.error('Telegram WebApp API не доступен');
-        }
-    }, []);
+   
     
     function GoInst() {
         window.open('https://www.instagram.com/anytap_dapps?igsh=MW1oaHNxYXR5eWxrOA%3D%3D&utm_source=qr', '_blank'); // Замените на ссылку на ваш Twitter
@@ -118,11 +77,68 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
 
     function GoTg() {
         window.open('https://t.me/any_tap', '_blank');
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    
+            if (user) {
+                const telegramId = user.id;
+    
+                setTimeout(async () => {
+                    try {
+                        const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
+                        if (response.data.success && response.data.isSubscribedToChannel) {
+                            if (localStorage.getItem('TgChanel_val') !== 'true') {
+                                localStorage.setItem('TgChanel_val', 'true');
+                                // Начисляем монеты рефереру только при первой подписке
+                                const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
+                                if (referralUpdateResponse.data.success) {
+                                    console.log('Монеты реферера обновлены');
+                                } else {
+                                    console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                                }
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при проверке подписки:', error);
+                    }
+                }, 5000); // 5000 миллисекунд = 5 секунд
+            }
+        }
     }
-
+    
     function GoOct() {
         window.open('https://t.me/octies_channel', '_blank');
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    
+            if (user) {
+                const telegramId = user.id;
+    
+                setTimeout(async () => {
+                    try {
+                        const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
+                        if (response.data.success && response.data.isSubscribedToOctiesChannel) {
+                            if (localStorage.getItem('TgOcties_val') !== 'true') {
+                                localStorage.setItem('TgOcties_val', 'true');
+                                // Начисляем монеты рефереру только при первой подписке
+                                const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
+                                if (referralUpdateResponse.data.success) {
+                                    console.log('Монеты реферера обновлены');
+                                } else {
+                                    console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                                }
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при проверке подписки:', error);
+                    }
+                }, 5000); // 5000 миллисекунд = 5 секунд
+            }
+        }
     }
+    
     
 
  
