@@ -100,8 +100,17 @@ function App() {
         photoUrl: ''
     });
     const [activeItem, setActiveItem] = useState(null);
+    const [showLoading, setShowLoading] = useState(true);
   
     const [isLoading, setLoading] = useState(true);
+    useEffect(() => {
+        if (!isLoading) {
+            const timer = setTimeout(() => setShowLoading(false), 500); // Задержка на время затухания
+            return () => clearTimeout(timer);
+        } else {
+            setShowLoading(true); // Показываем загрузку сразу при включении
+        }
+    }, [isLoading]);
 
 
     useEffect(() => {
@@ -198,7 +207,9 @@ function App() {
 
     return (
         <div className="App">
-        {isLoading && <LoadingScreen wrapperClass="loading-wrapper-app" />}
+         {showLoading && (
+                <LoadingScreen wrapperClass={`loading-wrapper-app ${isLoading ? '' : 'hiddenMain'}`} />
+            )}
         <div className={`appWrapper ${isLoading ? 'hidden' : ''}`}>
             <header className='headerWrapper'>
                 <p className='userName'>{userInfo.firstName}</p>
