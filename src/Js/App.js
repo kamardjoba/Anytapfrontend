@@ -199,14 +199,14 @@ function App() {
     // }, []);
     
     const fetchUserInfo = (telegramId) => {
-        fetch(`https://yourbackendserver.com/user-info?telegramId=${telegramId}`)
+        fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     setUserInfo({
                         firstName: data.firstName,
                         coins: data.coins,
-                        Referrals:data.referrals;
+                        Referrals:data.referrals,
                         ReferralsCount:data.referrals.length,
                         photoUrl: data.photoUrl,
                         ReferralLink:(`https://t.me/AnyTap_bot?start=${data.referralCode}`)
