@@ -167,38 +167,77 @@ function App() {
     const [referralsCount, setReferralsCount] = useState(0);
     
     // Далее в useEffect
-    useEffect(() => {
-        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-        const telegramId = initDataUnsafe?.user?.id;
+    // useEffect(() => {
+    //     const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+    //     const telegramId = initDataUnsafe?.user?.id;
     
-        if (telegramId) {
-            const fetchReferrals = async () => {
-                try {
-                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
-                    const data = await response.json();
+    //     if (telegramId) {
+    //         const fetchReferrals = async () => {
+    //             try {
+    //                 const response = await fetch(`https://anypatbackend-production.up.railway.app/user-referrals?telegramId=${telegramId}`);
+    //                 const data = await response.json();
     
-                    if (data.success) {
-                        setReferrals(data.referrals);
-                        setReferralsCount(data.referrals.length); // Устанавливаем количество рефералов
-                        setReferralLink(`https://t.me/AnyTap_bot?start=${data.referralCode}`);
-                        if (data.photoUrl) {
-                            setUserPhoto(data.photoUrl); 
-                        }
-                    } else {
-                        console.error(data.message); 
-                    }
-                } catch (error) {
-                    console.error('Ошибка при загрузке рефералов:', error);
+    //                 if (data.success) {
+    //                     setReferrals(data.referrals);
+    //                     setReferralsCount(data.referrals.length); // Устанавливаем количество рефералов
+    //                     setReferralLink(`https://t.me/AnyTap_bot?start=${data.referralCode}`);
+    //                     if (data.photoUrl) {
+    //                         setUserPhoto(data.photoUrl); 
+    //                     }
+    //                 } else {
+    //                     console.error(data.message); 
+    //                 }
+    //             } catch (error) {
+    //                 console.error('Ошибка при загрузке рефералов:', error);
+    //             }
+    //         };
+    
+    //         fetchReferrals();
+    //     } else {
+    //         console.error('Telegram ID не найден');
+    //     }
+    // }, []);
+    
+    const fetchUserInfo = (telegramId) => {
+        fetch(`https://yourbackendserver.com/user-info?telegramId=${telegramId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    setUserInfo({
+                        firstName: data.firstName,
+                        coins: data.coins,
+                        Referrals:data.referrals;
+                        ReferralsCount:data.referrals.length,
+                        photoUrl: data.photoUrl,
+                        ReferralLink:(`https://t.me/AnyTap_bot?start=${data.referralCode}`)
+                    });
+                } else {
+                    console.error('Ошибка при получении данных о пользователе:', data.message);
                 }
-            };
-    
-            fetchReferrals();
-        } else {
-            console.error('Telegram ID не найден');
-        }
-    }, []);
-    
+            })
+            .catch(error => {
+                console.error('Ошибка при запросе:', error);
+            });
+    };
 
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const telegramId = urlParams.get('telegramId');
+
+        if (telegramId) {
+            fetchUserInfo(telegramId); // Первоначальная загрузка данных
+
+            const intervalId = setInterval(() => {
+                fetchUserInfo(telegramId); // Обновление данных каждые 30 секунд
+            }, 30000); // Интервал в миллисекундах (30 секунд)
+
+            return () => clearInterval(intervalId); // Очистка интервала при размонтировании компонента
+        }
+
+        if (location.pathname === "/") {
+            navigate("/home");
+        }
+    }, [navigate, location]);
     //______________________________________________________________
 
     return (
@@ -217,7 +256,7 @@ function App() {
                 <Route path="/home" element={<HomePage coins={userInfo.coins} />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/nofriends" element={<NoFriends invite={invite} referralLink={referralLink} MintStart={MintStart}/>} />
-                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} copy={copy}/>} />
+                    <Route path="/friends" element={<Friends referrals={userInfo.referrals} referralLink={userInfo.ReferralLink} userPhoto={userInfo.photoUrl} invite={invite} MintStart={MintStart} copy={copy}/>} />
                     <Route path="/quests" element={<Quests 
                     X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
                     TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  Wallet_val={Wallet_val} WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
