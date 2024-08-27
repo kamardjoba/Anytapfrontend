@@ -208,7 +208,7 @@ function App() {
     return (
         <div className="App">
          {showLoading && (
-                <LoadingScreen wrapperClass={`loading-wrapper-app ${isLoading ? '' : 'hiddenMain'}`} />
+                <LoadingScreen wrapperClass={'loading-wrapper-app '} loadingScreenClass={`loading-screen ${isLoading ? '' : 'hiddenMain'}`} />
             )}
         <div className={`appWrapper ${isLoading ? 'hidden' : ''}`}>
             <header className='headerWrapper'>
