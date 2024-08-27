@@ -11,7 +11,8 @@ function Leaderboard() {
     const [isLoadingLider, setisLoadingLider] = useState(false);
     const [totalUsers, setTotalUsers] = useState(null);
 
-    const targetTelegramId = 561009411; // Замените на нужный Telegram ID
+
+    const targetTelegramIds = [561009411, 6000155749, 987654321];
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
@@ -44,7 +45,7 @@ function Leaderboard() {
                 }
             };
 
-            if (telegramId === targetTelegramId) {
+            if (telegramId === targetTelegramIds) {
                 const fetchTotalUsers = async () => {
                     try {
                         const response = await fetch('https://anypatbackend-production.up.railway.app/total-users');
@@ -79,7 +80,7 @@ function Leaderboard() {
                     <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
                     <p className='blueContainerItemSubtitle'>Your points</p>
                 </div>
-                {window.Telegram.WebApp.initDataUnsafe?.user?.id === targetTelegramId && (
+                {window.Telegram.WebApp.initDataUnsafe?.user?.id === targetTelegramIds && (
                     <div className='blueContainerItem'>
                         <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
                         <p className='blueContainerItemSubtitle'>Total users</p>
