@@ -12,7 +12,7 @@ import NoFriends from "./NoFriends";
 import Friends from "./Friends";
 import Quests from "./Quests";
 import nophoto from '../IMG/noprofilephoto.png';
-import avatar from "../IMG/avatar.png";
+//import avatar from "../IMG/avatar.png";
 
 import X from'../IMG/x_chan.svg';
 import arrows from'../IMG/arrows.svg';
