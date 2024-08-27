@@ -11,7 +11,7 @@ function Leaderboard() {
     const [isLoadingLider, setisLoadingLider] = useState(false);
     const [totalUsers, setTotalUsers] = useState(null);
 
-    const targetTelegramIds = useMemo(() => [561009411, 6000155749, 987654321], []); // Используем useMemo для создания массива один раз
+    const targetTelegramIds = useMemo(() => [561009411, 6000155749, 727060329], []); 
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
