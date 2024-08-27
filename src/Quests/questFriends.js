@@ -18,7 +18,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
 
     const GoFriendNft = async () => {
         if (!isEligible) {
-            alert('У вас недостаточно рефералов для совершения транзакции');
+            alert('You can not mint yet! You need to invite 10 friends first');
             return; // Прекращаем выполнение, если недостаточно рефералов
         }
 
