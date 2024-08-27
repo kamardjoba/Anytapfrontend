@@ -197,9 +197,6 @@ function App() {
             console.error('Telegram ID не найден');
         }
     }, []);
-    
-
-    //______________________________________________________________
 
     return (
         <div className="App">
