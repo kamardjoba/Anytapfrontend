@@ -54,6 +54,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
              }
             alert('Transaction sent successfully!');
             localStorage.setItem('Frends_val', 'true');
+            window.dispatchEvent(new Event('storage'));
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);

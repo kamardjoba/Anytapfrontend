@@ -86,7 +86,7 @@
 }
 
 .friendsUsers {
-    padding: 1vh 1vh 1vh 1vh;
+    padding: 2vh 1vh 2vh 1vh;
     border-radius: 3vh;
     background-color: rgba(255, 255, 255, 1);
     margin-top: 1vh;
@@ -122,6 +122,13 @@
     height: 70%;
     position: relative;
     overflow: hidden;
+}
+
+.FriendItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4vh 2vh 0.4vh 2vh;
+    align-items: center;
 }
 
 @media (orientation: landscape) {

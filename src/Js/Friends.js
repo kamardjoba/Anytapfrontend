@@ -90,7 +90,7 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
             {isFrendsZapros && <div className='friendsUsers'>
                 <ul className='whiteContainerContent leaderboardScroll'>
                     {referrals.map((referral, index) => (
-                        <li className='leaderboardItem' key={index}>
+                        <li className='FriendItem' key={index}>
                             <div className='leaderboardItemLeft'>
                                 <div className='leaderboardAvatar'>
                                     <img

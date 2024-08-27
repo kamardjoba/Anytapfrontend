@@ -13,7 +13,7 @@ import InstQuest from '../Quests/questInst';
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
-    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val,  Wallet_val, WeeklyNft_val, TonTran_val, Inst_val,
+    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val,  Wallet_val, WeeklyNft_val, TonTran_val, Inst_val, 
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount
 }) {
 
@@ -70,7 +70,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 setTimeout(async () => {
                     try {
                         await axios.post('https://anypatbackend-production.up.railway.app/update-instagram-subscription', { telegramId });
-                        localStorage.setItem('Inst_val', 'true'); // Обновляем состояние в React после успешного запроса
+                        localStorage.setItem('Inst_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));// Обновляем состояние в React после успешного запроса
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
@@ -97,6 +98,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     try {
                         await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
                         localStorage.setItem('X_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));
+                        
                     } catch (error) {
                         console.error('Ошибка при обновлении подписки на Twitter:', error);
                     }
@@ -129,7 +132,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     
                         if (response.data.success && response.data.isSubscribedToChannel) {
                             localStorage.setItem('TgChanel_val', 'true');
-                            
+                            window.dispatchEvent(new Event('storage'));
                             // Начисляем монеты рефереру только при успешной подписке
                             try {
                                 const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
@@ -143,6 +146,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                             }
                         } else {
                             localStorage.setItem('TgChanel_val', 'false');
+                            window.dispatchEvent(new Event('storage'));
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
@@ -169,7 +173,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     
                         if (response.data.success && response.data.isSubscribedToOctiesChannel) {
                             localStorage.setItem('TgOcties_val', 'true');
-                            
+                            window.dispatchEvent(new Event('storage'));
                             // Начисляем монеты рефереру только при успешной подписке
                             try {
                                 const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
@@ -183,6 +187,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                             }
                         } else {
                             localStorage.setItem('TgOcties_val', 'false');
+                            window.dispatchEvent(new Event('storage'));
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
@@ -218,8 +223,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-
-
                 {!Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
@@ -234,29 +237,22 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     <p>Weekly task</p>
                 </div>
                 {!WeeklyNft_val && <WeeklyNft WeeklyNft_val = {WeeklyNft_val} telegramId={telegramId} arrows={arrows}/>}
-                {!TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
-
-               
+                {!TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}     
             </div>}
 
             {VisiblaComplatedTask && <div id='complatedtask'>
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
-
-
-
                 {Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
                 {StartNft_val && <MintStartNft StartNft_val={StartNft_val} MintStart={MintStart} telegramId={telegramId}/>}
                 {Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
-
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
-                
             </div>}
         </div>
     );

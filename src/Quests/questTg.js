@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Css/Quests.css';
 
-const tgQuest = ({GoTg,TgChanel_val, telegram}) => {
+const tgQuest = ({GoTg, TgChanel_val, telegram}) => {
 
   return (
     <div className='questItem'>

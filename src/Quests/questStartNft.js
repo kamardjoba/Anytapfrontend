@@ -43,6 +43,7 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
             }
             alert('Transaction sent successfully!');
             localStorage.setItem('Frends_val', 'true');
+            window.dispatchEvent(new Event('storage'));
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
