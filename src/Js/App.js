@@ -160,11 +160,11 @@ function App() {
     // ________________________________________________
 
     
-    const [referralLink, setReferralLink] = useState('');
-    const [userPhoto, setUserPhoto] = useState(avatar); 
+    // const [referralLink, setReferralLink] = useState('');
+    // const [userPhoto, setUserPhoto] = useState(avatar); 
 
-    const [referrals, setReferrals] = useState([]);
-    const [referralsCount, setReferralsCount] = useState(0);
+    // const [referrals, setReferrals] = useState([]);
+    // const [referralsCount, setReferralsCount] = useState(0);
     
     // Далее в useEffect
     // useEffect(() => {
