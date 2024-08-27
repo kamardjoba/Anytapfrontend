@@ -10,11 +10,7 @@
     align-items: center;
     flex-direction: column;
     z-index: 9999;
-    
   }
-
-
-
 
   .loading-wrapper-app {
     position: fixed;
@@ -22,7 +18,8 @@
     height: 100%;
     left: 0;
     bottom: 0;
-    margin-bottom: 1vh;background-color: white ;
+    margin-bottom: 1vh;
+    background-color: white ;
 }
 
 .loading-wrapper-leaderboard {
@@ -30,7 +27,8 @@
   width: 100%;
   height: 90%;
   left: 0;
-  bottom: 0;background-color: white ;
+  bottom: 0;
+  background-color: white ;
 }
 
 .loading-wrapper-friends {
