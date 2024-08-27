@@ -131,10 +131,20 @@
   }
   
 .loading-screen img {
-    z-index: 10000;
+    z-index: 9999;
     height: 8vh;
     animation: imgAnimation 2s  infinite ease-in-out;
 }
+
+.hiddenMain {
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
 
 @keyframes imgAnimation {
     0%  {transform: scale(1);}

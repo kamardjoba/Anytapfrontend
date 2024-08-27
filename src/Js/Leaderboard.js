@@ -11,9 +11,9 @@ function Leaderboard() {
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
     const [isLoadingLider, setisLoadingLider] = useState(false);
-    const [totalUsers, setTotalUsers] = useState(null); // Добавляем состояние для общего количества пользователей
+    const [totalUsers, setTotalUsers] = useState(null); 
     
-    const allowedTelegramIds = [561009411, 6000155749]; // Пример массива разрешенных ID
+    const allowedTelegramIds = [561009411, 6000155749]; 
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
