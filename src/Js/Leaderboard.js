@@ -10,6 +10,8 @@ function Leaderboard() {
     const [userCoins, setUserCoins] = useState(null);
     const [isLoadingLider, setisLoadingLider] = useState(false);
 
+
+
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
@@ -20,10 +22,10 @@ function Leaderboard() {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
-                    
+
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
-                   
+
                 }
             };
 
@@ -48,7 +50,7 @@ function Leaderboard() {
             fetchLeaderboard();
         } else {
             console.error('Telegram ID не найден');
-            
+
         }
     }, []);
 
@@ -56,7 +58,7 @@ function Leaderboard() {
         <div className='leaderboardContainer'>
             <div className='blueContainer'>
                 <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>#{userRank || 'Loading...'}</p> 
+                    <p className='blueContainerItemTitle'>#{userRank || 'Loading...'}</p>
                     <p className='blueContainerItemSubtitle'>Your rank</p>
                 </div>
                 <div className='blueContainerItem'>
@@ -66,39 +68,36 @@ function Leaderboard() {
             </div>
             {isLoadingLider ? (<div className='whiteContainerLeaderboard'>
                 <ul className='whiteContainerContent leaderboardScroll'>
-                {leaderboardData.map((user, index) => (
-    <li className='leaderboardItem' key={user.telegramId}>
-        <div className='leaderboardItemLeft'>
-            <div className='leaderboardAvatar'>
-                <img src={user.photoUrl || nophoto} alt="" className='leaderboardAvatarImg' />
-            </div>
-            <div>
-            <p className='leaderboardTitle'>
-    {user.nickname && !/^user_\d+$/.test(user.nickname) ? user.nickname : user.firstName || 'Anonymous'}
-</p>
+                    {leaderboardData.map((user, index) => (
+                        <li className='leaderboardItem' key={user.telegramId}>
+                            <div className='leaderboardItemLeft'>
+                                <div className='leaderboardAvatar'>
+                                    <img src={user.photoUrl || nophoto} alt="" className='leaderboardAvatarImg' />
+                                </div>
+                                <div>
+                                    <p className='leaderboardTitle'>
+                                        {user.nickname && !/^user_\d+$/.test(user.nickname) ? user.nickname : user.firstName || 'Anonymous'}
+                                    </p>
 
-                <p className='leaderboardSubtitle'>
-                    {user.coins.toLocaleString()} <img src={small_diam} alt=""/>
-                </p>
-            </div>
-        </div>
-        <div className='leaderboardItemRight'>
-            {index + 1}
-        </div>
-    </li>
-))}
+                                    <p className='leaderboardSubtitle'>
+                                        {user.coins.toLocaleString()} <img src={small_diam} alt="" />
+                                    </p>
+                                </div>
+                            </div>
+                            <div className='leaderboardItemRight'>
+                                {index + 1}
+                            </div>
+                        </li>
+                    ))}
 
                 </ul>
-            </div> 
+            </div>
             ) : (
                 <div class="outer-container">
-                <div className="white_Container_Leaderboard_Load" >
-                <LoadingScreen wrapperClass="loading-wrapper-leaderboard" />
-
-
-                
-              </div>
-              </div>)}
+                    <div className="white_Container_Leaderboard_Load" >
+                        <LoadingScreen wrapperClass="loading-wrapper-leaderboard"  loadingScreenClass={'loading-screen'}  />
+                    </div>
+                </div>)}
 
         </div>
     );

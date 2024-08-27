@@ -100,9 +100,9 @@ function App() {
         photoUrl: ''
     });
     const [activeItem, setActiveItem] = useState(null);
-    const [showLoading, setShowLoading] = useState(false);
+    const [showLoading, setShowLoading] = useState(true);
   
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(true);
     useEffect(() => {
         if (!isLoading) {
             const timer = setTimeout(() => setShowLoading(false), 500); // Задержка на время затухания
