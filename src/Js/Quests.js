@@ -123,7 +123,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
 
 
     function GoTg() {
-        window.open('https://t.me/test_sub_check', '_blank');
+        window.open('https://t.me/test_sub_check2', '_blank');
         
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
