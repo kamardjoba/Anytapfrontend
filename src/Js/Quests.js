@@ -135,7 +135,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 const intervalId = setInterval(async () => {
                     try {
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
-    
                         if (response.data.success && response.data.isSubscribedToChannel) {
                             localStorage.setItem('TgChanel_val', 'true');
                             window.dispatchEvent(new Event('storage'));
@@ -160,7 +159,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         localStorage.setItem('TgChanel_val', 'false');
                         window.dispatchEvent(new Event('storage'));
                     }
-                }, 5000); // Check subscription every 5 seconds
+                }, 1000); // Check subscription every 5 seconds
             }
         }
     }

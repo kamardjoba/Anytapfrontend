@@ -4,39 +4,37 @@ import small_diam from '../IMG/small_diam.png';
 import nophoto from '../IMG/noprofilephoto.png';
 import LoadingScreen from '../Loading/Loading.js';
 
-
-
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
     const [isLoadingLider, setisLoadingLider] = useState(false);
-    const [totalUsers, setTotalUsers] = useState(null); 
     
-    const allowedTelegramIds = [561009411, 6000155749]; 
+    
 
     useEffect(() => {
-        const allowedTelegramIds = [561009411, 6000155749]; 
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
-    
+
         if (telegramId) {
             const fetchLeaderboard = async () => {
                 try {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
-    
+                    
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
+                   
                 }
             };
-    
+
+            console.log(`Используется telegramId: ${telegramId}`);
             const fetchUserRank = async () => {
                 try {
                     const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
                     const data = await response.json();
-                    setisLoadingLider(true);
+                    setisLoadingLider(true)
                     if (data.success) {
                         setUserRank(data.rank);
                         setUserCoins(data.user.coins);
@@ -47,36 +45,20 @@ function Leaderboard() {
                     console.error('Ошибка при загрузке ранга пользователя:', error);
                 }
             };
-    
+
             fetchUserRank();
             fetchLeaderboard();
-    
-            if (allowedTelegramIds.includes(telegramId)) {
-                const fetchTotalUsers = async () => {
-                    try {
-                        const response = await fetch('https://anypatbackend-production.up.railway.app/user-count');
-                        const data = await response.json();
-                        if (data.success) {
-                            setTotalUsers(data.count);
-                        }
-                    } catch (error) {
-                        console.error('Ошибка при получении общего количества пользователей:', error);
-                    }
-                };
-    
-                fetchTotalUsers();
-            }
         } else {
             console.error('Telegram ID не найден');
+            
         }
-    }, [allowedTelegramIds]); // <--- Ensure allowedTelegramIds is in the dependency array
-    
+    }, []);
 
     return (
         <div className='leaderboardContainer'>
             <div className='blueContainer'>
                 <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>#{userRank || 'Loading...'}</p>
+                    <p className='blueContainerItemTitle'>#{userRank || 'Loading...'}</p> 
                     <p className='blueContainerItemSubtitle'>Your rank</p>
                 </div>
                 <div className='blueContainerItem'>
@@ -84,43 +66,42 @@ function Leaderboard() {
                     <p className='blueContainerItemSubtitle'>Your points</p>
                 </div>
             </div>
-            {totalUsers !== null && (
-                <div className='totalUsers'>
-                    <p>Total Users in Database: {totalUsers}</p>
-                </div>
-            )}
-            {isLoadingLider ? (
-                <div className='whiteContainerLeaderboard'>
-                    <ul className='whiteContainerContent leaderboardScroll'>
-                        {leaderboardData.map((user, index) => (
-                            <li className='leaderboardItem' key={user.telegramId}>
-                                <div className='leaderboardItemLeft'>
-                                    <div className='leaderboardAvatar'>
-                                        <img src={user.photoUrl || nophoto} alt="" className='leaderboardAvatarImg' />
-                                    </div>
-                                    <div>
-                                        <p className='leaderboardTitle'>
-                                            {user.nickname && !/^user_\d+$/.test(user.nickname) ? user.nickname : user.firstName || 'Anonymous'}
-                                        </p>
-                                        <p className='leaderboardSubtitle'>
-                                            {user.coins.toLocaleString()} <img src={small_diam} alt=""/>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className='leaderboardItemRight'>
-                                    {index + 1}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+            {isLoadingLider ? (<div className='whiteContainerLeaderboard'>
+                <ul className='whiteContainerContent leaderboardScroll'>
+                {leaderboardData.map((user, index) => (
+    <li className='leaderboardItem' key={user.telegramId}>
+        <div className='leaderboardItemLeft'>
+            <div className='leaderboardAvatar'>
+                <img src={user.photoUrl || nophoto} alt="" className='leaderboardAvatarImg' />
+            </div>
+            <div>
+            <p className='leaderboardTitle'>
+    {user.nickname && !/^user_\d+$/.test(user.nickname) ? user.nickname : user.firstName || 'Anonymous'}
+</p>
+
+                <p className='leaderboardSubtitle'>
+                    {user.coins.toLocaleString()} <img src={small_diam} alt=""/>
+                </p>
+            </div>
+        </div>
+        <div className='leaderboardItemRight'>
+            {index + 1}
+        </div>
+    </li>
+))}
+
+                </ul>
+            </div> 
             ) : (
-                <div className="outer-container">
-                    <div className="white_Container_Leaderboard_Load">
-                        <LoadingScreen wrapperClass="loading-wrapper-leaderboard" />
-                    </div>
-                </div>
-            )}
+                <div class="outer-container">
+                <div className="white_Container_Leaderboard_Load" >
+                <LoadingScreen wrapperClass="loading-wrapper-leaderboard" />
+
+
+                
+              </div>
+              </div>)}
+
         </div>
     );
 }
