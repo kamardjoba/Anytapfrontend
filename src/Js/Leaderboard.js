@@ -9,8 +9,6 @@ function Leaderboard() {
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
     const [isLoadingLider, setisLoadingLider] = useState(false);
-    
-    
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
