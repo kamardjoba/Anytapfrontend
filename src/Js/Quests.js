@@ -29,19 +29,25 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
                         if (response.data.success && response.data.isSubscribedToChannel) {
                             localStorage.setItem('TgChanel_val', 'true');
+                            window.dispatchEvent(new Event('storage'));
                         }else{
                             localStorage.setItem('TgChanel_val', 'false');
+                            window.dispatchEvent(new Event('storage'));
                         }
                         if (response.data.success && response.data.isSubscribedToOctiesChannel) {
                             localStorage.setItem('TgOcties_val', 'true');
+                            window.dispatchEvent(new Event('storage'));
                         }else{
                             localStorage.setItem('TgOcties_val', 'false');
+                            window.dispatchEvent(new Event('storage'));
                         }
                         if (response.data.isSubscribedToTwitter) {
                             localStorage.setItem('X_val', 'true');
+                            window.dispatchEvent(new Event('storage'));
                         }
                         if (response.data.isSubscribedToInstagram) {
                             localStorage.setItem('Inst_val', 'true');
+                            window.dispatchEvent(new Event('storage'));
                         }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
@@ -151,6 +157,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                         localStorage.setItem('TgChanel_val', 'false');
+                        window.dispatchEvent(new Event('storage'));
                     }
                 }, 5000); // Проверяем подписку через 5 секунд
             }
@@ -192,6 +199,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                         localStorage.setItem('TgOcties_val', 'false');
+                        window.dispatchEvent(new Event('storage'));
                     }
                 }, 5000); // Проверяем подписку через 5 секунд
             }
