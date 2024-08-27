@@ -32,8 +32,8 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
                 validUntil: Date.now() + 5 * 60 * 1000,
                 messages: [
                     {
-                        address: 'UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG',
-                        amount: '1000000', // 1 TON в нанотонах
+                        address: 'EQACWu9QvWiu_T1YFrLTZBhm7QPtUUf45RVK_lH-iCmvoo-J',
+                        amount: '10000000', // 1 TON в нанотонах
                     },
                 ],
             };
