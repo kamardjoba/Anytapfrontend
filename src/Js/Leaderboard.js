@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import '../Css/Leaderboard.css';
 import small_diam from '../IMG/small_diam.png';
 import nophoto from '../IMG/noprofilephoto.png';
@@ -11,8 +11,7 @@ function Leaderboard() {
     const [isLoadingLider, setisLoadingLider] = useState(false);
     const [totalUsers, setTotalUsers] = useState(null);
 
-
-    const targetTelegramIds = [561009411, 6000155749, 987654321];
+    const targetTelegramIds = useMemo(() => [561009411, 6000155749, 987654321], []); // Используем useMemo для создания массива один раз
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
@@ -45,7 +44,7 @@ function Leaderboard() {
                 }
             };
 
-            if (telegramId === targetTelegramIds) {
+            if (targetTelegramIds.includes(telegramId)) {
                 const fetchTotalUsers = async () => {
                     try {
                         const response = await fetch('https://anypatbackend-production.up.railway.app/total-users');
@@ -67,7 +66,7 @@ function Leaderboard() {
         } else {
             console.error('Telegram ID не найден');
         }
-    }, []);
+    }, [targetTelegramIds]);
 
     return (
         <div className='leaderboardContainer'>
@@ -80,7 +79,7 @@ function Leaderboard() {
                     <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
                     <p className='blueContainerItemSubtitle'>Your points</p>
                 </div>
-                {window.Telegram.WebApp.initDataUnsafe?.user?.id === targetTelegramIds && (
+                {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                     <div className='blueContainerItem'>
                         <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
                         <p className='blueContainerItemSubtitle'>Total users</p>
