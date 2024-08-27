@@ -198,37 +198,7 @@ function App() {
         }
     }, []);
 
-    useEffect(() => {
-        const fetchUserCoins = () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const telegramId = urlParams.get('telegramId');
-
-            if (telegramId) {
-                fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            setUserInfo(prevState => ({
-                                ...prevState,
-                                coins: data.coins
-                            }));
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Ошибка при запросе:', error);
-                    });
-            }
-        };
-
-        // Первичный вызов функции
-        fetchUserCoins();
-
-        // Повторяем запрос каждые 30 секунд
-        const intervalId = setInterval(fetchUserCoins, 30000);
-
-        // Очищаем интервал при размонтировании компонента
-        return () => clearInterval(intervalId);
-    }, []);
+    
     
 
     //______________________________________________________________

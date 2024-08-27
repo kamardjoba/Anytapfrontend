@@ -174,10 +174,9 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 const telegramId = user.id;
     
                 // Добавляем таймер на проверку подписки
-                setTimeout(async () => {
+                
                     try {
                         const response = await axios.post('https://anypatbackend-production.up.railway.app/check-subscription', { telegramId });
-    
                         if (response.data.success && response.data.isSubscribedToOctiesChannel) {
                             localStorage.setItem('TgOcties_val', 'true');
                             window.dispatchEvent(new Event('storage'));
@@ -201,7 +200,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                         localStorage.setItem('TgOcties_val', 'false');
                         window.dispatchEvent(new Event('storage'));
                     }
-                }, 5000); // Проверяем подписку через 5 секунд
+                // Проверяем подписку через 5 секунд
             }
         }
     }
