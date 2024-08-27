@@ -18,19 +18,19 @@ function Leaderboard() {
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
-
+    
         if (telegramId) {
             const fetchLeaderboard = async () => {
                 try {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
-                    
+    
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
                 }
             };
-
+    
             const fetchUserRank = async () => {
                 try {
                     const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
@@ -46,30 +46,30 @@ function Leaderboard() {
                     console.error('Ошибка при загрузке ранга пользователя:', error);
                 }
             };
-
+    
             fetchUserRank();
             fetchLeaderboard();
-
-            // Если ID пользователя разрешен, получаем количество пользователей
+    
             if (allowedTelegramIds.includes(telegramId)) {
                 const fetchTotalUsers = async () => {
                     try {
-                        const response = await fetch('https://anypatbackend-production.up.railway.app/user-count'); // Предполагается, что есть такой эндпоинт
+                        const response = await fetch('https://anypatbackend-production.up.railway.app/user-count');
                         const data = await response.json();
                         if (data.success) {
-                            setTotalUsers(data.count); // Предполагается, что сервер возвращает общее количество пользователей
+                            setTotalUsers(data.count);
                         }
                     } catch (error) {
                         console.error('Ошибка при получении общего количества пользователей:', error);
                     }
                 };
-
+    
                 fetchTotalUsers();
             }
         } else {
             console.error('Telegram ID не найден');
         }
-    }, [allowedTelegramIds]);
+    }, [allowedTelegramIds]); // <--- Ensure allowedTelegramIds is in the dependency array
+    
 
     return (
         <div className='leaderboardContainer'>
