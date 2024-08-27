@@ -125,7 +125,7 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
 
              {!isFrendsZapros &&<div class="outer-containerF">
                 
-                    <LoadingScreen wrapperClass="loading-wrapper-friends" />  
+                    <LoadingScreen wrapperClass="loading-wrapper-friends loading-screen-friend" />  
                 
             </div>}
         </div>

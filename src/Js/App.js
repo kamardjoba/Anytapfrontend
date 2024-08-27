@@ -101,7 +101,7 @@ function App() {
     });
     const [activeItem, setActiveItem] = useState(null);
   
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(true);
 
 
     useEffect(() => {
