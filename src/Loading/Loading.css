@@ -131,7 +131,7 @@
   }
   
 .loading-screen img {
-    z-index: 10000;
+    z-index: 9999;
     height: 8vh;
     animation: imgAnimation 2s  infinite ease-in-out;
 }
