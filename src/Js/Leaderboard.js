@@ -9,6 +9,8 @@ function Leaderboard() {
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
     const [isLoadingLider, setisLoadingLider] = useState(false);
+    const [totalUsers, setTotalUsers] = useState(null);
+
 
 
 
@@ -54,6 +56,49 @@ function Leaderboard() {
         }
     }, []);
 
+    useEffect(() => {
+        const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+        const telegramId = initDataUnsafe?.user?.id;
+    
+        if (telegramId) {
+            const fetchUserRank = async () => {
+                try {
+                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
+                    const data = await response.json();
+                    setisLoadingLider(true);
+                    if (data.success) {
+                        setUserRank(data.rank);
+                        setUserCoins(data.user.coins);
+                    } else {
+                        console.error(data.message);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при загрузке ранга пользователя:', error);
+                }
+            };
+    
+            const fetchTotalUsers = async () => {
+                try {
+                    const response = await fetch('https://anypatbackend-production.up.railway.app/total-users');
+                    const data = await response.json();
+                    if (data.success) {
+                        setTotalUsers(data.totalUsers);
+                    } else {
+                        console.error(data.message);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при подсчете общего числа пользователей:', error);
+                }
+            };
+    
+            fetchUserRank();
+            fetchTotalUsers();
+        } else {
+            console.error('Telegram ID не найден');
+        }
+    }, []);
+    
+
     return (
         <div className='leaderboardContainer'>
             <div className='blueContainer'>
@@ -65,6 +110,10 @@ function Leaderboard() {
                     <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
                     <p className='blueContainerItemSubtitle'>Your points</p>
                 </div>
+                <div className='blueContainerItem'>
+                <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
+                <p className='blueContainerItemSubtitle'>Total users</p>
+            </div>
             </div>
             {isLoadingLider ? (<div className='whiteContainerLeaderboard'>
                 <ul className='whiteContainerContent leaderboardScroll'>
