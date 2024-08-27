@@ -198,11 +198,6 @@ function App() {
         }
     }, []);
 
-    
-    
-
-    //______________________________________________________________
-
     return (
         <div className="App">
         {isLoading && <LoadingScreen wrapperClass="loading-wrapper-app" />}
