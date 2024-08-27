@@ -69,7 +69,7 @@ function Leaderboard() {
         } else {
             console.error('Telegram ID не найден');
         }
-    }, []);
+    }, [allowedTelegramIds]);
 
     return (
         <div className='leaderboardContainer'>
