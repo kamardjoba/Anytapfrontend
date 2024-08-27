@@ -16,6 +16,7 @@ function Leaderboard() {
     const allowedTelegramIds = [561009411, 6000155749]; 
 
     useEffect(() => {
+        const allowedTelegramIds = [561009411, 6000155749]; 
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
     
