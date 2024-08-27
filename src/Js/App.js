@@ -59,8 +59,6 @@ function App() {
         };
     }, []);
 
-    
-
     useEffect(() => {
         if (TgChanel_val ||
             TgOcties_val || 
