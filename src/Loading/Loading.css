@@ -137,7 +137,7 @@
 }
 
 .hiddenMain {
-  animation: fadeOut 0.8s ease-in-out forwards;
+  animation: fadeOut 0.5s ease-in-out forwards;
 }
 
 @keyframes fadeOut {
