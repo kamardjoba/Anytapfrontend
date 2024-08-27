@@ -166,7 +166,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
     }
     
     function GoOct() {
-        window.open('https://t.me/test_sub_check', '_blank');
+        window.open('https://t.me/octies_community', '_blank');
         
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
