@@ -153,16 +153,16 @@ function App() {
                         setLoading(false);
                     } else {
                         console.error('Ошибка при получении данных о пользователе:', data.message);
-                        setLoading(false);
+                        
                     }
                 })
                 .catch(error => {
                     console.error('Ошибка при запросе:', error);
-                    setLoading(false);
+                    
                 });
         } else {
             console.error('telegramId не найден');
-            setLoading(false);
+            
         }
 
         if (location.pathname === "/") {
