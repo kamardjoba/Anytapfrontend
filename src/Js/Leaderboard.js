@@ -9,8 +9,28 @@ function Leaderboard() {
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
     const [isLoadingLider, setisLoadingLider] = useState(false);
-    const [isLoadingLiderBlue, setisLoadingLiderBlue] = useState(false);
     const [totalUsers, setTotalUsers] = useState(null);
+
+
+
+    const [isLoadingLiderBlue, setisLoadingLiderBlue] = useState(false);
+    const [isLoadingLiderBlueSupport, setisLoadingLiderBlueSupport] = useState(false);
+    
+
+    useEffect(() => {
+        if (isLoadingLiderBlueSupport) {
+            const timer = setTimeout(() =>  setisLoadingLiderBlue(true), 500); // Задержка на время затухания
+            return () => clearTimeout(timer);
+        } else {
+            setisLoadingLiderBlue(false); // Показываем загрузку сразу при включении
+        }
+    }, [isLoadingLiderBlue]);
+
+
+
+
+
+
 
     const targetTelegramIds = useMemo(() => [561009411, 6000155749, 727060329], []); 
 
@@ -39,7 +59,7 @@ function Leaderboard() {
                     if (data.success) {
                         setUserRank(data.rank);
                         setUserCoins(data.user.coins);
-                        setisLoadingLiderBlue(true);
+                        setisLoadingLiderBlueSupport(true);
                     } else {
                         console.error(data.message);
                     }
@@ -85,7 +105,7 @@ function Leaderboard() {
                                 <p className='blueContainerItemSubtitle'>Your rank</p>
                             </div> 
                         ) : ( 
-                            <div className='blueContainerItem'>
+                            <div className={'blueContainerItem'}>
                                 <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
                                 <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
                                 <div class="loaderBlue"></div>
@@ -135,7 +155,7 @@ function Leaderboard() {
                                 <p className='blueContainerItemSubtitle'>Total users</p>
                             </div>
                         ) : (
-                            <div className='blueContainerItem'>
+                            <div className={`blueContainerItem ${isLoadingLiderBlueSupport ? '' : 'hiddenMain'}`}>
                                 <div className="loaderBlue"></div>
                             </div>)}
                     </div>
