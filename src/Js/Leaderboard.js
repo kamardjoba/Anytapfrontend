@@ -96,7 +96,7 @@ function Leaderboard() {
     return (
         <div className='leaderboardContainer'>
                    
-            {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
+            {!targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                 <>
                     <div className='blueContainer'>
                         {isLoadingLiderBlue  ? (  
@@ -126,7 +126,7 @@ function Leaderboard() {
                 </>
                 )}
                 
-                {!targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
+                {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                 <>  
                     <div className='blueContainerL'>
                         {isLoadingLiderBlue  ? (  
