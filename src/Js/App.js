@@ -128,31 +128,46 @@ function App() {
         preloadImage(telegram);
         preloadImage(copy);
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const telegramId = urlParams.get('telegramId');
+        
+       
 
-        if (telegramId) {
-            fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        setUserInfo({
-                            firstName: data.firstName,
-                            coins: data.coins,
-                            photoUrl: data.photoUrl
-                            
-                        });
+        useEffect(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let telegramId = urlParams.get('telegramId');
+        
+            if (!telegramId) {
+                telegramId = localStorage.getItem('telegramId');
+            } else {
+                localStorage.setItem('telegramId', telegramId);
+            }
+        
+            if (telegramId) {
+                console.log(`Запрос на сервер с telegramId: ${telegramId}`);
+                fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Данные успешно получены:', data);
+                            setUserInfo({
+                                firstName: data.firstName,
+                                coins: data.coins,
+                                photoUrl: data.photoUrl
+                            });
+                            setLoading(false);
+                        } else {
+                            console.error('Ошибка при получении данных о пользователе:', data.message);
+                            setLoading(false);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Ошибка при запросе:', error);
                         setLoading(false);
-                    } else {
-                        console.error('Ошибка при получении данных о пользователе:', data.message);
-                        setLoading(false);
-                    }
-                })
-                .catch(error => {
-                    console.error('Ошибка при запросе:', error);
-                    setLoading(false);
-                });
-        }
+                    });
+            } else {
+                console.error('telegramId не найден');
+                setLoading(false);
+            }
+        }, []);
     if (location.pathname === "/") {
             navigate("/home");
             setActiveItem(0);
