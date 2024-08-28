@@ -131,16 +131,16 @@ function Leaderboard() {
                     <div className='blueContainerL'>
                           
                             <div className='blueContainerItem'>
-                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>}
-                                 {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle'>Your rank</p>}
+                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn' >#{userRank || 'Loading...'}</p>}
+                                 {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your rank</p>}
                                 {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
                                 <div class="loaderBlue"></div>
                                 </div>}
                             </div>
                         
                             <div className='blueContainerItem'>
-                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>}
-                                {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle'>Your points</p>}
+                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>}
+                                {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your points</p>}
                                 {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
                                 <div class="loaderBlue"></div>
                                 </div>}
@@ -156,8 +156,7 @@ function Leaderboard() {
 
                     </div>
                 </>)}
-
-            
+ 
             {isLoadingLider ? (
                 <div className='whiteContainerLeaderboard'>
                     <ul className='whiteContainerContent leaderboardScroll'>
