@@ -96,7 +96,7 @@ function Leaderboard() {
     return (
         <div className='leaderboardContainer'>
                    
-            {!targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
+            {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                 <>
                     <div className='blueContainer'>
                         {isLoadingLiderBlue  ? (  
@@ -126,7 +126,7 @@ function Leaderboard() {
                 </>
                 )}
                 
-                {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
+                {!targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                 <>  
                     <div className='blueContainerL'>
                         {isLoadingLiderBlue  ? (  
@@ -151,8 +151,8 @@ function Leaderboard() {
 
                             
                                 <div className={'blueContainerItem'}>
-                                    {isLoadingLiderBlue && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
-                                    {isLoadingLiderBlue && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
+                                    {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
+                                    {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
                                     {!isLoadingLiderBlue && <div className={` ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
                                         <div className='loaderBlue'></div>
                                     </div>
