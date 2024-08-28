@@ -129,38 +129,30 @@ function Leaderboard() {
                 {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                 <>  
                     <div className='blueContainerL'>
-                        {isLoadingLiderBlue  ? (  
+                          
                             <div className='blueContainerItem'>
-                                <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>
-                                <p className='blueContainerItemSubtitle'>Your rank</p>
-                            </div>
-                        ) : ( 
-                            <div className='blueContainerItem'>
+                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>}
+                                 {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle'>Your rank</p>}
+                                {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
                                 <div class="loaderBlue"></div>
-                            </div>)}
-
-                        {isLoadingLiderBlue  ? ( 
-                            <div className='blueContainerItem'>
-                                <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
-                                <p className='blueContainerItemSubtitle'>Your points</p>
+                                </div>}
                             </div>
-                        ) : ( 
+                        
                             <div className='blueContainerItem'>
+                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>}
+                                {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle'>Your points</p>}
+                                {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
                                 <div class="loaderBlue"></div>
-                            </div>)}
-
-                            
-                                <div className={'blueContainerItem'}>
-                                    {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
-                                    {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
-                                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
-                                        <div className='loaderBlue'></div>
-                                    </div>
-                                   }
-                                </div>
-                            
+                                </div>}
+                            </div>
                                 
-                            
+                            <div className={'blueContainerItem'}>
+                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
+                                {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
+                                {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                                    <div className='loaderBlue'></div>
+                                </div>}
+                            </div>
 
                     </div>
                 </>)}
