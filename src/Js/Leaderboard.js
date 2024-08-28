@@ -155,7 +155,7 @@ function Leaderboard() {
                                 <p className='blueContainerItemSubtitle'>Total users</p>
                             </div>
                         ) : (
-                            <div className={`blueContainerItem ${isLoadingLiderBlueSupport ? '' : 'hiddenMain'}`}>
+                            <div className={`blueContainerItem ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
                                 <div className="loaderBlue"></div>
                             </div>)}
                     </div>
