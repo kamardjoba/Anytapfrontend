@@ -39,6 +39,18 @@ function App() {
     const [Frends_val, setFrendsVal] = useState(localStorage.getItem('Frends_val') === 'true');
     const [Wallet_val, setWalletVal] = useState(localStorage.getItem('Wallet_val') === 'true');
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [userInfo, setUserInfo] = useState({
+        firstName: '',
+        coins: 0,
+        photoUrl: ''
+    });
+    const [activeItem, setActiveItem] = useState(null);
+    const [showLoading, setShowLoading] = useState(true);
+  
+    const [isLoading, setLoading] = useState(true);
+
     useEffect(() => {
         const handleStorageChange = () => {
             setTgChanel_val(localStorage.getItem('TgChanel_val') === 'true');
@@ -92,17 +104,6 @@ function App() {
         }
     }, [WeeklyNft_val, TonTran_val]);
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [userInfo, setUserInfo] = useState({
-        firstName: '',
-        coins: 0,
-        photoUrl: ''
-    });
-    const [activeItem, setActiveItem] = useState(null);
-    const [showLoading, setShowLoading] = useState(true);
-  
-    const [isLoading, setLoading] = useState(true);
     useEffect(() => {
         if (!isLoading) {
             const timer = setTimeout(() => setShowLoading(false), 500); // Задержка на время затухания
@@ -111,7 +112,6 @@ function App() {
             setShowLoading(true); // Показываем загрузку сразу при включении
         }
     }, [isLoading]);
-
 
     useEffect(() => {
 
@@ -128,50 +128,47 @@ function App() {
         preloadImage(telegram);
         preloadImage(copy);
 
-        
-       
+        const urlParams = new URLSearchParams(window.location.search);
+        let telegramId = urlParams.get('telegramId');
 
-        useEffect(() => {
-            const urlParams = new URLSearchParams(window.location.search);
-            let telegramId = urlParams.get('telegramId');
-        
-            if (!telegramId) {
-                telegramId = localStorage.getItem('telegramId');
-            } else {
-                localStorage.setItem('telegramId', telegramId);
-            }
-        
-            if (telegramId) {
-                console.log(`Запрос на сервер с telegramId: ${telegramId}`);
-                fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            console.log('Данные успешно получены:', data);
-                            setUserInfo({
-                                firstName: data.firstName,
-                                coins: data.coins,
-                                photoUrl: data.photoUrl
-                            });
-                            setLoading(false);
-                        } else {
-                            console.error('Ошибка при получении данных о пользователе:', data.message);
-                            setLoading(false);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Ошибка при запросе:', error);
+        // Check if telegramId is present in URL, otherwise check localStorage
+        if (!telegramId) {
+            telegramId = localStorage.getItem('telegramId');
+        } else {
+            localStorage.setItem('telegramId', telegramId);
+        }
+
+        if (telegramId) {
+            console.log(`Запрос на сервер с telegramId: ${telegramId}`);
+            fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Данные успешно получены:', data);
+                        setUserInfo({
+                            firstName: data.firstName,
+                            coins: data.coins,
+                            photoUrl: data.photoUrl
+                        });
                         setLoading(false);
-                    });
-            } else {
-                console.error('telegramId не найден');
-                setLoading(false);
-            }
-        }, []);
-    if (location.pathname === "/") {
+                    } else {
+                        console.error('Ошибка при получении данных о пользователе:', data.message);
+                        setLoading(false);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при запросе:', error);
+                    setLoading(false);
+                });
+        } else {
+            console.error('telegramId не найден');
+            setLoading(false);
+        }
+
+        if (location.pathname === "/") {
             navigate("/home");
             setActiveItem(0);
-    }
+        }
     }, [navigate, location]);
 
     const handleNavigation = (path, index) => {
@@ -181,14 +178,11 @@ function App() {
 
     // ________________________________________________
 
-    
     const [referralLink, setReferralLink] = useState('');
     const [userPhoto, setUserPhoto] = useState(avatar); 
-
     const [referrals, setReferrals] = useState([]);
     const [referralsCount, setReferralsCount] = useState(0);
     
-    // Далее в useEffect
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
         const telegramId = initDataUnsafe?.user?.id;
@@ -222,60 +216,60 @@ function App() {
 
     return (
         <div className="App">
-         {showLoading && (
+            {showLoading && (
                 <LoadingScreen wrapperClass={'loading-wrapper-app '} loadingScreenClass={`loading-screen ${isLoading ? '' : 'hiddenMain'}`} />
             )}
-        <div className={`appWrapper ${isLoading ? 'hidden' : ''}`}>
-            <header className='headerWrapper'>
-                <p className='userName'>{userInfo.firstName}</p>
-                <div className='userAvatarWrapper'>
-                    <img className='userAvatarImg' src={userInfo.photoUrl || nophoto} alt="userAvatar" />
+            <div className={`appWrapper ${isLoading ? 'hidden' : ''}`}>
+                <header className='headerWrapper'>
+                    <p className='userName'>{userInfo.firstName}</p>
+                    <div className='userAvatarWrapper'>
+                        <img className='userAvatarImg' src={userInfo.photoUrl || nophoto} alt="userAvatar" />
+                    </div>
+                </header>
+
+                <div className='centeredBlock'>
+                    <Routes>
+                        <Route path="/home" element={<HomePage coins={userInfo.coins} />} />
+                        <Route path="/leaderboard" element={<Leaderboard />} />
+                        <Route path="/nofriends" element={<NoFriends invite={invite} referralLink={referralLink} MintStart={MintStart}/>} />
+                        <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} copy={copy}/>} />
+                        <Route path="/quests" element={<Quests 
+                            X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
+                            TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  Wallet_val={Wallet_val} WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
+                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
+                    </Routes>
                 </div>
-            </header>
 
-            <div className='centeredBlock'>
-                <Routes>
-                <Route path="/home" element={<HomePage coins={userInfo.coins} />} />
-                    <Route path="/leaderboard" element={<Leaderboard />} />
-                    <Route path="/nofriends" element={<NoFriends invite={invite} referralLink={referralLink} MintStart={MintStart}/>} />
-                    <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} copy={copy}/>} />
-                    <Route path="/quests" element={<Quests 
-                    X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
-                    TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  Wallet_val={Wallet_val} WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
-                    VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
-                </Routes>
+                <footer className='footer'>
+                    <ul className='footerItems'>
+                        <li className={`footerItem ${activeItem === 0 ? 'active' : ''}`} onClick={() => handleNavigation('/home', 0)}>
+                            <div className='footerItemImgWrapper'>
+                                <img src={home} alt="home" className='footerItemImg' />
+                            </div>
+                            <p className='footerItemLabel'>Home</p>
+                        </li>
+                        <li className={`footerItem ${activeItem === 1 ? 'active' : ''}`} onClick={() => handleNavigation('/leaderboard', 1)}>
+                            <div className='footerItemImgWrapper'>
+                                <img src={leaderboard} alt="leaderboard" className='footerItemImg' />
+                            </div>
+                            <p className='footerItemLabel'>Leaderboard</p>
+                        </li>
+                        <li className={`footerItem ${activeItem === 2 ? 'active' : ''}`} onClick={() => handleNavigation('/quests', 2)}>
+                            <div className='footerItemImgWrapper'>
+                                <img src={quests} alt="quests" className='footerItemImg' />
+                            </div>
+                            <p className='footerItemLabel'>Quests</p>
+                        </li>
+                        <li className={`footerItem ${activeItem === 3 ? 'active' : ''}`}
+                            onClick={() => handleNavigation(referrals.length > 0 ? '/friends' : '/nofriends', 3)}>
+                            <div className='footerItemImgWrapper'>
+                                <img src={friends} alt="friends" className='footerItemImg' />
+                            </div>
+                            <p className='footerItemLabel'>Friends</p>
+                        </li>
+                    </ul>
+                </footer>
             </div>
-
-            <footer className='footer'>
-                <ul className='footerItems'>
-                    <li className={`footerItem ${activeItem === 0 ? 'active' : ''}`} onClick={() => handleNavigation('/home', 0)}>
-                        <div className='footerItemImgWrapper'>
-                            <img src={home} alt="home" className='footerItemImg' />
-                        </div>
-                        <p className='footerItemLabel'>Home</p>
-                    </li>
-                    <li className={`footerItem ${activeItem === 1 ? 'active' : ''}`} onClick={() => handleNavigation('/leaderboard', 1)}>
-                        <div className='footerItemImgWrapper'>
-                            <img src={leaderboard} alt="leaderboard" className='footerItemImg' />
-                        </div>
-                        <p className='footerItemLabel'>Leaderboard</p>
-                    </li>
-                    <li className={`footerItem ${activeItem === 2 ? 'active' : ''}`} onClick={() => handleNavigation('/quests', 2)}>
-                        <div className='footerItemImgWrapper'>
-                            <img src={quests} alt="quests" className='footerItemImg' />
-                        </div>
-                        <p className='footerItemLabel'>Quests</p>
-                    </li>
-                    <li className={`footerItem ${activeItem === 3 ? 'active' : ''}`}
-                        onClick={() => handleNavigation(referrals.length > 0 ? '/friends' : '/nofriends', 3)}>
-                        <div className='footerItemImgWrapper'>
-                            <img src={friends} alt="friends" className='footerItemImg' />
-                        </div>
-                        <p className='footerItemLabel'>Friends</p>
-                    </li>
-                </ul>
-            </footer>
-        </div>
         </div>
     );
 }
