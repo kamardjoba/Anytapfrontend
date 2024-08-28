@@ -6,8 +6,8 @@ function HomePage({ coins }) {
 
     function ClrLocal() {
       
-        localStorage.clear();
-        window.dispatchEvent(new Event('storage'));
+        // localStorage.clear();
+        // window.dispatchEvent(new Event('storage'));
 
     }
 
