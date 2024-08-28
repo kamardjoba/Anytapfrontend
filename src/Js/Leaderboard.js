@@ -149,16 +149,15 @@ function Leaderboard() {
                                 <div class="loaderBlue"></div>
                             </div>)}
 
-                            {isLoadingLiderBlue ? (
+                            
                                 <div className={`blueContainerItem fadeIn`}>
-                                    <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
-                                    <p className='blueContainerItemSubtitle'>Total users</p>
+                                    {isLoadingLiderBlue && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
+                                    {isLoadingLiderBlue && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
+                                    {!isLoadingLiderBlue && <div className={`loaderBlue ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}></div>}
                                 </div>
-                            ) : (
-                                <div className="blueContainerItem">
-                                    <div className={`loaderBlue ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}></div>
-                                </div>
-                            )}
+                            
+                                
+                            
 
                     </div>
                 </>)}
