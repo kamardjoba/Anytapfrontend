@@ -25,7 +25,7 @@ function Leaderboard() {
                     const data = await response.json();
                     setLeaderboardData(data);
                     setisLoadingLider(true);
-                    setisLoadingLiderBlue(true);
+                    
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
                 }
@@ -39,6 +39,7 @@ function Leaderboard() {
                     if (data.success) {
                         setUserRank(data.rank);
                         setUserCoins(data.user.coins);
+                        setisLoadingLiderBlue(true);
                     } else {
                         console.error(data.message);
                     }
@@ -74,6 +75,7 @@ function Leaderboard() {
     return (
         <div className='leaderboardContainer'>
             <div className='blueContainer'>
+
                 {isLoadingLiderBlue && <div className='blueContainerItem'>
                     <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>
                     <p className='blueContainerItemSubtitle'>Your rank</p>
