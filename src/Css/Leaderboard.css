@@ -33,6 +33,7 @@
     background-color: rgba(239, 238, 244, 1);
     border-radius: 1.5vh;
     width: 50%;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,6 +170,15 @@
 
 #LodBlue{
     color: rgba(239, 238, 244, 1);
+}
+
+.suportLodd{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .blueContainerL{

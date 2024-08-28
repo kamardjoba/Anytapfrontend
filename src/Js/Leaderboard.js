@@ -153,7 +153,7 @@ function Leaderboard() {
                                 <div className={'blueContainerItem'}>
                                     {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
                                     {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
-                                    {!isLoadingLiderBlue && <div className={` ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
                                         <div className='loaderBlue'></div>
                                     </div>
                                    }
