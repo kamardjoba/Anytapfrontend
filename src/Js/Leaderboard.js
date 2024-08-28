@@ -10,6 +10,7 @@ function Leaderboard() {
     const [userCoins, setUserCoins] = useState(null);
     const [isLoadingLider, setisLoadingLider] = useState(false);
     const [isLoadingLiderBlue, setisLoadingLiderBlue] = useState(false);
+    const [isLoadingLiderTotal, setisLoadingLiderTotal] = useState(false);
     const [totalUsers, setTotalUsers] = useState(null);
 
     const targetTelegramIds = useMemo(() => [561009411, 6000155749, 727060329], []); 
@@ -55,6 +56,7 @@ function Leaderboard() {
                         const data = await response.json();
                         if (data.success) {
                             setTotalUsers(data.totalUsers);
+                            setisLoadingLiderTotal(true)
                         } else {
                             console.error(data.message);
                         }
@@ -98,11 +100,23 @@ function Leaderboard() {
                 </div>}
                 
                 {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
-                    <div className='blueContainerItem'>
-                        <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
-                        <p className='blueContainerItemSubtitle'>Total users</p>
-                    </div>
+                <>
+                    {isLoadingLiderTotal ? (
+                        <div className='blueContainerItem'>
+                            <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
+                            <p className='blueContainerItemSubtitle'>Total users</p>
+                        </div>
+                    ) : (
+                        <div className='blueContainerItem'>
+                            <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
+                            <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
+                            <div className="loaderBlue"></div>
+                        </div>
+                        )
+                    }
+                </>
                 )}
+
             </div>
             {isLoadingLider ? (
                 <div className='whiteContainerLeaderboard'>
