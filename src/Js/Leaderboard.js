@@ -94,69 +94,36 @@ function Leaderboard() {
     }, [targetTelegramIds]);
 
     return (
-        <div className='leaderboardContainer'>
-                   
-            {!targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
-                <>
-                    <div className='blueContainer'>
-                        {isLoadingLiderBlue  ? (  
-                            <div className='blueContainerItem'>
-                                <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>
-                                <p className='blueContainerItemSubtitle'>Your rank</p>
-                            </div> 
-                        ) : ( 
-                            <div className={'blueContainerItem'}>
-                                <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
-                                <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
-                                <div class="loaderBlue"></div>
-                            </div>)}
+        <div className='leaderboardContainer'>                     
+            <div className='blueContainer'> 
 
-                        {isLoadingLiderBlue  ? (
-                            <div className='blueContainerItem'>
-                                <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
-                                <p className='blueContainerItemSubtitle'>Your points</p>
-                            </div> 
-                        ) : ( 
-                            <div className='blueContainerItem'>
-                                <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
-                                <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
-                                <div class="loaderBlue"></div>
-                            </div>)}
-                    </div>
-                </>
-                )}
-                
-                {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
-                <>  
-                    <div className='blueContainerL'>
-                          
-                            <div className='blueContainerItem'>
-                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn' >#{userRank || 'Loading...'}</p>}
-                                 {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your rank</p>}
-                                {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
-                                <div class="loaderBlue"></div>
-                                </div>}
-                            </div>
+                <div className='blueContainerItem'>
+                    {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn' >#{userRank || 'Loading...'}</p>}
+                    {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your rank</p>}
+                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                        <div class="loaderBlue"></div>
+                    </div>} 
+                </div>
                         
-                            <div className='blueContainerItem'>
-                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>}
-                                {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your points</p>}
-                                {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
-                                <div class="loaderBlue"></div>
-                                </div>}
-                            </div>
-                                
-                            <div className={'blueContainerItem'}>
-                                {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
-                                {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
-                                {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
-                                    <div className='loaderBlue'></div>
-                                </div>}
-                            </div>
+                <div className='blueContainerItem'>
+                    {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>}
+                    {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your points</p>}
+                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                        <div class="loaderBlue"></div>
+                    </div>}
+                </div>
 
+                {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
+                    <div className={'blueContainerItem'}>
+                        {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
+                        {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
+                        {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                            <div className='loaderBlue'></div>
+                        </div>}
                     </div>
-                </>)}
- 
+                )}
+            </div>
+                
             {isLoadingLider ? (
                 <div className='whiteContainerLeaderboard'>
                     <ul className='whiteContainerContent leaderboardScroll'>

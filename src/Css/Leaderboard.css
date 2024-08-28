@@ -11,6 +11,7 @@
     padding: 1.2vh 1.2vh 1.2vh 1.2vh;
     border-radius: 1.5vh;
     display: flex;
+    height: 8vh;
     gap: 1.5vh;
     position: relative;
 }
@@ -179,16 +180,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.blueContainerL{
-    background-color: rgba(164, 210, 255, 1);
-    padding: 1.2vh 1.2vh 1.2vh 1.2vh;
-    border-radius: 1.5vh;
-    display: flex;
-    height: 8vh;
-    gap: 1.5vh;
-    position: relative;
 }
 
 .loaderBlue {

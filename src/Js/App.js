@@ -49,9 +49,9 @@ function App() {
         photoUrl: ''
     });
     const [activeItem, setActiveItem] = useState(null);
-    const [showLoading, setShowLoading] = useState(true);
+    const [showLoading, setShowLoading] = useState(false);
   
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
         const handleStorageChange = () => {
