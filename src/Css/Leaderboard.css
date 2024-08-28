@@ -167,6 +167,23 @@
     transform: rotate(-50deg);
 }
 
+#LodBlue{
+    color: rgba(239, 238, 244, 1);
+
+}
+
+.loaderBlue {
+    position: absolute;
+    width: 3vh;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 0.5vh solid rgba(164, 210, 255, 1);
+    border-right-color: rgba(0, 86, 131, 1);
+    animation: l2 1s infinite linear;
+  }
+  @keyframes l2 {to{transform: rotate(1turn)}}
+
+
 @media (orientation: landscape) {
 
     .leaderboardTitle {font-size: 2.5vh;}

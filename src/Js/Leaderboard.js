@@ -9,6 +9,7 @@ function Leaderboard() {
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
     const [isLoadingLider, setisLoadingLider] = useState(false);
+    const [isLoadingLiderBlue, setisLoadingLiderBlue] = useState(false);
     const [totalUsers, setTotalUsers] = useState(null);
 
     const targetTelegramIds = useMemo(() => [561009411, 6000155749, 727060329], []); 
@@ -23,6 +24,8 @@ function Leaderboard() {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
+                    setisLoadingLider(true);
+                    setisLoadingLiderBlue(true);
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
                 }
@@ -32,7 +35,7 @@ function Leaderboard() {
                 try {
                     const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
                     const data = await response.json();
-                    setisLoadingLider(true);
+                   
                     if (data.success) {
                         setUserRank(data.rank);
                         setUserCoins(data.user.coins);
@@ -71,14 +74,27 @@ function Leaderboard() {
     return (
         <div className='leaderboardContainer'>
             <div className='blueContainer'>
-                <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>#{userRank || 'Loading...'}</p>
+                {isLoadingLiderBlue && <div className='blueContainerItem'>
+                    <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>
                     <p className='blueContainerItemSubtitle'>Your rank</p>
-                </div>
-                <div className='blueContainerItem'>
+                </div>}
+                {!isLoadingLiderBlue && <div className='blueContainerItem'>
+                    <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
+                    <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
+                    <div class="loaderBlue"></div>
+                </div>}
+
+
+                {isLoadingLiderBlue && <div className='blueContainerItem'>
                     <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
                     <p className='blueContainerItemSubtitle'>Your points</p>
-                </div>
+                </div>}
+                {!isLoadingLiderBlue && <div className='blueContainerItem'>
+                    <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
+                    <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
+                    <div class="loaderBlue"></div>
+                </div>}
+                
                 {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                     <div className='blueContainerItem'>
                         <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
