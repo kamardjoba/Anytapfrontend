@@ -39,6 +39,8 @@ function App() {
     const [Frends_val, setFrendsVal] = useState(localStorage.getItem('Frends_val') === 'true');
     const [Wallet_val, setWalletVal] = useState(localStorage.getItem('Wallet_val') === 'true');
 
+   
+
     const navigate = useNavigate();
     const location = useLocation();
     const [userInfo, setUserInfo] = useState({
