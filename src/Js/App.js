@@ -153,10 +153,10 @@ function App() {
                     setLoading(false);
                 });
         }
-        if (location.pathname === "/") {
+    if (location.pathname === "/") {
             navigate("/home");
             setActiveItem(0);
-        }
+    }
     }, [navigate, location]);
 
     const handleNavigation = (path, index) => {
