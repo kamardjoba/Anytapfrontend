@@ -19,12 +19,12 @@ function Leaderboard() {
 
     useEffect(() => {
         if (isLoadingLiderBlueSupport) {
-            const timer = setTimeout(() =>  setisLoadingLiderBlue(true), 500); // Задержка на время затухания
-            return () => clearTimeout(timer);
+            const timerBlue = setTimeout(() =>  setisLoadingLiderBlue(true), 500); // Задержка на время затухания
+            return () => clearTimeout(timerBlue);
         } else {
             setisLoadingLiderBlue(false); // Показываем загрузку сразу при включении
         }
-    }, [isLoadingLiderBlue]);
+    }, [isLoadingLiderBlueSupport]);
 
 
 
