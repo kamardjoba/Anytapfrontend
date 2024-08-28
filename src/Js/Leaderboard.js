@@ -75,65 +75,70 @@ function Leaderboard() {
 
     return (
         <div className='leaderboardContainer'>
-           
-
                    
             {!targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                 <>
-                 <div className='blueContainer'>
-                {isLoadingLiderBlue && <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>
-                    <p className='blueContainerItemSubtitle'>Your rank</p>
-                </div>}
-                {!isLoadingLiderBlue && <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
-                    <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
-                    <div class="loaderBlue"></div>
-                </div>}
+                    <div className='blueContainer'>
+                        {isLoadingLiderBlue  ? (  
+                            <div className='blueContainerItem'>
+                                <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>
+                                <p className='blueContainerItemSubtitle'>Your rank</p>
+                            </div> 
+                        ) : ( 
+                            <div className='blueContainerItem'>
+                                <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
+                                <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
+                                <div class="loaderBlue"></div>
+                            </div>)}
 
-                {isLoadingLiderBlue && <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
-                    <p className='blueContainerItemSubtitle'>Your points</p>
-                </div>}
-                {!isLoadingLiderBlue && <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
-                    <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
-                    <div class="loaderBlue"></div>
-                </div>}
-                </div>
+                        {isLoadingLiderBlue  ? (
+                            <div className='blueContainerItem'>
+                                <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
+                                <p className='blueContainerItemSubtitle'>Your points</p>
+                            </div> 
+                        ) : ( 
+                            <div className='blueContainerItem'>
+                                <p className='blueContainerItemTitle' id='LodBlue'>#{userRank || 'Loading...'}</p>
+                                <p className='blueContainerItemSubtitle' id='LodBlue'>Your rank</p>
+                                <div class="loaderBlue"></div>
+                            </div>)}
+                    </div>
                 </>
                 )}
                 
                 {targetTelegramIds.includes(window.Telegram.WebApp.initDataUnsafe?.user?.id) && (
                 <>  
-                  <div className='blueContainerL'>
-                {isLoadingLiderBlue && <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>
-                    <p className='blueContainerItemSubtitle'>Your rank</p>
-                </div>}
-                {!isLoadingLiderBlue && <div className='blueContainerItem'>
-                    <div class="loaderBlue"></div>
-                </div>}
+                    <div className='blueContainerL'>
+                        {isLoadingLiderBlue  ? (  
+                            <div className='blueContainerItem'>
+                                <p className='blueContainerItemTitle' >#{userRank || 'Loading...'}</p>
+                                <p className='blueContainerItemSubtitle'>Your rank</p>
+                            </div>
+                        ) : ( 
+                            <div className='blueContainerItem'>
+                                <div class="loaderBlue"></div>
+                            </div>)}
 
-                {isLoadingLiderBlue && <div className='blueContainerItem'>
-                    <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
-                    <p className='blueContainerItemSubtitle'>Your points</p>
-                </div>}
-                {!isLoadingLiderBlue && <div className='blueContainerItem'>
-                    <div class="loaderBlue"></div>
-                </div>}
+                        {isLoadingLiderBlue  ? ( 
+                            <div className='blueContainerItem'>
+                                <p className='blueContainerItemTitle'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>
+                                <p className='blueContainerItemSubtitle'>Your points</p>
+                            </div>
+                        ) : ( 
+                            <div className='blueContainerItem'>
+                                <div class="loaderBlue"></div>
+                            </div>)}
 
-                {isLoadingLiderBlue  ? (
-                    <div className='blueContainerItem'>
-                        <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
-                        <p className='blueContainerItemSubtitle'>Total users</p>
+                        {isLoadingLiderBlue  ? (
+                            <div className='blueContainerItem'>
+                                <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
+                                <p className='blueContainerItemSubtitle'>Total users</p>
+                            </div>
+                        ) : (
+                            <div className='blueContainerItem'>
+                                <div className="loaderBlue"></div>
+                            </div>)}
                     </div>
-                ) : (
-                    <div className='blueContainerItem'>
-                        <div className="loaderBlue"></div>
-                    </div>
-                )}
-                </div>
                 </>)}
 
             
