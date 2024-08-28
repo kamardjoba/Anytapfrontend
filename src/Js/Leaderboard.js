@@ -14,6 +14,7 @@ function Leaderboard() {
 
 
     const [isLoadingLiderBlue, setisLoadingLiderBlue] = useState(false);
+    const [isLoadingLiderBluesp, setisLoadingLiderBluesp] = useState(false);
     const [isLoadingLiderBlueSupport, setisLoadingLiderBlueSupport] = useState(false);
     
 
@@ -60,6 +61,7 @@ function Leaderboard() {
                         setUserRank(data.rank);
                         setUserCoins(data.user.coins);
                         setisLoadingLiderBlueSupport(true);
+                        setisLoadingLiderBluesp(true)
                     } else {
                         console.error(data.message);
                     }
@@ -149,7 +151,7 @@ function Leaderboard() {
                                 <div class="loaderBlue"></div>
                             </div>)}
 
-                        {isLoadingLiderBlue  &&
+                        {isLoadingLiderBluesp  &&
                             <div className='blueContainerItem'>
                                 <p className='blueContainerItemTitle'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>
                                 <p className='blueContainerItemSubtitle'>Total users</p>
