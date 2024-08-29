@@ -19,19 +19,19 @@ function Leaderboard() {
 
     useEffect(() => {
         if (isLoadingLiderBlueSupport) {
-            const timerBlue = setTimeout(() =>  setisLoadingLiderBlue(true), 500); // Задержка на время затухания
+            const timerBlue = setTimeout(() =>  setisLoadingLiderBlue(true), 350); 
             return () => clearTimeout(timerBlue);
         } else {
-            setisLoadingLiderBlue(false); // Показываем загрузку сразу при включении
+            setisLoadingLiderBlue(false); 
         }
     }, [isLoadingLiderBlueSupport]);
 
     useEffect(() => {
         if (isLoadingLiderSupport) {
-            const timerBlue = setTimeout(() =>  setisLoadingLider(true), 500); // Задержка на время затухания
+            const timerBlue = setTimeout(() =>  setisLoadingLider(true), 350); 
             return () => clearTimeout(timerBlue);
         } else {
-            setisLoadingLider(false); // Показываем загрузку сразу при включении
+            setisLoadingLider(false); 
         }
     }, [isLoadingLiderSupport]);
 
@@ -108,7 +108,7 @@ function Leaderboard() {
                 <div className='blueContainerItem'>
                     {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn' >#{userRank || 'Loading...'}</p>}
                     {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your rank</p>}
-                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenLider' : ''}`}>
                         <div class="loaderBlue"></div>
                     </div>} 
                 </div>
@@ -116,7 +116,7 @@ function Leaderboard() {
                 <div className='blueContainerItem'>
                     {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>}
                     {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your points</p>}
-                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenLider' : ''}`}>
                         <div class="loaderBlue"></div>
                     </div>}
                 </div>
@@ -125,7 +125,7 @@ function Leaderboard() {
                     <div className={'blueContainerItem'}>
                         {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
                         {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
-                        {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                        {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenLider' : ''}`}>
                             <div className='loaderBlue'></div>
                         </div>}
                     </div>
@@ -156,7 +156,7 @@ function Leaderboard() {
                             </li>
                         ))}
                     </ul>}
-                    {!isLoadingLider && <LoadingScreen wrapperClass="loading-wrapper-leaderboard" loadingScreenClass={`loading-screen ${isLoadingLiderSupport ? 'hiddenMain' : ''}`} />}
+                    {!isLoadingLider && <LoadingScreen wrapperClass="loading-wrapper-leaderboard" loadingScreenClass={`loading-screen ${isLoadingLiderSupport ? 'hiddenLider' : ''}`} />}
                 </div>
       
         </div>
