@@ -8,10 +8,10 @@ function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
-    const [isLoadingLider, setisLoadingLider] = useState(false);
     const [totalUsers, setTotalUsers] = useState(null);
 
-
+    const [isLoadingLider, setisLoadingLider] = useState(false);
+    const [isLoadingLiderSupport, setisLoadingLiderSupport] = useState(false);
 
     const [isLoadingLiderBlue, setisLoadingLiderBlue] = useState(false);
     const [isLoadingLiderBlueSupport, setisLoadingLiderBlueSupport] = useState(false);
@@ -26,6 +26,14 @@ function Leaderboard() {
         }
     }, [isLoadingLiderBlueSupport]);
 
+    useEffect(() => {
+        if (isLoadingLiderSupport) {
+            const timerBlue = setTimeout(() =>  setisLoadingLider(true), 500); // Задержка на время затухания
+            return () => clearTimeout(timerBlue);
+        } else {
+            setisLoadingLider(false); // Показываем загрузку сразу при включении
+        }
+    }, [isLoadingLiderSupport]);
 
 
 
@@ -44,7 +52,7 @@ function Leaderboard() {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
-                    setisLoadingLider(true);
+                    setisLoadingLiderSupport(true);
                     
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
@@ -124,9 +132,9 @@ function Leaderboard() {
                 )}
             </div>
                 
-            {isLoadingLider ? (
-                <div className='whiteContainerLeaderboard'>
-                    <ul className='whiteContainerContent leaderboardScroll'>
+            
+           <div className='whiteContainerLeaderboard'>
+           {isLoadingLiderSupport &&<ul className='whiteContainerContent leaderboardScroll fadeIn'>
                         {leaderboardData.map((user, index) => (
                             <li className='leaderboardItem' key={user.telegramId}>
                                 <div className='leaderboardItemLeft'>
@@ -147,15 +155,10 @@ function Leaderboard() {
                                 </div>
                             </li>
                         ))}
-                    </ul>
+                    </ul>}
+                    {!isLoadingLider && <LoadingScreen wrapperClass="loading-wrapper-leaderboard" loadingScreenClass={`loading-screen ${isLoadingLiderSupport ? 'hiddenMain' : ''}`} />}
                 </div>
-            ) : (
-                <div class="outer-container">
-                    <div className="white_Container_Leaderboard_Load">
-                        <LoadingScreen wrapperClass="loading-wrapper-leaderboard" loadingScreenClass={'loading-screen'} />
-                    </div>
-                </div>
-            )}
+      
         </div>
     );
 }
