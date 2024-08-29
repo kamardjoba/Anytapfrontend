@@ -35,13 +35,10 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                 }
             };
     
-            // Первый запрос на загрузку рефералов
             fetchReferrals();
     
-            // Интервал для обновления данных каждые 10 секунд
             const intervalId = setInterval(fetchReferrals, 10000);
     
-            // Очистка интервала при размонтировании компонента
             return () => clearInterval(intervalId);
         } else {
             console.error('Telegram ID не найден');
