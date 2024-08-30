@@ -54,6 +54,9 @@
     transform: rotate(50deg); 
 }
 
+
+
+
 .txtNf p{
     align-self: start;
     text-align: start;
@@ -75,18 +78,6 @@
     border-radius: 0.5vh;
     margin-bottom: 1.4vh;
     padding: 1vh;
-    width: 86%;
-}
-
-.questItemTon{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(239, 238, 244, 1);
-    border-radius: 0.5vh;
-    padding: 1vh;
-    margin-bottom: 1.4vh;
-    margin-top: 1.4vh;
     width: 86%;
 }
 
@@ -142,18 +133,6 @@ button[data-tc-connect-button="true"]{
     align-items: center;
     justify-content: center;
     background: rgba(88, 88, 88, 1);
-    color: white;
-    height: 2.8vh;
-    border-radius: 2vh;
-  }
-
-  button[data-tc-dropdown-button="true"] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #000000; 
-    background: rgba(88, 88, 88, 1);
-    color: white;
     height: 2.8vh;
     border-radius: 2vh;
   }
@@ -187,11 +166,6 @@ button[data-tc-connect-button="true"]{
     }
 
     .questItem {
-        border-radius: 1vh;
-        width: 95%;
-    }
-
-    .questItemTon{
         border-radius: 1vh;
         width: 95%;
     }

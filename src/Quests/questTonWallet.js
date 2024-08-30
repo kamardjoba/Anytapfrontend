@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import '../Css/Quests.css';
 import { TonConnectUIProvider, TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
-import axios from 'axios';
+// import axios from 'axios';
 
 const TonW = ({ telegramId, wallet }) => {
   const [tonConnectUI] = useTonConnectUI();
