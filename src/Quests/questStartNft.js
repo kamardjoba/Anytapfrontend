@@ -19,7 +19,7 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
                 messages: [
                     {
                         address: 'EQCHDYSdSCwGrWyQsIHRqdFg1z2HPHPfyK6QdyPkpAmGmvd4',
-                        amount: '10000000', // 1 TON в нанотонах
+                        amount: '10000000', // 0.01 TON в нанотонах
                     },
                 ],
             };

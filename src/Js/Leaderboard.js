@@ -8,10 +8,10 @@ function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [userRank, setUserRank] = useState(null);
     const [userCoins, setUserCoins] = useState(null);
-    const [isLoadingLider, setisLoadingLider] = useState(false);
     const [totalUsers, setTotalUsers] = useState(null);
 
-
+    const [isLoadingLider, setisLoadingLider] = useState(false);
+    const [isLoadingLiderSupport, setisLoadingLiderSupport] = useState(false);
 
     const [isLoadingLiderBlue, setisLoadingLiderBlue] = useState(false);
     const [isLoadingLiderBlueSupport, setisLoadingLiderBlueSupport] = useState(false);
@@ -19,13 +19,21 @@ function Leaderboard() {
 
     useEffect(() => {
         if (isLoadingLiderBlueSupport) {
-            const timerBlue = setTimeout(() =>  setisLoadingLiderBlue(true), 500); // Задержка на время затухания
+            const timerBlue = setTimeout(() =>  setisLoadingLiderBlue(true), 350); 
             return () => clearTimeout(timerBlue);
         } else {
-            setisLoadingLiderBlue(false); // Показываем загрузку сразу при включении
+            setisLoadingLiderBlue(false); 
         }
     }, [isLoadingLiderBlueSupport]);
 
+    useEffect(() => {
+        if (isLoadingLiderSupport) {
+            const timerBlue = setTimeout(() =>  setisLoadingLider(true), 350); 
+            return () => clearTimeout(timerBlue);
+        } else {
+            setisLoadingLider(false); 
+        }
+    }, [isLoadingLiderSupport]);
 
 
 
@@ -44,7 +52,7 @@ function Leaderboard() {
                     const response = await fetch('https://anypatbackend-production.up.railway.app/leaderboard');
                     const data = await response.json();
                     setLeaderboardData(data);
-                    setisLoadingLider(true);
+                    setisLoadingLiderSupport(true);
                     
                 } catch (error) {
                     console.error('Ошибка при загрузке данных лидерборда:', error);
@@ -100,7 +108,7 @@ function Leaderboard() {
                 <div className='blueContainerItem'>
                     {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn' >#{userRank || 'Loading...'}</p>}
                     {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your rank</p>}
-                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenLider' : ''}`}>
                         <div class="loaderBlue"></div>
                     </div>} 
                 </div>
@@ -108,7 +116,7 @@ function Leaderboard() {
                 <div className='blueContainerItem'>
                     {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{userCoins ? userCoins.toLocaleString() : 'Loading...'}</p>}
                     {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Your points</p>}
-                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                    {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenLider' : ''}`}>
                         <div class="loaderBlue"></div>
                     </div>}
                 </div>
@@ -117,16 +125,16 @@ function Leaderboard() {
                     <div className={'blueContainerItem'}>
                         {isLoadingLiderBlueSupport && <p className='blueContainerItemTitle fadeIn'>{totalUsers ? totalUsers.toLocaleString() : 'Loading...'}</p>}
                         {isLoadingLiderBlueSupport && <p className='blueContainerItemSubtitle fadeIn'>Total users</p>}
-                        {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenMain' : ''}`}>
+                        {!isLoadingLiderBlue && <div className={`suportLodd ${isLoadingLiderBlueSupport ? 'hiddenLider' : ''}`}>
                             <div className='loaderBlue'></div>
                         </div>}
                     </div>
                 )}
             </div>
                 
-            {isLoadingLider ? (
-                <div className='whiteContainerLeaderboard'>
-                    <ul className='whiteContainerContent leaderboardScroll'>
+            
+           <div className='whiteContainerLeaderboard'>
+           {isLoadingLiderSupport &&<ul className='whiteContainerContent leaderboardScroll fadeIn'>
                         {leaderboardData.map((user, index) => (
                             <li className='leaderboardItem' key={user.telegramId}>
                                 <div className='leaderboardItemLeft'>
@@ -147,15 +155,10 @@ function Leaderboard() {
                                 </div>
                             </li>
                         ))}
-                    </ul>
+                    </ul>}
+                    {!isLoadingLider && <LoadingScreen wrapperClass="loading-wrapper-leaderboard" loadingScreenClass={`loading-screen ${isLoadingLiderSupport ? 'hiddenLider' : ''}`} />}
                 </div>
-            ) : (
-                <div class="outer-container">
-                    <div className="white_Container_Leaderboard_Load">
-                        <LoadingScreen wrapperClass="loading-wrapper-leaderboard" loadingScreenClass={'loading-screen'} />
-                    </div>
-                </div>
-            )}
+      
         </div>
     );
 }

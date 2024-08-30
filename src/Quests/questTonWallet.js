@@ -4,7 +4,7 @@ import { TonConnectUIProvider, TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 import axios from 'axios';
 
-const TonW = ({ Wallet_val, telegramId, wallet }) => {
+const TonW = ({ telegramId, wallet }) => {
   const [tonConnectUI] = useTonConnectUI();
 
   useEffect(() => {
@@ -12,8 +12,7 @@ const TonW = ({ Wallet_val, telegramId, wallet }) => {
         tonConnectUI.onStatusChange(async (walletInfo) => {
             if (walletInfo) {
                 console.log('Кошелек подключен!', walletInfo);
-                localStorage.setItem('Wallet_val', 'true');
-                window.dispatchEvent(new Event('storage'));
+               
 
                 // Отправляем запрос на сервер для добавления 500 монет пользователю
                 try {
@@ -42,7 +41,7 @@ const TonW = ({ Wallet_val, telegramId, wallet }) => {
 
   return (
     <TonConnectUIProvider manifestUrl="https://anytap.org/tonconnect-manifest.json">
-      <div className='questItem'>
+      <div className='questItemTon'>
           <div className='questItemLeft'>
               <div className='questIcon'>
                   <img src={wallet} alt=""/>
@@ -53,7 +52,7 @@ const TonW = ({ Wallet_val, telegramId, wallet }) => {
               </div>
           </div>
           <div className='questItemRight'>
-              {!Wallet_val &&(<TonConnectButton/>)}
+            <TonConnectButton/>
           </div>
       </div>
     </TonConnectUIProvider>

@@ -33,7 +33,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
                 messages: [
                     {
                         address: 'EQACWu9QvWiu_T1YFrLTZBhm7QPtUUf45RVK_lH-iCmvoo-J',
-                        amount: '10000000', // 1 TON в нанотонах
+                        amount: '10000000', // 0.01 TON в нанотонах
                     },
                 ],
             };
