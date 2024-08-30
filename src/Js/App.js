@@ -49,8 +49,8 @@ function App() {
         photoUrl: ''
     });
     const [activeItem, setActiveItem] = useState(null);
+
     const [showLoading, setShowLoading] = useState(true);
-  
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
