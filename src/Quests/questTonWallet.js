@@ -62,7 +62,7 @@ const TonW = ({ telegramId, wallet }) => {
   }, [tonConnectUI, telegramId]);
 
   return (
-    <TonConnectUIProvider manifestUrl="https://anytap.org/tonconnect-manifest.json">
+    <TonConnectUIProvider  manifestUrl="https://anytap.org/tonconnect-manifest.json">
       <div className='questItemTon'>
           <div className='questItemLeft'>
               <div className='questIcon'>
