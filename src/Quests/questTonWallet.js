@@ -39,24 +39,28 @@ const TonW = ({ telegramId, wallet }) => {
     }
   }, [tonConnectUI, telegramId]);
 
-  const checkWalletConnection = async () => {
-    const walletInfo = tonConnectUI.walletInfo;
-    if (walletInfo && walletInfo.account && walletInfo.account.address) {
-        console.log('Кошелек уже подключен!', walletInfo);
-
-        try {
-            await axios.post('https://anypatbackend-production.up.railway.app/save-wallet-address', {
-                telegramId,
-                walletAddress: walletInfo.account.address
-            });
-            console.log('Адрес кошелька успешно сохранен.');
-        } catch (error) {
-            console.error('Ошибка при сохранении адреса кошелька:', error);
+  useEffect(() => {
+    const checkWalletConnection = async () => {
+        const walletInfo = tonConnectUI.walletInfo;
+        if (walletInfo && walletInfo.account && walletInfo.account.address) {
+            console.log('Кошелек уже подключен!', walletInfo);
+    
+            try {
+                await axios.post('https://anypatbackend-production.up.railway.app/save-wallet-address', {
+                    telegramId,
+                    walletAddress: walletInfo.account.address
+                });
+                console.log('Адрес кошелька успешно сохранен.');
+            } catch (error) {
+                console.error('Ошибка при сохранении адреса кошелька:', error);
+            }
+        } else {
+            console.error('Адрес кошелька не найден или не определен');
         }
-    } else {
-        console.error('Адрес кошелька не найден или не определен');
-    }
-};
+    };
+
+    checkWalletConnection();
+  }, [tonConnectUI, telegramId]);
 
   return (
     <TonConnectUIProvider  manifestUrl="https://anytap.org/tonconnect-manifest.json">
