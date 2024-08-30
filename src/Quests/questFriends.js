@@ -55,10 +55,10 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
             alert('Transaction sent successfully!');
             localStorage.setItem('Frends_val', 'true');
             window.dispatchEvent(new Event('storage'));
-            // await axios.post('https://anypatbackend-production.up.railway.app/update-frends-val', {
-            //     telegramId,
-            //     Frends_val: true
-            // });
+            await axios.post('https://anypatbackend-production.up.railway.app/update-frends-val', {
+                telegramId,
+                Frends_val: true
+            });
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);

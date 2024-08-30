@@ -193,29 +193,22 @@ function App() {
         }
     }, []);
 
+
     useEffect(() => {
         const telegramId = localStorage.getItem('telegramId');
-
-        const syncFrendsVal = async () => {
-            try {
-                const response = await axios.post('https://anypatbackend-production.up.railway.app/update-frends-val', {
-                    telegramId
-                });
-
-                if (response.data.success) {
-                    const dbFrendsVal = response.data.Frends_val;
-                    localStorage.setItem('Frends_val', dbFrendsVal ? 'true' : 'false');
-                } else {
-                    console.error('Failed to sync Frends_val:', response.data.message);
-                }
-            } catch (error) {
-                console.error('Error syncing Frends_val:', error);
-            }
-        };
-
-        syncFrendsVal();
+        const Frends_val = localStorage.getItem('Frends_val') === 'true';
+    
+        if (Frends_val) {
+            axios.post('https://anypatbackend-production.up.railway.app/update-frends-val', {
+                telegramId,
+                Frends_val: true
+            }).then(response => {
+                console.log('Frends_val synchronized with database.');
+            }).catch(error => {
+                console.error('Error synchronizing Frends_val:', error);
+            });
+        }
     }, []);
-
     // ________________________________________________
 
     const [referralLink, setReferralLink] = useState('');
