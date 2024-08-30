@@ -26,7 +26,7 @@ import copy from '../IMG/copy.svg';
 function App() {
 
     const [VisiblaBasedTask, setVisiblaBasedTask] = useState(true);
-    const [VisiblaWeekTask, setVisiblaWeekTask] = useState(false);
+    const [VisiblaWeekTask, setVisiblaWeekTask] = useState(true);
     const [VisiblaComplatedTask, setVisiblaComplatedTask] = useState(false);
 
     const [TgChanel_val, setTgChanel_val] = useState(localStorage.getItem('TgChanel_val') === 'true');
