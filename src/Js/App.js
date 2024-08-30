@@ -194,21 +194,21 @@ function App() {
     }, []);
 
 
-    useEffect(() => {
-        const telegramId = localStorage.getItem('telegramId');
-        const Frends_val = localStorage.getItem('Frends_val') === 'true';
+    // useEffect(() => {
+    //     const telegramId = localStorage.getItem('telegramId');
+    //     const Frends_val = localStorage.getItem('Frends_val') === 'true';
     
-        if (Frends_val) {
-            axios.post('https://anypatbackend-production.up.railway.app/update-frends-val', {
-                telegramId,
-                Frends_val: true
-            }).then(response => {
-                console.log('Frends_val synchronized with database.');
-            }).catch(error => {
-                console.error('Error synchronizing Frends_val:', error);
-            });
-        }
-    }, []);
+    //     if (Frends_val) {
+    //         axios.post('https://anypatbackend-production.up.railway.app/update-frends-val', {
+    //             telegramId,
+    //             Frends_val: true
+    //         }).then(response => {
+    //             console.log('Frends_val synchronized with database.');
+    //         }).catch(error => {
+    //             console.error('Error synchronizing Frends_val:', error);
+    //         });
+    //     }
+    // }, []);
     // ________________________________________________
 
     const [referralLink, setReferralLink] = useState('');
