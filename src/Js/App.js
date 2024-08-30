@@ -198,7 +198,7 @@ function App() {
 
         const syncFrendsVal = async () => {
             try {
-                const response = await axios.post('https://anypatbackend-production.up.railway.app/check-and-update-frends-val', {
+                const response = await axios.post('https://anypatbackend-production.up.railway.app/update-frends-val', {
                     telegramId
                 });
 
