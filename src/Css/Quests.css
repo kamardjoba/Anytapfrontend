@@ -154,7 +154,7 @@ button[data-tc-connect-button="true"]{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: black;
+    background: rgba(88, 88, 88, 1);
     height: 2.8vh;
     border-radius: 2vh;
   }
