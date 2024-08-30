@@ -73,7 +73,9 @@ const TonW = ({ telegramId, wallet }) => {
               </div>
           </div>
           <div className='questItemRight'>
+          <div className='feikton'>
             <TonConnectButton/>
+          </div>
           </div>
       </div>
     </TonConnectUIProvider>
