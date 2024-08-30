@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Css/App.css';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import LoadingScreen from '../Loading/Loading.js';
 import home from '../IMG/footerLogo/HM.png';
 import leaderboard from '../IMG/footerLogo/LB.png';
@@ -177,6 +178,46 @@ function App() {
         navigate(path);
         setActiveItem(index);
     };
+
+
+    useEffect(() => {
+        const telegramId = localStorage.getItem('telegramId');
+        const StartNft_val = localStorage.getItem('StartNft_val') === 'true';
+
+        if (StartNft_val) {
+            axios.post('https://anypatbackend-production.up.railway.app/update-startnft-val', {
+                telegramId,
+                StartNft_val: true
+            }).then(response => {
+                console.log('StartNft_val synchronized with database.');
+            }).catch(error => {
+                console.error('Error synchronizing StartNft_val:', error);
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        const telegramId = localStorage.getItem('telegramId');
+
+        const syncFrendsVal = async () => {
+            try {
+                const response = await axios.post('https://anypatbackend-production.up.railway.app/check-and-update-frends-val', {
+                    telegramId
+                });
+
+                if (response.data.success) {
+                    const dbFrendsVal = response.data.Frends_val;
+                    localStorage.setItem('Frends_val', dbFrendsVal ? 'true' : 'false');
+                } else {
+                    console.error('Failed to sync Frends_val:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Error syncing Frends_val:', error);
+            }
+        };
+
+        syncFrendsVal();
+    }, []);
 
     // ________________________________________________
 

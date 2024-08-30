@@ -44,6 +44,10 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
             alert('Transaction sent successfully!');
             localStorage.setItem('StartNft_val', 'true');
             window.dispatchEvent(new Event('storage'));
+            await axios.post('https://anypatbackend-production.up.railway.app/update-startnft-val', {
+                telegramId,
+                StartNft_val: true
+            });
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
