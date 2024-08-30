@@ -42,9 +42,9 @@ const TonW = ({ telegramId, wallet }) => {
   useEffect(() => {
     const checkWalletConnection = async () => {
         const walletInfo = tonConnectUI.walletInfo;
+        console.log('walletInfo:', walletInfo); // Выводим весь объект для проверки
         if (walletInfo && walletInfo.account && walletInfo.account.address) {
             console.log('Кошелек уже подключен!', walletInfo);
-    
             try {
                 await axios.post('https://anypatbackend-production.up.railway.app/save-wallet-address', {
                     telegramId,
@@ -58,9 +58,8 @@ const TonW = ({ telegramId, wallet }) => {
             console.error('Адрес кошелька не найден или не определен');
         }
     };
-
     checkWalletConnection();
-  }, [tonConnectUI, telegramId]);
+}, [tonConnectUI, telegramId]);
 
   return (
     <TonConnectUIProvider  manifestUrl="https://anytap.org/tonconnect-manifest.json">
