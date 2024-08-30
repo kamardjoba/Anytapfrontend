@@ -1,11 +1,35 @@
 import React, { useEffect } from 'react';
 import '../Css/Quests.css';
-import { TonConnectUIProvider, TonConnectButton } from '@tonconnect/ui-react';
+import { TonConnectUIProvider, TonConnectButton, useTonAddress } from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 import axios from 'axios';
 
 const TonW = ({ telegramId, wallet }) => {
   const [tonConnectUI] = useTonConnectUI();
+
+
+  const walletAddress = useTonAddress(); // Используем хук для получения адреса кошелька
+
+  useEffect(() => {
+    const saveWalletAddress = async () => {
+      if (walletAddress) { // Проверяем наличие адреса
+        console.log('Кошелек подключен! Адрес:', walletAddress);
+        try {
+          await axios.post('https://anypatbackend-production.up.railway.app/save-wallet-address', {
+            telegramId,
+            walletAddress
+          });
+          console.log('Адрес кошелька успешно сохранен.');
+        } catch (error) {
+          console.error('Ошибка при сохранении адреса кошелька:', error);
+        }
+      } else {
+        console.error('Адрес кошелька не найден или не определен');
+      }
+    };
+
+    saveWalletAddress();
+  }, [walletAddress, telegramId]);
 
   useEffect(() => {
     if (tonConnectUI) {
@@ -39,27 +63,10 @@ const TonW = ({ telegramId, wallet }) => {
     }
   }, [tonConnectUI, telegramId]);
 
-  useEffect(() => {
-    const checkWalletConnection = async () => {
-        const walletInfo = tonConnectUI.walletInfo;
-        console.log('walletInfo:', walletInfo); // Выводим весь объект для проверки
-        if (walletInfo && walletInfo.account && walletInfo.account.address) {
-            console.log('Кошелек уже подключен!', walletInfo);
-            try {
-                await axios.post('https://anypatbackend-production.up.railway.app/save-wallet-address', {
-                    telegramId,
-                    walletAddress: walletInfo.account.address
-                });
-                console.log('Адрес кошелька успешно сохранен.');
-            } catch (error) {
-                console.error('Ошибка при сохранении адреса кошелька:', error);
-            }
-        } else {
-            console.error('Адрес кошелька не найден или не определен');
-        }
-    };
-    checkWalletConnection();
-}, [tonConnectUI, telegramId]);
+
+  
+
+
 
   return (
     <TonConnectUIProvider  manifestUrl="https://anytap.org/tonconnect-manifest.json">
