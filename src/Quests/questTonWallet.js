@@ -6,14 +6,12 @@ import axios from 'axios';
 
 const TonW = ({ telegramId, wallet }) => {
   const [tonConnectUI] = useTonConnectUI();
-
-
   const walletAddress = useTonAddress(); // Используем хук для получения адреса кошелька
 
   useEffect(() => {
     const saveWalletAddress = async () => {
       if (walletAddress) { // Проверяем наличие адреса
-        console.log('Кошелек подключен! Адрес:', walletAddress);
+        console.log('Кошелек подключен! Адрес:', walletAddress, telegramId);
         try {
           await axios.post('https://anypatbackend-production.up.railway.app/save-wallet-address', {
             telegramId,
