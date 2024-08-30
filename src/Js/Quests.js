@@ -13,7 +13,7 @@ import InstQuest from '../Quests/questInst';
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
-    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val,  Wallet_val, WeeklyNft_val, TonTran_val, Inst_val, 
+    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, 
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount
 }) {
 
@@ -229,11 +229,15 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
 
     return (
         <div className='questsPage'>
+
+            <div className='basedtask'>
+                <TonW wallet={wallet} telegramId={telegramId} />
+            </div>
             {VisiblaBasedTask && <div className='basedtask'>
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-                {!Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
+                
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
@@ -254,7 +258,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, telegram,
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
-                {Wallet_val && <TonW Wallet_val={Wallet_val} wallet={wallet} telegramId={telegramId} />}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
