@@ -130,9 +130,9 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                 </ul>
             </div>}
 
-             {!isFrendsZapros &&<div class= {`outer-containerF ${isFrendsSupport ? 'hiddenFriend' : ''}`}>
+             {!isFrendsZapros && <div class= 'outer-containerF'>
                 
-                    <LoadingScreen wrapperClass="loading-wrapper-friends"  loadingScreenClass={'loading-screen'} />  
+                    <LoadingScreen wrapperClass="loading-wrapper-friends"  loadingScreenClass= {`loading-screen ${isFrendsSupport ? 'hiddenFriend' : ''}`} />  
                 
             </div>}
         </div>
