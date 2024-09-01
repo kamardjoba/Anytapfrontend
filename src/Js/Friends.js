@@ -94,8 +94,8 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                 </div>
             </div>
 
-             <div className='friendsUsers ' >
-             {isFrendsSupport && <ul className='whiteContainerContent leaderboardScroll fadeIn'>
+            {isFrendsSupport && <div className='friendsUsers fadeIn' >
+                <ul className='whiteContainerContent leaderboardScroll'>
                     {referrals.map((referral, index) => (
                         <li className='FriendItem' key={index}>
                             <div className='leaderboardItemLeft'>
@@ -127,9 +127,9 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
 
                         </li>
                     ))}
-                </ul>}
+                </ul>
                 {!isFrendsZapros &&  <LoadingScreen wrapperClass="loading-wrapper-friends"  loadingScreenClass= {`loading-screen ${isFrendsSupport ? 'hiddenFriend' : ''}`} />  }
-            </div>
+            </div>}
 
         </div>
     );
