@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import '../Css/Quests.css';
 
-const AdsGramTask = ({ Ad }) => {
+const AdsGramTask = ({ Ad, telegramId }) => {
     const AdControllerRef = useRef(null);
 
     // Инициализация AdsGram SDK при первом рендере
