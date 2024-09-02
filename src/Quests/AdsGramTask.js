@@ -2,7 +2,7 @@
 import React from 'react';
 import '../Css/Quests.css';
 
-const showAd = () => {
+const showAd = ({Ad, telegramId}) => {
     console.log('Пытаемся показать рекламу...');
     if (window.AdsGram) {
         console.log('AdsGram SDK доступен, вызываем AdController.show.');
