@@ -4,6 +4,10 @@ import '../Css/Quests.css';
 
 const AdsGramTask = ({Ad, telegramId}) => {
     const showAd = () => {
+        if (!window.AdsGram) {
+            console.error('AdsGram SDK не загружен');
+            return;
+        }
         if (window.AdsGram) {
             window.AdsGram.AdController.show({
                 onAdClosed: async () => {
