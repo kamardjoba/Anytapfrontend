@@ -107,10 +107,10 @@ function App() {
 
     useEffect(() => {
         if (!isLoading) {
-            const timer = setTimeout(() => setShowLoading(true), 500); // Задержка на время затухания
+            const timer = setTimeout(() => setShowLoading(false), 500); // Задержка на время затухания
             return () => clearTimeout(timer);
         } else {
-            setShowLoading(false); // Показываем загрузку сразу при включении
+            setShowLoading(true); // Показываем загрузку сразу при включении
         }
     }, [isLoading]);
 
