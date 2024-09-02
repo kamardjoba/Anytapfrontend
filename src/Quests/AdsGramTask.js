@@ -8,7 +8,7 @@ const AdsGramTask = ({ Ad }) => {
     useEffect(() => {
         if (window.Adsgram) {
             AdControllerRef.current = window.Adsgram.init({
-                blockId: "questItemRight", // замените на ваш реальный blockId
+                blockId: "123456", // замените на ваш реальный blockId
                 debug: true, // отключите в продакшене
                 debugBannerType: "FullscreenMedia" // тип тестового баннера, если debug включен
             });
