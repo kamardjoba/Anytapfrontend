@@ -23,6 +23,7 @@ import wallet from'../IMG/wallet.svg';
 import inst from'../IMG/inst.svg';
 import telegram from'../IMG/telegram.svg';
 import copy from '../IMG/copy.svg';
+import Ad from '../IMG/Ad.svg'
 
 function App() {
 
@@ -106,10 +107,10 @@ function App() {
 
     useEffect(() => {
         if (!isLoading) {
-            const timer = setTimeout(() => setShowLoading(false), 500); // Задержка на время затухания
+            const timer = setTimeout(() => setShowLoading(true), 500); // Задержка на время затухания
             return () => clearTimeout(timer);
         } else {
-            setShowLoading(true); // Показываем загрузку сразу при включении
+            setShowLoading(false); // Показываем загрузку сразу при включении
         }
     }, [isLoading]);
 
@@ -127,6 +128,7 @@ function App() {
         preloadImage(inst);
         preloadImage(telegram);
         preloadImage(copy);
+        preloadImage(Ad);
 
         const urlParams = new URLSearchParams(window.location.search);
         let telegramId = urlParams.get('telegramId');
@@ -267,7 +269,7 @@ function App() {
                         <Route path="/nofriends" element={<NoFriends invite={invite} referralLink={referralLink} MintStart={MintStart}/>} />
                         <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} copy={copy}/>} />
                         <Route path="/quests" element={<Quests 
-                            X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} telegram={telegram}
+                            X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
                             TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
                             VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
                     </Routes>
