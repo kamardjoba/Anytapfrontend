@@ -2,57 +2,54 @@
 import React from 'react';
 import '../Css/Quests.css';
 
-const AdsGramTask = ({Ad, telegramId}) => {
-    const showAd = () => {
-        if (!window.AdsGram) {
-            console.error('AdsGram SDK не загружен');
-            return;
-        }
-        if (window.AdsGram) {
-            window.AdsGram.AdController.show({
-                onAdClosed: async () => {
-                    console.log("Реклама закрыта");
+const showAd = () => {
+    console.log('Пытаемся показать рекламу...');
+    if (window.AdsGram) {
+        console.log('AdsGram SDK доступен, вызываем AdController.show.');
+        window.AdsGram.AdController.show({
+            onAdClosed: async () => {
+                console.log("Реклама закрыта, обновляем монеты...");
+                try {
+                    const response = await fetch('https://anypatbackend-production.up.railway.app/add-coins', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ telegramId, amount: 200 }),
+                    });
 
-                    try {
-                        // Обновляем монеты у пользователя
-                        const response = await fetch('https://anypatbackend-production.up.railway.app/add-coins', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ telegramId, amount: 200 }),
-                        });
-
-                        const data = await response.json();
-                        if (data.success) {
-                            console.log('200 монет успешно добавлены пользователю');
-                        } else {
-                            console.error('Ошибка при добавлении монет пользователю:', data.message);
-                        }
-
-                        // Теперь обновляем монеты у реферера
-                        const referralUpdateResponse = await fetch('https://anypatbackend-production.up.railway.app/add-coins-to-referral', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ telegramId, amount: 200 }),
-                        });
-
-                        const referralData = await referralUpdateResponse.json();
-                        if (referralData.success) {
-                            console.log('Монеты реферера успешно обновлены');
-                        } else {
-                            console.error('Ошибка при обновлении монет реферера:', referralData.message);
-                        }
-
-                    } catch (error) {
-                        console.error('Ошибка при обновлении монет:', error);
+                    const data = await response.json();
+                    if (data.success) {
+                        console.log('200 монет успешно добавлены пользователю.');
+                    } else {
+                        console.error('Ошибка при добавлении монет пользователю:', data.message);
                     }
-                },
-            });
-        }
-    };
+
+                    // Дополнительные логи
+                    console.log('Обновляем монеты у реферера...');
+                    const referralUpdateResponse = await fetch('https://anypatbackend-production.up.railway.app/add-coins-to-referral', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ telegramId, amount: 200 }),
+                    });
+
+                    const referralData = await referralUpdateResponse.json();
+                    if (referralData.success) {
+                        console.log('Монеты реферера успешно обновлены.');
+                    } else {
+                        console.error('Ошибка при обновлении монет реферера:', referralData.message);
+                    }
+
+                } catch (error) {
+                    console.error('Ошибка при обновлении монет:', error);
+                }
+            },
+        });
+    } else {
+        console.error('AdsGram SDK не загружен.');
+    }
 
 
     return (
