@@ -6,6 +6,16 @@ import LoadingScreen from '../Loading/Loading.js';
 function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
     const [referrals, setReferrals] = useState([]);
     const [isFrendsZapros, setisFrendsZapros] = useState(false);
+    const [isFrendsSupport, setisFrendsSupport] = useState(false);
+
+    useEffect(() => {
+        if (isFrendsSupport) {
+            const timerBlue = setTimeout(() =>  setisFrendsZapros(true), 350); 
+            return () => clearTimeout(timerBlue);
+        } else {
+            setisFrendsZapros(false); 
+        }
+    }, [isFrendsSupport]);
 
     useEffect(() => {
         const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
@@ -26,7 +36,7 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                             };
                         });
                         setReferrals(updatedReferrals);
-                        setisFrendsZapros(true);
+                        setisFrendsSupport(true);
                     } else {
                         console.error(data.message);
                     }
@@ -84,7 +94,7 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                 </div>
             </div>
 
-            {isFrendsZapros && <div className='friendsUsers'>
+            {isFrendsSupport && <div className='friendsUsers fadeIn' >
                 <ul className='whiteContainerContent leaderboardScroll'>
                     {referrals.map((referral, index) => (
                         <li className='FriendItem' key={index}>
@@ -120,11 +130,11 @@ function Friends({ userPhoto, referralLink, invite, MintStart, copy }) {
                 </ul>
             </div>}
 
-             {!isFrendsZapros &&<div class="outer-containerF">
+             
                 
-                    <LoadingScreen wrapperClass="loading-wrapper-friends"  loadingScreenClass={'loading-screen'} />  
+            { !isFrendsZapros &&  <LoadingScreen wrapperClass="loading-wrapper-friends"  loadingScreenClass= {`loading-screen-friend ${isFrendsSupport ? 'hiddenFriend' : ''}`} />  }
                 
-            </div>}
+           
         </div>
     );
 }

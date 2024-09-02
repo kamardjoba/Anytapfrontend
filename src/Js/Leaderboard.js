@@ -35,11 +35,6 @@ function Leaderboard() {
         }
     }, [isLoadingLiderSupport]);
 
-
-
-
-
-
     const targetTelegramIds = useMemo(() => [561009411, 6000155749, 727060329], []); 
 
     useEffect(() => {
