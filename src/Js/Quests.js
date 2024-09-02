@@ -10,7 +10,7 @@ import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
-import AdsGramTask from '../Quests/AdsGramTask';
+//import AdsGramTask from '../Quests/AdsGramTask';
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
