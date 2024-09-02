@@ -1,75 +1,52 @@
-// src/Quests/AdsGramTask.js
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../Css/Quests.css';
 
-const AdsGramTask = ({Ad, telegramId}) => {
+const AdsGramTask = ({ Ad }) => {
+    const AdControllerRef = useRef(null);
+
+    // Инициализация AdsGram SDK при первом рендере
+    useEffect(() => {
+        if (window.Adsgram) {
+            AdControllerRef.current = window.Adsgram.init({
+                blockId: "your-block-id", // замените на ваш реальный blockId
+                debug: true, // отключите в продакшене
+                debugBannerType: "FullscreenMedia" // тип тестового баннера, если debug включен
+            });
+        }
+    }, []); // пустой массив зависимостей для выполнения только один раз
+
     const showAd = () => {
-        console.log("Кнопка Watch нажата");
-    
-        // Откладываем выполнение на 2 секунды, чтобы дать время на загрузку AdsGram SDK
-        setTimeout(() => {
-            if (window.AdsGram) {
-                console.log("Инициализация AdsGram");
-                window.AdsGram.AdController.show({
-                    onAdClosed: async () => {
-                        console.log("Реклама закрыта");
-    
-                        try {
-                            const response = await fetch('https://anypatbackend-production.up.railway.app/add-coins', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({ telegramId, amount: 200 }),
-                            });
-    
-                            const data = await response.json();
-                            if (data.success) {
-                                console.log('200 монет успешно добавлены пользователю');
-                            } else {
-                                console.error('Ошибка при добавлении монет пользователю:', data.message);
-                            }
-    
-                            const referralUpdateResponse = await fetch('https://anypatbackend-production.up.railway.app/add-coins-to-referral', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({ telegramId, amount: 200 }),
-                            });
-    
-                            const referralData = await referralUpdateResponse.json();
-                            if (referralData.success) {
-                                console.log('Монеты реферера успешно обновлены');
-                            } else {
-                                console.error('Ошибка при обновлении монет реферера:', referralData.message);
-                            }
-    
-                        } catch (error) {
-                            console.error('Ошибка при обновлении монет:', error);
-                        }
-                    },
+        if (AdControllerRef.current) {
+            AdControllerRef.current.show()
+                .then((result) => {
+                    if (result.done) {
+                        console.log('Пользователь досмотрел рекламу до конца');
+                        // Здесь можно добавить логику для начисления монет
+                    }
+                })
+                .catch((error) => {
+                    console.error('Ошибка при показе рекламы:', error);
                 });
-            } else {
-                console.error('AdsGram SDK не загружен');
-            }
-        }, 2000); // Задержка на 2 секунды
+        } else {
+            console.error('AdsGram SDK не загружен');
+        }
     };
+
     return (
         <div className='questItem'>
-        <div className='questItemLeft'>
-            <div className='questIcon'>
-                <img src={Ad} alt=""/>
+            <div className='questItemLeft'>
+                <div className='questIcon'>
+                    <img src={Ad} alt=""/>
+                </div>
+                <div className='questItemLeftContent'>
+                    <p className='questTitle'>Watch some interesting </p>
+                    <p className='questSubtitle'>+200 points</p>
+                </div>
             </div>
-            <div className='questItemLeftContent'>
-                <p className='questTitle'>Watch some interesting </p>
-                <p className='questSubtitle'>+200 points</p>
+            <div className='questItemRight'>
+                <button className='questBtn' onClick={showAd}>Watch!</button>
             </div>
         </div>
-        <div className='questItemRight'>
-            {(<button className='questBtn' onClick={showAd}>Watch!</button>)}
-        </div>
-    </div>
     );
 };
 
