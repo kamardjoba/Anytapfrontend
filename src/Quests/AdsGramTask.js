@@ -8,7 +8,7 @@ const AdsGramTask = ({ Ad }) => {
     useEffect(() => {
         if (window.Adsgram) {
             AdControllerRef.current = window.Adsgram.init({
-                blockId: "2649", // замените на ваш реальный blockId
+                blockId: "2651", // замените на ваш реальный blockId
                 debug: true, // отключите в продакшене
                 debugBannerType: "FullscreenMedia" // тип тестового баннера, если debug включен
             });
@@ -18,10 +18,29 @@ const AdsGramTask = ({ Ad }) => {
     const showAd = () => {
         if (AdControllerRef.current) {
             AdControllerRef.current.show()
-                .then((result) => {
+                .then(async (result) => {
                     if (result.done) {
                         console.log('Пользователь досмотрел рекламу до конца');
-                        // Здесь можно добавить логику для начисления монет
+                        
+                        // Добавляем монеты пользователю
+                        try {
+                            const response = await fetch('https://anypatbackend-production.up.railway.app/add-coins', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ telegramId, amount: 200 }),
+                            });
+    
+                            const data = await response.json();
+                            if (data.success) {
+                                console.log('200 монет успешно добавлены пользователю');
+                            } else {
+                                console.error('Ошибка при добавлении монет пользователю:', data.message);
+                            }
+                        } catch (error) {
+                            console.error('Ошибка при выполнении запроса на добавление монет:', error);
+                        }
                     }
                 })
                 .catch((error) => {
