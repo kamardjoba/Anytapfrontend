@@ -29,7 +29,7 @@ const AdsGramTask = ({ Ad, telegramId }) => {
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify({ telegramId, amount: 200 }),
+                                body: JSON.stringify({ telegramId, amount: 5 }),
                             });
     
                             const data = await response.json();
