@@ -59,7 +59,7 @@ const AdsGramTask = ({ Ad, telegramId }) => {
                 </div>
                 <div className='questItemLeftContent'>
                     <p className='questTitle'>Watch an ad and earn points</p>
-                    <p className='questSubtitle'>+200 points</p>
+                    <p className='questSubtitle'>+5 points</p>
                 </div>
             </div>
             <div className='questItemRight'>
