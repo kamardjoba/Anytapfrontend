@@ -10,7 +10,7 @@ import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
-//import AdsGramTask from '../Quests/AdsGramTask';
+import AdsGramTask from '../Quests/AdsGramTask';
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
@@ -246,7 +246,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
-                
+                <AdsGramTask Ad={Ad} telegramId={telegramId}/>
+
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>

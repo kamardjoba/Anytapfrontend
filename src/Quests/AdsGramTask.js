@@ -8,7 +8,7 @@ const AdsGramTask = ({ Ad, telegramId }) => {
     useEffect(() => {
         if (window.Adsgram) {
             AdControllerRef.current = window.Adsgram.init({
-                blockId: "2651", // замените на ваш реальный blockId
+                blockId: "2682", // замените на ваш реальный blockId
                 debug: true, // отключите в продакшене
                 debugBannerType: "FullscreenMedia" // тип тестового баннера, если debug включен
             });
