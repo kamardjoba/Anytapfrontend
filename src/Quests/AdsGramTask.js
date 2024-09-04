@@ -9,7 +9,7 @@ const AdsGramTask = ({ Ad, telegramId }) => {
         if (window.Adsgram) {
             AdControllerRef.current = window.Adsgram.init({
                 blockId: "2682", // замените на ваш реальный blockId
-                debug: true, // отключите в продакшене
+                debug: false, // отключите в продакшене
                 debugBannerType: "FullscreenMedia" // тип тестового баннера, если debug включен
             });
         }
