@@ -58,11 +58,11 @@
     align-self: start;
     text-align: start;
     margin-bottom: 0.5vh;
-    margin-top: 1.5vh;
+    margin-top: 1vh;
 }
 
 .txtNf{
-    width: calc(86% + 1.5vh + 1.5vh);
+    width: calc(86% + 1.6vh);
     font-weight: 700;
 }
  
@@ -73,8 +73,8 @@
     align-items: center;
     background-color: rgba(239, 238, 244, 1);
     border-radius: 0.5vh;
-    margin-bottom: 1.4vh;
-    padding: 1vh;
+    margin-bottom: 1.1vh;
+    padding: 0.8vh;
     width: 86%;
 }
 
@@ -191,15 +191,25 @@ button[data-tc-connect-button="true"]{
     .questItem {
         border-radius: 1vh;
         width: 95%;
+        margin-bottom: 2vh;
+        padding: 1vh;
     }
 
     .questItemTon{
         border-radius: 1vh;
         width: 95%;
+        margin-bottom: 2vh;
+        margin-top: 2vh;
     }
 
     .txtNf{
-        width: calc(95% + 1.5vh + 1.5vh);
+        width: calc(95% + 2vh);
+    }
+
+    .txtNf p{
+        margin-bottom: 1vh;
+        margin-top: 2vh;
+        font-size: 4vh;
     }
 
     .questItemLeft {
@@ -215,5 +225,7 @@ button[data-tc-connect-button="true"]{
         height: 5.5vh;
         border-radius: 2vh;
       }
+    
+
     
 }
