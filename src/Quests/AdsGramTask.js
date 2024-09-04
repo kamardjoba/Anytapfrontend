@@ -29,7 +29,7 @@ const AdsGramTask = ({ Ad, telegramId }) => {
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify({ telegramId, amount: 5 }),
+                                body: JSON.stringify({ telegramId, amount: 25 }),
                             });
     
                             const data = await response.json();
@@ -59,7 +59,7 @@ const AdsGramTask = ({ Ad, telegramId }) => {
                 </div>
                 <div className='questItemLeftContent'>
                     <p className='questTitle'>Watch an ad and earn points</p>
-                    <p className='questSubtitle'>+5 points</p>
+                    <p className='questSubtitle'>+25 points</p>
                 </div>
             </div>
             <div className='questItemRight'>
