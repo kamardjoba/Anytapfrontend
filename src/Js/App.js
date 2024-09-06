@@ -181,31 +181,26 @@ function App() {
     useEffect(() => {
         const telegramId = localStorage.getItem('telegramId');
         
-        // Если есть telegramId, выполняем запрос к серверу
         if (telegramId) {
+            // Запрашиваем данные пользователя с сервера
             axios.get(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
                 .then(response => {
                     if (response.data.success) {
                         const { StartNft_val } = response.data;
                         if (StartNft_val) {
-                            // Синхронизируем StartNft_val с localStorage и базой данных
-                            localStorage.setItem('StartNft_val', 'true');
+                            // Если StartNft_val = true в базе данных, обновляем на фронте
                             setStartNftVal(true);
-    
-                            axios.post('https://anypatbackend-production.up.railway.app/update-startnft-val', {
-                                telegramId,
-                                StartNft_val: true
-                            }).then(() => {
-                                console.log('StartNft_val синхронизирован с базой данных.');
-                            }).catch(error => {
-                                console.error('Ошибка синхронизации StartNft_val:', error);
-                            });
+                            localStorage.setItem('StartNft_val', 'true');
                         }
+                    } else {
+                        console.error('Ошибка при получении данных пользователя:', response.data.message);
                     }
                 })
                 .catch(error => {
-                    console.error('Ошибка при запросе информации о пользователе:', error);
+                    console.error('Ошибка при запросе данных:', error);
                 });
+        } else {
+            console.error('Telegram ID не найден');
         }
     }, []);
 
