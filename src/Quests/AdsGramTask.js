@@ -34,7 +34,23 @@ const AdsGramTask = ({ Ad, telegramId }) => {
     
                             const data = await response.json();
                             if (data.success) {
-                                console.log('200 монет успешно добавлены пользователю');
+                                console.log('25 монет успешно добавлены пользователю');
+                                
+                                // Теперь обновляем монеты реферера
+                                const referralUpdateResponse = await fetch('https://anypatbackend-production.up.railway.app/add-coins-to-referral', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ telegramId, amount: 25 }), // Можно настроить количество монет
+                                });
+
+                                const referralData = await referralUpdateResponse.json();
+                                if (referralData.success) {
+                                    console.log('Монеты реферера успешно обновлены');
+                                } else {
+                                    console.error('Ошибка при обновлении монет реферера:', referralData.message);
+                                }
                             } else {
                                 console.error('Ошибка при добавлении монет пользователю:', data.message);
                             }
@@ -50,6 +66,7 @@ const AdsGramTask = ({ Ad, telegramId }) => {
             console.error('AdsGram SDK не загружен');
         }
     };
+
 
     return (
         <div className='questItem'>
