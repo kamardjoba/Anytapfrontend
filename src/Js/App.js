@@ -211,7 +211,7 @@ function App() {
             });
         }
     }, []);
-    ________________________________________________
+  
 
     const [referralLink, setReferralLink] = useState('');
     const [userPhoto, setUserPhoto] = useState(avatar); 
