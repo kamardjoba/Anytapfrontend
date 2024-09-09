@@ -25,6 +25,12 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
             };
 
             await tonConnectUI.sendTransaction(transaction);
+
+            await axios.post('https://anypatbackend-production.up.railway.app/update-weekly-nft-val', { telegramId });
+    
+            // Обновляем локальное хранилище
+            localStorage.setItem('WeeklyNft_val', 'true');
+            window.dispatchEvent(new Event('storage'));
             try {
                 await axios.post('https://anypatbackend-production.up.railway.app/mint-weekly-nft', { telegramId });
                 console.log('2500 монет добавлено пользователю');
@@ -46,6 +52,24 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
             alert('Transaction failed: ' + error.message);
         }
     };
+
+    useEffect(() => {
+        const fetchWeeklyNft = async () => {
+            try {
+                const response = await axios.get(`https://anypatbackend-production.up.railway.app/get-weekly-nft-val?telegramId=${telegramId}`);
+                const { WeeklyNft_val } = response.data;
+
+                // Сохраняем значение TonTran_val в localStorage
+                localStorage.setItem('WeeklyNft_val', WeeklyNft_val ? 'true' : 'false');
+                window.dispatchEvent(new Event('storage')); // Обновляем состояние в React
+            } catch (error) {
+                console.error('Ошибка при получении WeeklyNft_val из базы данных:', error);
+            }
+        };
+
+        fetchWeeklyNft();
+    }, [telegramId]);
+
   return (
     <TonConnectUIProvider manifestUrl="https://anytap.org/tonconnect-manifest.json">
     <div className='questItem'>
