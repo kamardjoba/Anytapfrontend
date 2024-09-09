@@ -47,6 +47,23 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
         }
     };
 
+    useEffect(() => {
+        const fetchTonTranVal = async () => {
+            try {
+                const response = await axios.get(`https://anypatbackend-production.up.railway.app/get-ton-tran-val?telegramId=${telegramId}`);
+                const { TonTran_val } = response.data;
+
+                // Сохраняем значение TonTran_val в localStorage
+                localStorage.setItem('TonTran_val', TonTran_val ? 'true' : 'false');
+                window.dispatchEvent(new Event('storage')); // Обновляем состояние в React
+            } catch (error) {
+                console.error('Ошибка при получении TonTran_val из базы данных:', error);
+            }
+        };
+
+        fetchTonTranVal();
+    }, [telegramId]);
+
     return (
         <TonConnectUIProvider manifestUrl="https://anytap.org/tonconnect-manifest.json">
             <div className='questItem'>
