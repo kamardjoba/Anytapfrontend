@@ -19,7 +19,7 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
                 messages: [
                     {
                         address: 'UQDtzUF991k6365U9fGDgH4RSYly67R9OULpLnvEHMdsEKnr',
-                        amount: '1000000', // 1 TON в нанотонах
+                        amount: '1000000000', // 1 TON в нанотонах
                     },
                 ],
             };
