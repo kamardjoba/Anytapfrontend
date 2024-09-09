@@ -39,6 +39,15 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
             };
 
             await tonConnectUI.sendTransaction(transaction);
+
+            await axios.post('https://anypatbackend-production.up.railway.app/update-friend-nft-val', { telegramId });
+    
+            // Обновляем локальное хранилище
+            localStorage.setItem('Frends_val', 'true');
+            window.dispatchEvent(new Event('storage'));
+    
+            alert('Transaction sent successfully!');
+
             try {
                 await axios.post('https://anypatbackend-production.up.railway.app/mint-friend-nft', { telegramId });
                 console.log('5000 монет добавлено пользователю');
@@ -55,15 +64,29 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
             alert('Transaction sent successfully!');
             localStorage.setItem('Frends_val', 'true');
             window.dispatchEvent(new Event('storage'));
-            // await axios.post('https://anypatbackend-production.up.railway.app/update-frends-val', {
-            //     telegramId,
-            //     Frends_val: true
-            // });
+
         } catch (error) {
             console.error('Transaction failed:', error);
             alert('Transaction failed: ' + error.message);
         }
     };
+
+    useEffect(() => {
+        const fetchFriendNftVal = async () => {
+            try {
+                const response = await axios.get(`https://anypatbackend-production.up.railway.app/get-friend-nft-val?telegramId=${telegramId}`);
+                const { Frends_val } = response.data;
+
+                // Сохраняем значение Frends_val в localStorage
+                localStorage.setItem('Frends_val', Frends_val ? 'true' : 'false');
+                window.dispatchEvent(new Event('storage')); // Обновляем состояние в React
+            } catch (error) {
+                console.error('Ошибка при получении Frends_val из базы данных:', error);
+            }
+        };
+
+        fetchFriendNftVal();
+    }, [telegramId]);
 
     return (
         <TonConnectUIProvider manifestUrl="https://anytap.org/tonconnect-manifest.json">
