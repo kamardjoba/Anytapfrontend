@@ -19,12 +19,21 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
                 messages: [
                     {
                         address: 'UQDtzUF991k6365U9fGDgH4RSYly67R9OULpLnvEHMdsEKnr',
-                        amount: '1000', // 1 TON в нанотонах
+                        amount: '1000000000', // 1 TON в нанотонах
                     },
                 ],
             };
 
             await tonConnectUI.sendTransaction(transaction);
+
+            // После успешной транзакции обновляем данные на сервере
+            await axios.post('https://anypatbackend-production.up.railway.app/update-ton-tran-val', { telegramId });
+    
+            // Обновляем локальное хранилище
+            localStorage.setItem('TonTran_val', 'true');
+            window.dispatchEvent(new Event('storage'));
+    
+            alert('Transaction sent successfully!');
             try {
                 await axios.post('https://anypatbackend-production.up.railway.app/make-ton-transaction', { telegramId });
                 console.log('5000 монет добавлено пользователю');
