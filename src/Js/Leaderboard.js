@@ -55,20 +55,24 @@ function Leaderboard() {
             };
 
             const fetchUserRank = async () => {
+                setIsLoading(true); // Включаем индикатор загрузки
                 try {
-                  const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
-                  const data = await response.json();
-              
-                  if (data.success) {
-                    setUserRank(data.rank);
-                    setisLoadingLiderBlueSupport(true); // Загрузка данных только при необходимости
-                  } else {
-                    console.error(data.message);
-                  }
+                    const response = await fetch(`https://anypatbackend-production.up.railway.app/user-rank?telegramId=${telegramId}`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        setUserRank(data.rank);
+                        setUserCoins(data.user.coins);
+                        setisLoadingLiderBlueSupport(true);
+                    } else {
+                        console.error(data.message);
+                    }
                 } catch (error) {
-                  console.error('Ошибка при загрузке ранга пользователя:', error);
+                    console.error('Ошибка при загрузке ранга пользователя:', error);
+                } finally {
+                    setIsLoading(false); // Выключаем индикатор загрузки
                 }
-              };
+            };
             if (targetTelegramIds.includes(telegramId)) {
                 const fetchTotalUsers = async () => {
                     try {
