@@ -16,9 +16,7 @@ const Botview = ({ GoBot, Bot_val ,telegram}) => {
             </div>
         </div>
         <div className='questItemRight'>
-            {!Bot_val && (
-                <button className='questBtn' onClick={GoBot}>GO!</button>
-            )}
+            {!Bot_val && (<button className='questBtn' onClick={GoBot}>GO!</button>)}
         </div>
     </div>
   );

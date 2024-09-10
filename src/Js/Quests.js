@@ -301,7 +301,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
-                {Bot_val && <Botview GoBot={GoBot} telegram={telegram}/>}
+                {Bot_val && <Botview GoBot={GoBot} telegram={telegram} Bot_val={Bot_val}/>}
             </div>}
         </div>
     );
