@@ -10,7 +10,7 @@ import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
-import Botview from '../Quests/questbot';
+//import Botview from '../Quests/questbot';
 //import AdsGramTask from '../Quests/AdsGramTask';
 
 
@@ -95,35 +95,35 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }
 
-    function GoBot() {
-        window.open('https://t.me/marsgo_bot/?start=refcode_21dec8c2-6eb8-471d-b0b1-84db892d9041', '_blank'); // Замените на ссылку на ваш Twitter
+    // function GoBot() {
+    //     window.open('https://t.me/marsgo_bot/?start=refcode_21dec8c2-6eb8-471d-b0b1-84db892d9041', '_blank'); // Замените на ссылку на ваш Twitter
     
-        if (window.Telegram.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    //     if (window.Telegram.WebApp) {
+    //         const user = window.Telegram.WebApp.initDataUnsafe.user;
     
-            if (user) {
-                const telegramId = user.id;
+    //         if (user) {
+    //             const telegramId = user.id;
     
-                // Устанавливаем таймер на 5 секунд
-                setTimeout(async () => {
-                    try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-bot-subscription', { telegramId });
-                        localStorage.setItem('Bot_val', 'true'); 
-                        window.dispatchEvent(new Event('storage'));// Обновляем состояние в React после успешного запроса
-                    } catch (error) {
-                        console.error('Ошибка при обновлении подписки на Twitter:', error);
-                    }
-                     // Теперь отправляем запрос на обновление монет у реферера
-                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
-                     if (referralUpdateResponse.data.success) {
-                         console.log('Монеты реферера обновлены');
-                     } else {
-                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
-                     }
-                }, 5000); // 5000 миллисекунд = 5 секунд
-            }
-        }
-    }
+    //             // Устанавливаем таймер на 5 секунд
+    //             setTimeout(async () => {
+    //                 try {
+    //                     await axios.post('https://anypatbackend-production.up.railway.app/update-bot-subscription', { telegramId });
+    //                     localStorage.setItem('Bot_val', 'true'); 
+    //                     window.dispatchEvent(new Event('storage'));// Обновляем состояние в React после успешного запроса
+    //                 } catch (error) {
+    //                     console.error('Ошибка при обновлении подписки на Twitter:', error);
+    //                 }
+    //                  // Теперь отправляем запрос на обновление монет у реферера
+    //                  const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+    //                  if (referralUpdateResponse.data.success) {
+    //                      console.log('Монеты реферера обновлены');
+    //                  } else {
+    //                      console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+    //                  }
+    //             }, 5000); // 5000 миллисекунд = 5 секунд
+    //         }
+    //     }
+    // }
 
     function GoX() {
         window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
