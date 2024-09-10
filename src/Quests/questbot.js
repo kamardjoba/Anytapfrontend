@@ -12,7 +12,7 @@ const Botview = ({ GoBot, Bot_val ,telegram}) => {
             </div>
             <div className='questItemLeftContent'>
                 <p className='questTitle'>Join MarsGo and get $MBASE</p>
-                <p className='questSubtitle'>+200 points</p>
+                <p className='questSubtitle'>+500 points</p>
             </div>
         </div>
         <div className='questItemRight'>
