@@ -277,7 +277,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
-                {!Bot_val && <Botview GoBot={GoBot} telegram={telegram}/>}
+              
 
             </div>}
 
@@ -301,7 +301,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
-                {Bot_val && <Botview GoBot={GoBot} telegram={telegram} Bot_val={Bot_val}/>}
+                
             </div>}
         </div>
     );
