@@ -35,6 +35,7 @@ function App() {
     const [TgOcties_val, setTgOcties_val] = useState(localStorage.getItem('TgOcties_val') === 'true');
     const [X_val, setXVal] = useState(localStorage.getItem('X_val') === 'true');
     const [Inst_val, setInstVal] = useState(localStorage.getItem('Inst_val') === 'true');
+    const [Bot_val, setBotVal] = useState(localStorage.getItem('Bot_val') === 'true');
     const [StartNft_val, setStartNftVal] = useState(localStorage.getItem('StartNft_val') === 'true');
     const [WeeklyNft_val, setWeeklyNftVal] = useState(localStorage.getItem('WeeklyNft_val') === 'true');
     const [TonTran_val, setTonTranVal] = useState(localStorage.getItem('TonTran_val') === 'true');
@@ -50,7 +51,7 @@ function App() {
     const [activeItem, setActiveItem] = useState(null);
 
     const [showLoading, setShowLoading] = useState(true);
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -58,6 +59,7 @@ function App() {
             setTgOcties_val(localStorage.getItem('TgOcties_val') === 'true');
             setXVal(localStorage.getItem('X_val') === 'true');
             setInstVal(localStorage.getItem('Inst_val') === 'true');
+            setBotVal(localStorage.getItem('Bot_val') === 'true');
             setStartNftVal(localStorage.getItem('StartNft_val') === 'true');
             setWeeklyNftVal(localStorage.getItem('WeeklyNft_val') === 'true');
             setTonTranVal(localStorage.getItem('TonTran_val') === 'true');
@@ -78,6 +80,7 @@ function App() {
             X_val ||
             StartNft_val || 
             Frends_val ||
+            Bot_val ||
         
             WeeklyNft_val || 
             TonTran_val || 
@@ -88,16 +91,17 @@ function App() {
             X_val, 
             StartNft_val, 
             Frends_val, 
+            Bot_val,
            
             TonTran_val, 
             WeeklyNft_val,
             Inst_val]);
 
     useEffect(() => {
-        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val) {
+        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val) {
             setVisiblaBasedTask(false);//old False
         }
-    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val]);
+    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val]);
 
     useEffect(() => {
         if (WeeklyNft_val && TonTran_val) {
@@ -295,7 +299,7 @@ function App() {
                         <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} copy={copy}/>} />
                         <Route path="/quests" element={<Quests 
                             X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
-                            TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val}
+                            TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val}
                             VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
                     </Routes>
                 </div>
