@@ -47,10 +47,14 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             localStorage.setItem('X_val', 'true');
                             window.dispatchEvent(new Event('storage'));
                         }
+                        localStorage.setItem('X_val', 'false');
+                        window.dispatchEvent(new Event('storage'));
                         if (response.data.isSubscribedToInstagram) {
                             localStorage.setItem('Inst_val', 'true');
                             window.dispatchEvent(new Event('storage'));
                         }
+                        localStorage.setItem('Inst_val', 'false');
+                        window.dispatchEvent(new Event('storage'));
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
