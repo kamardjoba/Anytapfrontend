@@ -46,15 +46,17 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                         if (response.data.isSubscribedToTwitter) {
                             localStorage.setItem('X_val', 'true');
                             window.dispatchEvent(new Event('storage'));
-                        }
+                        }else{
                         localStorage.setItem('X_val', 'false');
                         window.dispatchEvent(new Event('storage'));
+                        }
                         if (response.data.isSubscribedToInstagram) {
                             localStorage.setItem('Inst_val', 'true');
                             window.dispatchEvent(new Event('storage'));
-                        }
+                        }else{
                         localStorage.setItem('Inst_val', 'false');
                         window.dispatchEvent(new Event('storage'));
+                        }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
