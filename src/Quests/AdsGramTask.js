@@ -109,7 +109,7 @@ const AdsGramTask = ({ Ad, telegramId, adsWatched }) => {
 
                 // Check if the user has watched 20 or more ads
                 if (adsWatched >= 20) {
-                    alert('Лимит на просмотр рекламы превышен. Вы уже просмотрели 20 реклам.');
+                    alert('That\'s enough for today. Come back tomorrow!');
                     return; // Don't proceed with showing the ad
                 }
 
