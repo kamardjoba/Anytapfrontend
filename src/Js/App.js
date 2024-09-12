@@ -196,7 +196,12 @@ function App() {
                             setStartNftVal(true);
                             localStorage.setItem('StartNft_val', 'true');
                         }
-                    } else {
+                    }
+                    if (response.data.success) {
+                        setBotVal(response.data.isSubscribedToBot); // Update the Bot_val state based on response
+                    localStorage.setItem('Bot_val', response.data.isSubscribedToBot ? 'true' : 'false'); // 
+                    }
+                     else {
                         console.error('Ошибка при получении данных пользователя:', response.data.message);
                     }
                 })
