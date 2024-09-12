@@ -99,7 +99,7 @@ function App() {
 
     useEffect(() => {
         if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val) {
-            setVisiblaBasedTask(false);//old False
+            setVisiblaBasedTask(true);//old False
         }
     }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val]);
 
