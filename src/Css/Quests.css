@@ -8,7 +8,7 @@
 
 .basedtask{
     border-radius: 1.5vh;
-    margin-top: 1.5vh;
+    margin-top: 1.7vh;
     background: white;
     display: flex;
     align-items: center;
@@ -34,6 +34,7 @@
 #complatedtask{
     background: rgba(164, 210, 255, 1);
     position: relative;
+    margin-top: 1.7vh;
     border-radius: 1.5vh;
     display: flex;
     align-items: center;
