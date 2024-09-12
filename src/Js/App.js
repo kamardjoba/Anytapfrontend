@@ -51,7 +51,7 @@ function App() {
     const [activeItem, setActiveItem] = useState(null);
 
     const [showLoading, setShowLoading] = useState(true);
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
         const handleStorageChange = () => {
