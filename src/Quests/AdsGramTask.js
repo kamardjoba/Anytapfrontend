@@ -22,6 +22,8 @@ const AdsGramTask = ({ Ad, telegramId }) => {
                     if (result.done) {
                         console.log('Пользователь досмотрел рекламу до конца');
                         
+
+
                         // Добавляем монеты пользователю
                         try {
                             const response = await fetch('https://anypatbackend-production.up.railway.app/add-coins', {
@@ -35,7 +37,21 @@ const AdsGramTask = ({ Ad, telegramId }) => {
                             const data = await response.json();
                             if (data.success) {
                                 console.log('25 монет успешно добавлены пользователю');
-                                
+
+                                const adsResponse = await fetch('https://anypatbackend-production.up.railway.app/update-ads-watched', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ telegramId }),
+                                });
+
+                                const adsData = await adsResponse.json();
+                                if (adsData.success) {
+                                    console.log('Количество просмотров рекламы обновлено:', adsData.adsWatched);
+                                } else {
+                                    console.error('Ошибка при обновлении количества просмотров рекламы:', adsData.message);
+                                }
                                 // Теперь обновляем монеты реферера
                                 const referralUpdateResponse = await fetch('https://anypatbackend-production.up.railway.app/add-coins-to-referral', {
                                     method: 'POST',
