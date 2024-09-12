@@ -16,16 +16,19 @@ const AdsGramTask = ({ Ad, telegramId, adsWatched }) => {
     }, []); // пустой массив зависимостей для выполнения только один раз
 
     const showAd = () => {
+                // Check if the user has watched 20 or more ads
+                if (adsWatched >= 20) {
+                    alert('Лимит на просмотр рекламы превышен. Вы уже просмотрели 20 реклам.');
+                    return; // Don't proceed with showing the ad
+                }
+
         if (AdControllerRef.current) {
             AdControllerRef.current.show()
                 .then(async (result) => {
                     if (result.done) {
                         console.log('Пользователь досмотрел рекламу до конца');
                         
-                        if (adsWatched >= 20) {
-                            alert('Лимит на просмотр рекламы превышен. Вы уже просмотрели 20 реклам.');
-                            return; // Don't proceed with showing the ad
-                        }
+                      
 
                         // Добавляем монеты пользователю
                         try {
