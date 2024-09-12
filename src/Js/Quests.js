@@ -10,8 +10,8 @@ import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
-//import Botview from '../Quests/questbot';
-//import AdsGramTask from '../Quests/AdsGramTask';
+import Botview from '../Quests/questbot';
+import AdsGramTask from '../Quests/AdsGramTask';
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
@@ -284,6 +284,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
                 <AdsGramTask Ad={Ad} telegramId={telegramId}/>
+                {!Bot_val && <Botview GoBot={GoBot} telegram={telegram}/>}
 
 
             </div>}
@@ -308,6 +309,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
+                {Bot_val && <Botview GoBot={GoBot} telegram={telegram} Bot_val={Bot_val}/>}
                 
             </div>}
         </div>
