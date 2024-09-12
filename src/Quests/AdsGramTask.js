@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import '../Css/Quests.css';
 
-const AdsGramTask = ({ Ad, telegramId }) => {
+const AdsGramTask = ({ Ad, telegramId, adsWatched }) => {
     const AdControllerRef = useRef(null);
 
     // Инициализация AdsGram SDK при первом рендере
@@ -22,7 +22,10 @@ const AdsGramTask = ({ Ad, telegramId }) => {
                     if (result.done) {
                         console.log('Пользователь досмотрел рекламу до конца');
                         
-
+                        if (adsWatched >= 20) {
+                            alert('Лимит на просмотр рекламы превышен. Вы уже просмотрели 20 реклам.');
+                            return; // Don't proceed with showing the ad
+                        }
 
                         // Добавляем монеты пользователю
                         try {

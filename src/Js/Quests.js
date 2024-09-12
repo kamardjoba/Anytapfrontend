@@ -19,6 +19,40 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount
 }) {
 
+
+    const [adsWatched, setAdsWatched] = useState(0); // State for ads watched
+    const [telegramId, setTelegramId] = useState(null);
+
+    useEffect(() => {
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                setTelegramId(user.id);
+            } else {
+                console.error('Не удалось получить Telegram ID');
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        // Fetch the number of ads watched when telegramId is available
+        if (telegramId) {
+            axios.get(`https://anypatbackend-production.up.railway.app/get-ads-watched?telegramId=${telegramId}`)
+                .then(response => {
+                    if (response.data.success) {
+                        setAdsWatched(response.data.adsWatched); // Update ads watched state
+                    } else {
+                        console.error('Ошибка при получении количества просмотренной рекламы:', response.data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при запросе количества просмотренной рекламы:', error);
+                });
+        }
+    }, [telegramId]);
+
+
+
     useEffect(() => {
         if (window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
@@ -251,18 +285,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
 
  
 
-    const [telegramId, setTelegramId] = useState(null);
-
-    useEffect(() => {
-        if (window.Telegram.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-            if (user) {
-                setTelegramId(user.id);
-            } else {
-                console.error('Не удалось получить Telegram ID');
-            }
-        }
-    }, []);
 
 
 
@@ -283,7 +305,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
-                <AdsGramTask Ad={Ad} telegramId={telegramId}/>
+                <AdsGramTask Ad={Ad} telegramId={telegramId} adsWatched={adsWatched}/>
                 {!Bot_val && <Botview GoBot={GoBot} telegram={telegram}/>}
 
 
