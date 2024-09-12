@@ -283,7 +283,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
-              
+                <AdsGramTask Ad={Ad} telegramId={telegramId}/>
+
 
             </div>}
 
