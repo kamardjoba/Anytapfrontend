@@ -77,6 +77,8 @@
     border-radius: 0.5vh;
     margin-bottom: 1.1vh;
     padding: 1vh;
+    padding-top: 1.2vh;
+    padding-bottom: 1.2vh;
     width: 86%;
 }
 
@@ -87,6 +89,8 @@
     background-color: rgba(239, 238, 244, 1);
     border-radius: 0.5vh;
     padding: 1vh;
+    padding-top: 1.2vh;
+    padding-bottom: 1.2vh;
     margin-bottom: 1vh;
     margin-top: 1vh;
     width: 86%;
@@ -228,6 +232,10 @@ button[data-tc-connect-button="true"]{
         border-radius: 2vh;
       }
     
-
+      button[data-tc-dropdown-button="true"] {
+        height: 5.5vh;
+       
+      }
+    
     
 }
