@@ -106,6 +106,13 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                         localStorage.setItem('BotBourekas_val', 'false');
                         window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.Frends_val) {
+                            localStorage.setItem('Frends_val', 'true');
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                        localStorage.setItem('Frends_val', 'false');
+                        window.dispatchEvent(new Event('storage'));
+                        }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
