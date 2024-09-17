@@ -12,10 +12,11 @@ import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 import Botview from '../Quests/questbot';
 import AdsGramTask from '../Quests/AdsGramTask';
+import BotBourekas from '../Quests/questBotBourekas';
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
-    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val,
+    TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount
 }) {
 
@@ -165,6 +166,37 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }
 
+    function GoBotBourekas() {
+        window.open('https://t.me/marsgo_bot/?start=refcode_21dec8c2-6eb8-471d-b0b1-84db892d9041', '_blank'); // Замените на ссылку на ваш Twitter
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    
+            if (user) {
+                const telegramId = user.id;
+    
+                // Устанавливаем таймер на 5 секунд
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-bot-subscription', { telegramId });
+                        localStorage.setItem('BotBourekas_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));// Обновляем состояние в React после успешного запроса
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
+                }, 5000); // 5000 миллисекунд = 5 секунд
+            }
+        }
+    }
+
+
     function GoX() {
         window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
     
@@ -307,6 +339,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
                 <AdsGramTask Ad={Ad} telegramId={telegramId} adsWatched={adsWatched}/>
                 {!Bot_val && <Botview GoBot={GoBot} telegram={telegram}/>}
+                {!BotBourekas_val && <BotBourekas GoBotBourekas={GoBotBourekas} telegram={telegram}/>}
+
 
 
             </div>}
@@ -331,7 +365,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
-                {Bot_val && <Botview GoBot={GoBot} telegram={telegram} Bot_val={Bot_val}/>}
+                {Bot_val && <Botview telegram={telegram} Bot_val={Bot_val}/>}
+                {BotBourekas_val && <BotBourekas telegram={telegram} BotBourekas_val={BotBourekas_val}/>}
                 
             </div>}
         </div>

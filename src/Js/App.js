@@ -36,6 +36,7 @@ function App() {
     const [X_val, setXVal] = useState(localStorage.getItem('X_val') === 'true');
     const [Inst_val, setInstVal] = useState(localStorage.getItem('Inst_val') === 'true');
     const [Bot_val, setBotVal] = useState(localStorage.getItem('Bot_val') === 'true');
+    const [BotBourekas_val, setBotBourekas_val] = useState(localStorage.getItem('BotBourekas_val') === 'true');
     const [StartNft_val, setStartNftVal] = useState(localStorage.getItem('StartNft_val') === 'true');
     const [WeeklyNft_val, setWeeklyNftVal] = useState(localStorage.getItem('WeeklyNft_val') === 'true');
     const [TonTran_val, setTonTranVal] = useState(localStorage.getItem('TonTran_val') === 'true');
@@ -64,6 +65,7 @@ function App() {
             setWeeklyNftVal(localStorage.getItem('WeeklyNft_val') === 'true');
             setTonTranVal(localStorage.getItem('TonTran_val') === 'true');
             setFrendsVal(localStorage.getItem('Frends_val') === 'true');
+            setBotBourekas_val(localStorage.getItem('BotBourekas_val') === 'true');
             
         };
 
@@ -81,7 +83,7 @@ function App() {
             StartNft_val || 
             Frends_val ||
             Bot_val ||
-        
+            BotBourekas_val ||
             WeeklyNft_val || 
             TonTran_val || 
             Inst_val) 
@@ -92,16 +94,16 @@ function App() {
             StartNft_val, 
             Frends_val, 
             Bot_val,
-           
+            BotBourekas_val,
             TonTran_val, 
             WeeklyNft_val,
             Inst_val]);
 
     useEffect(() => {
-        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val) {
+        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val) {
             setVisiblaBasedTask(true);//old False
         }
-    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val]);
+    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val]);
 
     useEffect(() => {
         if (WeeklyNft_val && TonTran_val) {
@@ -199,7 +201,7 @@ function App() {
                     }
                     if (response.data.success) {
                         setBotVal(response.data.isSubscribedToBot); // Update the Bot_val state based on response
-                    localStorage.setItem('Bot_val', response.data.isSubscribedToBot ? 'true' : 'false'); // 
+                        localStorage.setItem('Bot_val', response.data.isSubscribedToBot ? 'true' : 'false'); // 
                     }
                      else {
                         console.error('Ошибка при получении данных пользователя:', response.data.message);
@@ -305,7 +307,7 @@ function App() {
                         <Route path="/quests" element={<Quests 
                             X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
                             TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val}
-                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask}/>}/>
+                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val}/>}/>
                     </Routes>
                 </div>
 
