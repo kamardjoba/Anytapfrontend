@@ -127,7 +127,7 @@ const AdsGramTask = ({ Ad, telegramId, adsWatched }) => {
                                         headers: {
                                             'Content-Type': 'application/json',
                                         },
-                                        body: JSON.stringify({ telegramId, amount: 12,5 }),
+                                        body: JSON.stringify({ telegramId, amount: 12,5 })
                                     });
 
                                     const coinsData = await addCoinsResponse.json();
