@@ -19,7 +19,7 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
                 messages: [
                     {
                         address: 'EQD6in8HLyn7iiBfiQuSZflJuP4Fyjs06sPtI5tyM8HxRgtC',
-                        amount: '750000000', // 0.75 TON в нанотонах
+                        amount: '1000000000', // 0.75 TON в нанотонах
                     },
                 ],
             };
