@@ -92,6 +92,27 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                         localStorage.setItem('Inst_val', 'false');
                         window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedToBot) {
+                            localStorage.setItem('Bot_val', 'true');
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                        localStorage.setItem('Bot_val', 'false');
+                        window.dispatchEvent(new Event('storage'));
+                        }
+                        if (response.data.isSubscribedToBourekas) {
+                            localStorage.setItem('BotBourekas_val', 'true');
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                        localStorage.setItem('BotBourekas_val', 'false');
+                        window.dispatchEvent(new Event('storage'));
+                        }
+                        if (response.data.Frends_val) {
+                            localStorage.setItem('Frends_val', 'true');
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                        localStorage.setItem('Frends_val', 'false');
+                        window.dispatchEvent(new Event('storage'));
+                        }
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
@@ -167,7 +188,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     }
 
     function GoBotBourekas() {
-        window.open('https://t.me/marsgo_bot/?start=refcode_21dec8c2-6eb8-471d-b0b1-84db892d9041', '_blank'); // Замените на ссылку на ваш Twitter
+        window.open('https://t.me/bourekas_game_bot?start=6000155749', '_blank'); // Замените на ссылку на ваш Twitter
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -178,7 +199,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 // Устанавливаем таймер на 5 секунд
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-bot-subscription', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-bourekas-subscription', { telegramId });
                         localStorage.setItem('BotBourekas_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));// Обновляем состояние в React после успешного запроса
                     } catch (error) {
