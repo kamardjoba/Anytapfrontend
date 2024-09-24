@@ -188,7 +188,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     }
 
     function GoBotBourekas() {
-        window.open('https://t.me/bourekas_game_bot?start=6000155749', '_blank'); // Замените на ссылку на ваш Twitter
+        window.open('https://t.me/bourekas_game_bot?start=task_-1002208556196', '_blank'); // Замените на ссылку на ваш Twitter
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
