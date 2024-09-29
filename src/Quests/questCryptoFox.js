@@ -10,7 +10,7 @@ const FoxQuest = ({TgFox_val, telegram, GoFox}) => {
                 <img src={telegram} alt=""/>
             </div>
             <div className='questItemLeftContent'>
-                <p className='questTitle'>Subscribe Crypto Fox Lub channel</p>
+                <p className='questTitle'>Subscribe Crypto Fox Lab channel</p>
                 <p className='questSubtitle'>+1000 points</p>
             </div>
         </div>
