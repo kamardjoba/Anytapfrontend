@@ -114,6 +114,16 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                         localStorage.setItem('Frends_val', 'false');
                         window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedToFox) {
+                            localStorage.setItem('TgFox_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('TgFox_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+
+
+                        
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
@@ -255,7 +265,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-fox', { telegramId });
                         localStorage.setItem('TgFox_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
