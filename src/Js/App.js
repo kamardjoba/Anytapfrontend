@@ -33,6 +33,7 @@ function App() {
 
     const [TgChanel_val, setTgChanel_val] = useState(localStorage.getItem('TgChanel_val') === 'true');
     const [TgOcties_val, setTgOcties_val] = useState(localStorage.getItem('TgOcties_val') === 'true');
+    const [TgFox_val, setTgFox_val] = useState(localStorage.getItem('TgFox_val') === 'true');
     const [X_val, setXVal] = useState(localStorage.getItem('X_val') === 'true');
     const [Inst_val, setInstVal] = useState(localStorage.getItem('Inst_val') === 'true');
     const [Bot_val, setBotVal] = useState(localStorage.getItem('Bot_val') === 'true');
@@ -66,6 +67,7 @@ function App() {
             setTonTranVal(localStorage.getItem('TonTran_val') === 'true');
             setFrendsVal(localStorage.getItem('Frends_val') === 'true');
             setBotBourekas_val(localStorage.getItem('BotBourekas_val') === 'true');
+            setTgFox_val(localStorage.getItem('TgFox_val') === 'true');
             
         };
 
@@ -86,6 +88,7 @@ function App() {
             BotBourekas_val ||
             WeeklyNft_val || 
             TonTran_val || 
+            TgFox_val || 
             Inst_val) 
             {setVisiblaComplatedTask(true);}}, 
             [TgChanel_val, 
@@ -96,14 +99,15 @@ function App() {
             Bot_val,
             BotBourekas_val,
             TonTran_val, 
+            TgFox_val, 
             WeeklyNft_val,
             Inst_val]);
 
     useEffect(() => {
-        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val) {
+        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val && TgFox_val) {
             setVisiblaBasedTask(true);//old False
         }
-    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val]);
+    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val]);
 
     useEffect(() => {
         if (WeeklyNft_val && TonTran_val) {
@@ -307,7 +311,7 @@ function App() {
                         <Route path="/quests" element={<Quests 
                             X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
                             TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val}
-                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val}/>}/>
+                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val}/>}/>
                     </Routes>
                 </div>
 

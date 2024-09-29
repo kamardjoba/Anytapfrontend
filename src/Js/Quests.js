@@ -13,11 +13,12 @@ import InstQuest from '../Quests/questInst';
 import Botview from '../Quests/questbot';
 import AdsGramTask from '../Quests/AdsGramTask';
 import BotBourekas from '../Quests/questBotBourekas';
+import FoxQuest from '../Quests/questCryptoFox'
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
-    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount
+    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount, TgFox_val
 }) {
 
 
@@ -217,7 +218,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }
 
-
     function GoX() {
         window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
     
@@ -236,6 +236,34 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                     }
                      // Теперь отправляем запрос на обновление монет у реферера
                      const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
+                }, 5000); 
+            }
+        }
+    }
+
+    function GoFox() {
+        window.open('https://t.me/CryptoFoxLab', '_blank'); 
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                const telegramId = user.id;
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
+                        localStorage.setItem('TgFox_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));
+                        
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 1000 });
                      if (referralUpdateResponse.data.success) {
                          console.log('Монеты реферера обновлены');
                      } else {
@@ -352,6 +380,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                     <p>Based task</p>
                 </div>
                 
+                {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
@@ -378,6 +407,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
+                {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
