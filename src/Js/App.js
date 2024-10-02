@@ -72,7 +72,7 @@ function App() {
         } else {
             console.error('Telegram ID не найден');
         }
-    }, [telegramId1]);
+    }, []);
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -200,7 +200,7 @@ function App() {
             navigate("/home");
             setActiveItem(0);
         }
-    }, [navigate, location]);
+    }, [navigate, location,telegramId1]);
 
     const handleNavigation = (path, index) => {
         navigate(path);
