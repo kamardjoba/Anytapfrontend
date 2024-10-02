@@ -55,6 +55,25 @@ function App() {
     const [showLoading, setShowLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
 
+    const [telegramId1, setTelegramId] = useState(null);
+
+    useEffect(() => {
+        // Извлекаем данные Telegram при запуске приложения
+        const initDataUnsafe = window.Telegram?.WebApp?.initDataUnsafe;
+        if (initDataUnsafe && initDataUnsafe.user) {
+            const extractedTelegramId = initDataUnsafe.user.id;
+            console.log(`Telegram ID: ${extractedTelegramId}`);
+            
+            // Сохраняем telegramId в состояние компонента
+            setTelegramId(extractedTelegramId);
+
+            // Можно сохранить telegramId в localStorage для дальнейшего использования
+            localStorage.setItem('telegramId', extractedTelegramId);
+        } else {
+            console.error('Telegram ID не найден');
+        }
+    }, []);
+
     useEffect(() => {
         const handleStorageChange = () => {
             setTgChanel_val(localStorage.getItem('TgChanel_val') === 'true');
@@ -152,7 +171,7 @@ function App() {
 
         if (telegramId) {
             console.log(`Запрос на сервер с telegramId: ${telegramId}`);
-            fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
+            fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId1}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
