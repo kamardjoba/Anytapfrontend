@@ -169,8 +169,8 @@ function App() {
             localStorage.setItem('telegramId', telegramId);
         }
 
-        if (telegramId) {
-            console.log(`Запрос на сервер с telegramId: ${telegramId}`);
+        if (telegramId1) {
+            console.log(`Запрос на сервер с telegramId1: ${telegramId1}`);
             fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId1}`)
                 .then(response => response.json())
                 .then(data => {
