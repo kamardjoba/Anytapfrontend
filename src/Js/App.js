@@ -55,24 +55,24 @@ function App() {
     const [showLoading, setShowLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
 
-    const [telegramId1, setTelegramId] = useState(null);
+    const [telegramId1, setTelegramId1] = useState(null);
 
     useEffect(() => {
         // Извлекаем данные Telegram при запуске приложения
         const initDataUnsafe = window.Telegram?.WebApp?.initDataUnsafe;
         if (initDataUnsafe && initDataUnsafe.user) {
-            const extractedTelegramId = initDataUnsafe.user.id;
-            console.log(`Telegram ID: ${extractedTelegramId}`);
+            const extractedTelegramId1 = initDataUnsafe.user.id;
+            console.log(`Telegram ID: ${extractedTelegramId1}`);
             
             // Сохраняем telegramId в состояние компонента
-            setTelegramId(extractedTelegramId);
+            setTelegramId1(extractedTelegramId1);
 
             // Можно сохранить telegramId в localStorage для дальнейшего использования
-            localStorage.setItem('telegramId', extractedTelegramId);
+            localStorage.setItem('telegramId1', extractedTelegramId1);
         } else {
             console.error('Telegram ID не найден');
         }
-    }, []);
+    }, [telegramId1]);
 
     useEffect(() => {
         const handleStorageChange = () => {
