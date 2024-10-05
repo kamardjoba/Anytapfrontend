@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Css/Quests.css';
 
-const TgAppChanell = ({AppCenterChanel_val, telegram, GoFox}) => {
+const TgAppChanell = ({AppCenterChanel_val, telegram, GoAppChanel}) => {
 
   return (
     <div className='questItem'>
@@ -15,7 +15,7 @@ const TgAppChanell = ({AppCenterChanel_val, telegram, GoFox}) => {
             </div>
         </div>
         <div className='questItemRight'>
-            {!AppCenterChanel_val &&(<button className='questBtn' onClick={GoFox} >GO!</button>)}
+            {!AppCenterChanel_val &&(<button className='questBtn' onClick={GoAppChanel} >GO!</button>)}
         </div>
     </div>
   );

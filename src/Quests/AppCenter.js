@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Css/Quests.css';
 
-const TgAppCenter = ({AppCenter_val, telegram, GoFox}) => {
+const TgAppCenter = ({AppCenter_val, telegram, GoAppCenter}) => {
 
   return (
     <div className='questItem'>
@@ -15,7 +15,7 @@ const TgAppCenter = ({AppCenter_val, telegram, GoFox}) => {
             </div>
         </div>
         <div className='questItemRight'>
-            {!AppCenter_val &&(<button className='questBtn' onClick={GoFox} >GO!</button>)}
+            {!AppCenter_val &&(<button className='questBtn' onClick={GoAppCenter} >GO!</button>)}
         </div>
     </div>
   );

@@ -17,10 +17,6 @@ import FoxQuest from '../Quests/questCryptoFox';
 import TgAppCenter from '../Quests/AppCenter';
 import TgAppChanell from '../Quests/AppCenterChanel';
 
-
-
-
-
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount, TgFox_val, AppCenter_val, AppCenterChanel_val
@@ -119,6 +115,16 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                         localStorage.setItem('Frends_val', 'false');
                         window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedToFox) {
+                            localStorage.setItem('TgFox_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('TgFox_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+
+
+                        
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
@@ -260,8 +266,63 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-fox', { telegramId });
                         localStorage.setItem('TgFox_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));
+                        
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 1000 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
+                }, 5000); 
+            }
+        }
+    }
+    function GoAppChanel() {
+        window.open('https://t.me/CryptoFoxLab', '_blank'); 
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                const telegramId = user.id;
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-fox', { telegramId });
+                        localStorage.setItem('AppCenterChanel_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));
+                        
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 1000 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
+                }, 5000); 
+            }
+        }
+    }
+
+    function GoAppCenter() {
+        window.open('https://t.me/CryptoFoxLab', '_blank'); 
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                const telegramId = user.id;
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-fox', { telegramId });
+                        localStorage.setItem('AppCenter_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
                     } catch (error) {
@@ -365,14 +426,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
             }
         }
     }
-    
-    
-    
-
- 
-
-
-
 
     return (
         <div className='questsPage'>
@@ -384,9 +437,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-                
-                {!AppCenter_val && <TgAppCenter telegram={telegram} GoFox={GoFox}/>}
-                {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoFox={GoFox}/>}
+                {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>}
+                {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>}
                 {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
@@ -397,9 +449,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <AdsGramTask Ad={Ad} telegramId={telegramId} adsWatched={adsWatched}/>
                 {!Bot_val && <Botview GoBot={GoBot} telegram={telegram}/>}
                 {!BotBourekas_val && <BotBourekas GoBotBourekas={GoBotBourekas} telegram={telegram}/>}
-
-
-
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
@@ -427,7 +476,6 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
                 {Bot_val && <Botview telegram={telegram} Bot_val={Bot_val}/>}
                 {BotBourekas_val && <BotBourekas telegram={telegram} BotBourekas_val={BotBourekas_val}/>}
-                
             </div>}
         </div>
     );

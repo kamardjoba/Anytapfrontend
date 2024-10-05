@@ -42,8 +42,8 @@ function App() {
     const [WeeklyNft_val, setWeeklyNftVal] = useState(localStorage.getItem('WeeklyNft_val') === 'true');
     const [TonTran_val, setTonTranVal] = useState(localStorage.getItem('TonTran_val') === 'true');
     const [Frends_val, setFrendsVal] = useState(localStorage.getItem('Frends_val') === 'true');
-    const [AppCenter_val, setAppCenter_val] = useState(localStorage.getItem('Frends_val') === 'true');
-    const [AppCenterChanel_val, setAppCenterChanel_val] = useState(localStorage.getItem('Frends_val') === 'true');
+    const [AppCenter_val, setAppCenter_val] = useState(localStorage.getItem('AppCenter_val') === 'true');
+    const [AppCenterChanel_val, setAppCenterChanel_val] = useState(localStorage.getItem('AppCenterChanel_val') === 'true');
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -56,6 +56,25 @@ function App() {
 
     const [showLoading, setShowLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
+
+    const [telegramId1, setTelegramId1] = useState(null);
+
+    useEffect(() => {
+        // Извлекаем данные Telegram при запуске приложения
+        const initDataUnsafe = window.Telegram?.WebApp?.initDataUnsafe;
+        if (initDataUnsafe && initDataUnsafe.user) {
+            const extractedTelegramId1 = initDataUnsafe.user.id;
+            console.log(`Telegram ID: ${extractedTelegramId1}`);
+            
+            // Сохраняем telegramId в состояние компонента
+            setTelegramId1(extractedTelegramId1);
+
+            // Можно сохранить telegramId в localStorage для дальнейшего использования
+            localStorage.setItem('telegramId1', extractedTelegramId1);
+        } else {
+            console.error('Telegram ID не найден');
+        }
+    }, []);
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -70,7 +89,8 @@ function App() {
             setFrendsVal(localStorage.getItem('Frends_val') === 'true');
             setBotBourekas_val(localStorage.getItem('BotBourekas_val') === 'true');
             setTgFox_val(localStorage.getItem('TgFox_val') === 'true');
-            
+            setAppCenter_val(localStorage.getItem('AppCenter_val') === 'true');
+            setAppCenterChanel_val(localStorage.getItem('AppCenterChanel_val') === 'true');
         };
 
         window.addEventListener('storage', handleStorageChange);
@@ -156,9 +176,9 @@ function App() {
             localStorage.setItem('telegramId', telegramId);
         }
 
-        if (telegramId) {
-            console.log(`Запрос на сервер с telegramId: ${telegramId}`);
-            fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId}`)
+        if (telegramId1) {
+            console.log(`Запрос на сервер с telegramId1: ${telegramId1}`);
+            fetch(`https://anypatbackend-production.up.railway.app/user-info?telegramId=${telegramId1}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -187,7 +207,7 @@ function App() {
             navigate("/home");
             setActiveItem(0);
         }
-    }, [navigate, location]);
+    }, [navigate, location,telegramId1]);
 
     const handleNavigation = (path, index) => {
         navigate(path);
