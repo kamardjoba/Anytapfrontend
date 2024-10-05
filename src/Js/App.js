@@ -42,6 +42,8 @@ function App() {
     const [WeeklyNft_val, setWeeklyNftVal] = useState(localStorage.getItem('WeeklyNft_val') === 'true');
     const [TonTran_val, setTonTranVal] = useState(localStorage.getItem('TonTran_val') === 'true');
     const [Frends_val, setFrendsVal] = useState(localStorage.getItem('Frends_val') === 'true');
+    const [AppCenter_val, setAppCenter_val] = useState(localStorage.getItem('Frends_val') === 'true');
+    const [AppCenterChanel_val, setAppCenterChanel_val] = useState(localStorage.getItem('Frends_val') === 'true');
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -89,6 +91,8 @@ function App() {
             WeeklyNft_val || 
             TonTran_val || 
             TgFox_val || 
+            AppCenter_val || 
+            AppCenterChanel_val || 
             Inst_val) 
             {setVisiblaComplatedTask(true);}}, 
             [TgChanel_val, 
@@ -101,13 +105,15 @@ function App() {
             TonTran_val, 
             TgFox_val, 
             WeeklyNft_val,
+            AppCenter_val,
+            AppCenterChanel_val,
             Inst_val]);
 
     useEffect(() => {
-        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val && TgFox_val) {
+        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val && TgFox_val && AppCenter_val && AppCenterChanel_val) {
             setVisiblaBasedTask(true);//old False
         }
-    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val]);
+    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val, AppCenter_val, AppCenterChanel_val]);
 
     useEffect(() => {
         if (WeeklyNft_val && TonTran_val) {
@@ -311,7 +317,7 @@ function App() {
                         <Route path="/quests" element={<Quests 
                             X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
                             TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val}
-                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val}/>}/>
+                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val} AppCenter_val={AppCenter_val} AppCenterChanel_val={AppCenterChanel_val}/>}/>
                     </Routes>
                 </div>
 

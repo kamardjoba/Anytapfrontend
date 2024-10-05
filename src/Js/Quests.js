@@ -13,12 +13,17 @@ import InstQuest from '../Quests/questInst';
 import Botview from '../Quests/questbot';
 import AdsGramTask from '../Quests/AdsGramTask';
 import BotBourekas from '../Quests/questBotBourekas';
-import FoxQuest from '../Quests/questCryptoFox'
+import FoxQuest from '../Quests/questCryptoFox';
+import TgAppCenter from '../Quests/AppCenter';
+import TgAppChanell from '../Quests/AppCenterChanel';
+
+
+
 
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
-    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount, TgFox_val
+    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount, TgFox_val, AppCenter_val, AppCenterChanel_val
 }) {
 
 
@@ -380,6 +385,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                     <p>Based task</p>
                 </div>
                 
+                {!AppCenter_val && <TgAppCenter telegram={telegram} GoFox={GoFox}/>}
+                {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoFox={GoFox}/>}
                 {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
@@ -407,6 +414,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
+                {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>}
+                {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>}
                 {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
