@@ -285,7 +285,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }
     function GoAppChanel() {
-        window.open('https://t.me/CryptoFoxLab', '_blank'); 
+        window.open('https://t.me/+L2UhKAh0DLAyMDk6', '_blank'); 
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -313,7 +313,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     }
 
     function GoAppCenter() {
-        window.open('https://t.me/CryptoFoxLab', '_blank'); 
+        window.open('http://t.me/miniappscenterbot/center?startapp=YWRkPTg3NiZhcHA9ODc2', '_blank'); 
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
