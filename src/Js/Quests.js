@@ -122,6 +122,20 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             localStorage.setItem('TgFox_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedToCenter) {
+                            localStorage.setItem('AppCenterChanel_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('AppCenterChanel_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+                        if (response.data.isSubscribedToCenterapp) {
+                            localStorage.setItem('AppCenter_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('AppCenter_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
 
 
                         
