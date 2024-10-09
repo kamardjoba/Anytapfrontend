@@ -453,7 +453,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 </div>
                 {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>}
                 {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>}
-                {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>}
+                {/* {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>} */}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
@@ -462,7 +462,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
                 <AdsGramTask Ad={Ad} telegramId={telegramId} adsWatched={adsWatched}/>
                 {!Bot_val && <Botview GoBot={GoBot} telegram={telegram}/>}
-                {!BotBourekas_val && <BotBourekas GoBotBourekas={GoBotBourekas} telegram={telegram}/>}
+                {/* {!BotBourekas_val && <BotBourekas GoBotBourekas={GoBotBourekas} telegram={telegram}/>} */}
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
@@ -479,7 +479,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 </div>
                 {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>}
                 {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>}
-                {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>}
+                {/* {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>} */}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
@@ -489,7 +489,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
                 {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
                 {Bot_val && <Botview telegram={telegram} Bot_val={Bot_val}/>}
-                {BotBourekas_val && <BotBourekas telegram={telegram} BotBourekas_val={BotBourekas_val}/>}
+                {/* {BotBourekas_val && <BotBourekas telegram={telegram} BotBourekas_val={BotBourekas_val}/>} */}
             </div>}
         </div>
     );
