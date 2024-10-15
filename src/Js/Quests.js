@@ -14,12 +14,13 @@ import Botview from '../Quests/questbot';
 import AdsGramTask from '../Quests/AdsGramTask';
 import BotBourekas from '../Quests/questBotBourekas';
 import FoxQuest from '../Quests/questCryptoFox';
+import MushroomQuest from '../Quests/questMushroom.js';
 import TgAppCenter from '../Quests/AppCenter';
 import TgAppChanell from '../Quests/AppCenterChanel';
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
-    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount, TgFox_val, AppCenter_val, AppCenterChanel_val
+    VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount, TgFox_val, AppCenter_val, AppCenterChanel_val, MushroomQuest_val
 }) {
 
 
@@ -257,6 +258,34 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }
 
+    function GoMushroom() {
+        window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                const telegramId = user.id;
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
+                        localStorage.setItem('MushroomQuest_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));
+                        
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
+                }, 5000); 
+            }
+        }
+    }
+
     function GoFox() {
         window.open('https://t.me/CryptoFoxLab', '_blank'); 
     
@@ -437,6 +466,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
+                {!MushroomQuest_val && <MushroomQuest telegram={telegram} GoMushrom={GoMushroom}/>}
                 {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>}
                 {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>}
                 {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>}
@@ -463,6 +493,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
+                {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />}
                 {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>}
                 {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>}
                 {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>}

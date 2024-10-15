@@ -8,7 +8,7 @@ const XQuest = ({ GoX, X_val ,X}) => {
     <div className='questItem'>
         <div className='questItemLeft'>
             <div className='questIcon'>
-            <img src={X} alt="Description of x_chan" loading="lazy" />
+            <img src={X} alt="Description of x_chan"  />
             </div>
             <div className='questItemLeftContent'>
                 <p className='questTitle'>Subscribe X channel</p>

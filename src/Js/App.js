@@ -44,6 +44,7 @@ function App() {
     const [Frends_val, setFrendsVal] = useState(localStorage.getItem('Frends_val') === 'true');
     const [AppCenter_val, setAppCenter_val] = useState(localStorage.getItem('AppCenter_val') === 'true');
     const [AppCenterChanel_val, setAppCenterChanel_val] = useState(localStorage.getItem('AppCenterChanel_val') === 'true');
+    const [MushroomQuest_val, setMushroomQuest_val] = useState(localStorage.getItem('MushroomQuest_val') === 'true');
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -91,6 +92,7 @@ function App() {
             setTgFox_val(localStorage.getItem('TgFox_val') === 'true');
             setAppCenter_val(localStorage.getItem('AppCenter_val') === 'true');
             setAppCenterChanel_val(localStorage.getItem('AppCenterChanel_val') === 'true');
+            setMushroomQuest_val(localStorage.getItem('MushroomQuest_val') === 'true');
         };
 
         window.addEventListener('storage', handleStorageChange);
@@ -113,6 +115,7 @@ function App() {
             TgFox_val || 
             AppCenter_val || 
             AppCenterChanel_val || 
+            MushroomQuest_val || 
             Inst_val) 
             {setVisiblaComplatedTask(true);}}, 
             [TgChanel_val, 
@@ -127,13 +130,14 @@ function App() {
             WeeklyNft_val,
             AppCenter_val,
             AppCenterChanel_val,
+            MushroomQuest_val,
             Inst_val]);
 
     useEffect(() => {
-        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val && TgFox_val && AppCenter_val && AppCenterChanel_val) {
+        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val && TgFox_val && AppCenter_val && AppCenterChanel_val && MushroomQuest_val) {
             setVisiblaBasedTask(true);//old False
         }
-    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val, AppCenter_val, AppCenterChanel_val]);
+    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val, AppCenter_val, AppCenterChanel_val, MushroomQuest_val]);
 
     useEffect(() => {
         if (WeeklyNft_val && TonTran_val) {
@@ -337,7 +341,7 @@ function App() {
                         <Route path="/quests" element={<Quests 
                             X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
                             TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val}
-                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val} AppCenter_val={AppCenter_val} AppCenterChanel_val={AppCenterChanel_val}/>}/>
+                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} MushroomQuest_val={MushroomQuest_val} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val} AppCenter_val={AppCenter_val} AppCenterChanel_val={AppCenterChanel_val}/>}/>
                     </Routes>
                 </div>
 
