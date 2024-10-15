@@ -12,16 +12,14 @@ import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 //import Botview from '../Quests/questbot';
 import AdsGramTask from '../Quests/AdsGramTask';
-<<<<<<< HEAD
-import BotBourekas from '../Quests/questBotBourekas';
-import FoxQuest from '../Quests/questCryptoFox';
+
 import MushroomQuest from '../Quests/questMushroom.js';
-=======
+
 //import BotBourekas from '../Quests/questBotBourekas';
 //import FoxQuest from '../Quests/questCryptoFox';
->>>>>>> d0faf70d4a643ef994f7bfc402471502a8b508f5
-import TgAppCenter from '../Quests/AppCenter';
-import TgAppChanell from '../Quests/AppCenterChanel';
+
+// import TgAppCenter from '../Quests/AppCenter';
+// import TgAppChanell from '../Quests/AppCenterChanel';
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
@@ -285,7 +283,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }
 
-<<<<<<< HEAD
+
     function GoMushroom() {
         window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
     
@@ -314,12 +312,10 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }
 
-    function GoFox() {
-        window.open('https://t.me/CryptoFoxLab', '_blank'); 
-=======
+
     // function GoFox() {
     //     window.open('https://t.me/CryptoFoxLab', '_blank'); 
->>>>>>> d0faf70d4a643ef994f7bfc402471502a8b508f5
+
     
     //     if (window.Telegram.WebApp) {
     //         const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -500,16 +496,12 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-<<<<<<< HEAD
+
                 {!MushroomQuest_val && <MushroomQuest telegram={telegram} GoMushrom={GoMushroom}/>}
-                {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>}
-                {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>}
-                {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>}
-=======
+
                 {/* {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>} */}
                 {/* {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>} */}
                 {/* {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>} */}
->>>>>>> d0faf70d4a643ef994f7bfc402471502a8b508f5
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
@@ -533,16 +525,12 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
-<<<<<<< HEAD
+
                 {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />}
-                {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>}
-                {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>}
-                {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>}
-=======
+
                 {/* {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>} */}
                 {/* {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>} */}
                 {/* {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>} */}
->>>>>>> d0faf70d4a643ef994f7bfc402471502a8b508f5
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
                 {X_val && <XQuest X_val={X_val} X={X} />}
