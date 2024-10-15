@@ -143,10 +143,10 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             window.dispatchEvent(new Event('storage'));
                         }
                         if (response.data.isSubscribedToMushroom) {
-                            localStorage.setItem('AppCenter_val', 'true'); 
+                            localStorage.setItem('MushroomQuest_val', 'true'); 
                             window.dispatchEvent(new Event('storage'));
                         }else{
-                            localStorage.setItem('AppCenter_val', 'false'); 
+                            localStorage.setItem('MushroomQuest_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
 
@@ -287,7 +287,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
 
 
     function GoMushroom() {
-        window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
+        window.open('https://t.me/NotMushCoin_bot/play?startapp=m_6000155749', '_blank'); 
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -295,7 +295,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Mushroom', { telegramId });
                         localStorage.setItem('MushroomQuest_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
