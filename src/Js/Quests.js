@@ -330,7 +330,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app//update-telegram-Pixel', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Pixel', { telegramId });
                         localStorage.setItem('PixelQuest_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
