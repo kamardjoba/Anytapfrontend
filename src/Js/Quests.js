@@ -293,7 +293,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app//update-telegram-Mushroom', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Mushroom', { telegramId });
                         localStorage.setItem('MushroomQuest_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
