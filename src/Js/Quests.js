@@ -565,7 +565,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 </div>
 
                 {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />}
-                {!PixelQuest_val && <PixelQuest PixelQuest_val={PixelQuest_val} telegram={telegram} />}
+                {PixelQuest_val && <PixelQuest PixelQuest_val={PixelQuest_val} telegram={telegram} />}
                 {/* {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>} */}
                 {/* {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>} */}
                 {/* {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>} */}
