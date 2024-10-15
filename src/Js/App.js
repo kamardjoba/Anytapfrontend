@@ -237,6 +237,10 @@ function App() {
                         setBotVal(response.data.isSubscribedToBot); // Update the Bot_val state based on response
                         localStorage.setItem('Bot_val', response.data.isSubscribedToBot ? 'true' : 'false'); // 
                     }
+                    if (response.data.success) {
+                        setBotVal(response.data.isSubscribedToMushroom); // Update the Bot_val state based on response
+                        localStorage.setItem('Bot_val', response.data.isSubscribedToMushroom ? 'true' : 'false'); // 
+                    }
                      else {
                         console.error('Ошибка при получении данных пользователя:', response.data.message);
                     }
