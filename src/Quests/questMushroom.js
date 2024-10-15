@@ -3,7 +3,7 @@ import React from 'react';
 import '../Css/Quests.css';
 
 
-const MushroomQuest = ({ GoMushroom, MushroomQuest_val , telegram}) => {
+const MushroomQuest = ({ GoMushrom, MushroomQuest_val , telegram}) => {
   return (
     <div className='questItem'>
         <div className='questItemLeft'>
@@ -17,7 +17,7 @@ const MushroomQuest = ({ GoMushroom, MushroomQuest_val , telegram}) => {
         </div>
         <div className='questItemRight'>
             {!MushroomQuest_val && (
-                <button className='questBtn' onClick={GoMushroom}>GO!</button>
+                <button className='questBtn' onClick={GoMushrom}>GO!</button>
             )}
         </div>
     </div>
