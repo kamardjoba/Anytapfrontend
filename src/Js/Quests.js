@@ -149,6 +149,13 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             localStorage.setItem('MushroomQuest_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedToPixel) {
+                            localStorage.setItem('PixelQuest_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('PixelQuest_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
 
 
 
@@ -315,7 +322,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     }
 
     function GoPixel() {
-        window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
+        window.open('https://t.me/pixel_wallet_bot/wallet?startapp=6000155749', '_blank'); 
     
         if (window.Telegram.WebApp) {
             const user = window.Telegram.WebApp.initDataUnsafe.user;
@@ -323,7 +330,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-twitter-subscription', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app//update-telegram-Pixel', { telegramId });
                         localStorage.setItem('PixelQuest_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
