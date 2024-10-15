@@ -136,6 +136,14 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             localStorage.setItem('AppCenter_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedToMushroom) {
+                            localStorage.setItem('AppCenter_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('AppCenter_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+
 
 
                         
@@ -326,6 +334,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }
 
+    
+
     function GoAppCenter() {
         window.open('http://t.me/miniappscenterbot/center?startapp=YWRkPTg3NiZhcHA9ODc2', '_blank'); 
     
@@ -451,8 +461,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-                {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>}
-                {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>}
+                {/* {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>} */}
+                {/* {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>} */}
                 {/* {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>} */}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
@@ -477,8 +487,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
-                {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>}
-                {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>}
+                {/* {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>} */}
+                {/* {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>} */}
                 {/* {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>} */}
                 {TgChanel_val && <TgQuest TgChanel_val={TgChanel_val} telegram={telegram}/>}
                 {TgOcties_val && <TgOctiesQuest TgOcties_val={TgOcties_val} telegram={telegram}/>}
