@@ -9,12 +9,12 @@ import FrendsQuest from '../Quests/questFriends';
 import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
-import InstQuest from '../Quests/questInst';
+//import InstQuest from '../Quests/questInst';
 //import Botview from '../Quests/questbot';
 import AdsGramTask from '../Quests/AdsGramTask';
 
-import MushroomQuest from '../Quests/questMushroom.js';
-import PixelQuest from '../Quests/questPixel.js';
+//import MushroomQuest from '../Quests/questMushroom.js';
+//import PixelQuest from '../Quests/questPixel.js';
 
 //import BotBourekas from '../Quests/questBotBourekas';
 //import FoxQuest from '../Quests/questCryptoFox';
@@ -174,35 +174,35 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
         }
     }, []);
     
-    function GoInst() {
-        window.open('https://www.instagram.com/anytap_dapps?igsh=MW1oaHNxYXR5eWxrOA%3D%3D&utm_source=qr', '_blank'); // Замените на ссылку на ваш Twitter
+    // function GoInst() {
+    //     window.open('https://www.instagram.com/anytap_dapps?igsh=MW1oaHNxYXR5eWxrOA%3D%3D&utm_source=qr', '_blank'); // Замените на ссылку на ваш Twitter
     
-        if (window.Telegram.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
+    //     if (window.Telegram.WebApp) {
+    //         const user = window.Telegram.WebApp.initDataUnsafe.user;
     
-            if (user) {
-                const telegramId = user.id;
+    //         if (user) {
+    //             const telegramId = user.id;
     
-                // Устанавливаем таймер на 5 секунд
-                setTimeout(async () => {
-                    try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-instagram-subscription', { telegramId });
-                        localStorage.setItem('Inst_val', 'true'); 
-                        window.dispatchEvent(new Event('storage'));// Обновляем состояние в React после успешного запроса
-                    } catch (error) {
-                        console.error('Ошибка при обновлении подписки на Twitter:', error);
-                    }
-                     // Теперь отправляем запрос на обновление монет у реферера
-                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
-                     if (referralUpdateResponse.data.success) {
-                         console.log('Монеты реферера обновлены');
-                     } else {
-                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
-                     }
-                }, 5000); // 5000 миллисекунд = 5 секунд
-            }
-        }
-    }
+    //             // Устанавливаем таймер на 5 секунд
+    //             setTimeout(async () => {
+    //                 try {
+    //                     await axios.post('https://anypatbackend-production.up.railway.app/update-instagram-subscription', { telegramId });
+    //                     localStorage.setItem('Inst_val', 'true'); 
+    //                     window.dispatchEvent(new Event('storage'));// Обновляем состояние в React после успешного запроса
+    //                 } catch (error) {
+    //                     console.error('Ошибка при обновлении подписки на Twitter:', error);
+    //                 }
+    //                  // Теперь отправляем запрос на обновление монет у реферера
+    //                  const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 200 });
+    //                  if (referralUpdateResponse.data.success) {
+    //                      console.log('Монеты реферера обновлены');
+    //                  } else {
+    //                      console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+    //                  }
+    //             }, 5000); // 5000 миллисекунд = 5 секунд
+    //         }
+    //     }
+    // }
 
     // function GoBot() {
     //     window.open('https://t.me/marsgo_bot/?start=refcode_21dec8c2-6eb8-471d-b0b1-84db892d9041', '_blank'); // Замените на ссылку на ваш Twitter
@@ -293,61 +293,61 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     }
 
 
-    function GoMushroom() {
-        window.open('https://t.me/NotMushCoin_bot/play?startapp=m_6000155749', '_blank'); 
+    // function GoMushroom() {
+    //     window.open('https://t.me/NotMushCoin_bot/play?startapp=m_6000155749', '_blank'); 
     
-        if (window.Telegram.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-            if (user) {
-                const telegramId = user.id;
-                setTimeout(async () => {
-                    try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Mushroom', { telegramId });
-                        localStorage.setItem('MushroomQuest_val', 'true'); 
-                        window.dispatchEvent(new Event('storage'));
+    //     if (window.Telegram.WebApp) {
+    //         const user = window.Telegram.WebApp.initDataUnsafe.user;
+    //         if (user) {
+    //             const telegramId = user.id;
+    //             setTimeout(async () => {
+    //                 try {
+    //                     await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Mushroom', { telegramId });
+    //                     localStorage.setItem('MushroomQuest_val', 'true'); 
+    //                     window.dispatchEvent(new Event('storage'));
                         
-                    } catch (error) {
-                        console.error('Ошибка при обновлении подписки на Twitter:', error);
-                    }
-                     // Теперь отправляем запрос на обновление монет у реферера
-                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
-                     if (referralUpdateResponse.data.success) {
-                         console.log('Монеты реферера обновлены');
-                     } else {
-                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
-                     }
-                }, 5000); 
-            }
-        }
-    }
+    //                 } catch (error) {
+    //                     console.error('Ошибка при обновлении подписки на Twitter:', error);
+    //                 }
+    //                  // Теперь отправляем запрос на обновление монет у реферера
+    //                  const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+    //                  if (referralUpdateResponse.data.success) {
+    //                      console.log('Монеты реферера обновлены');
+    //                  } else {
+    //                      console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+    //                  }
+    //             }, 5000); 
+    //         }
+    //     }
+    // }
 
-    function GoPixel() {
-        window.open('https://t.me/pixel_wallet_bot/wallet?startapp=6000155749', '_blank'); 
+    // function GoPixel() {
+    //     window.open('https://t.me/pixel_wallet_bot/wallet?startapp=6000155749', '_blank'); 
     
-        if (window.Telegram.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-            if (user) {
-                const telegramId = user.id;
-                setTimeout(async () => {
-                    try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Pixel', { telegramId });
-                        localStorage.setItem('PixelQuest_val', 'true'); 
-                        window.dispatchEvent(new Event('storage'));
+    //     if (window.Telegram.WebApp) {
+    //         const user = window.Telegram.WebApp.initDataUnsafe.user;
+    //         if (user) {
+    //             const telegramId = user.id;
+    //             setTimeout(async () => {
+    //                 try {
+    //                     await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Pixel', { telegramId });
+    //                     localStorage.setItem('PixelQuest_val', 'true'); 
+    //                     window.dispatchEvent(new Event('storage'));
                         
-                    } catch (error) {
-                        console.error('Ошибка при обновлении подписки на Twitter:', error);
-                    }
-                     // Теперь отправляем запрос на обновление монет у реферера
-                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
-                     if (referralUpdateResponse.data.success) {
-                         console.log('Монеты реферера обновлены');
-                     } else {
-                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
-                     }
-                }, 5000); 
-            }
-        }
-    }
+    //                 } catch (error) {
+    //                     console.error('Ошибка при обновлении подписки на Twitter:', error);
+    //                 }
+    //                  // Теперь отправляем запрос на обновление монет у реферера
+    //                  const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 500 });
+    //                  if (referralUpdateResponse.data.success) {
+    //                      console.log('Монеты реферера обновлены');
+    //                  } else {
+    //                      console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+    //                  }
+    //             }, 5000); 
+    //         }
+    //     }
+    // }
 
 
     // function GoFox() {
@@ -534,16 +534,16 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                     <p>Based task</p>
                 </div>
 
-                {!MushroomQuest_val && <MushroomQuest telegram={telegram} GoMushrom={GoMushroom}/>}
+                {/* {!MushroomQuest_val && <MushroomQuest telegram={telegram} GoMushrom={GoMushroom}/>} */}
 
                 {/* {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>} */}
                 {/* {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>} */}
                 {/* {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>} */}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
-                {!PixelQuest_val && <PixelQuest GoPixel={GoPixel} telegram={telegram} />}
+                {/* {!PixelQuest_val && <PixelQuest GoPixel={GoPixel} telegram={telegram} />} */}
                 {!TgOcties_val && <TgOctiesQuest GoOct={GoOct} telegram={telegram}/>}
                 {!X_val && <XQuest GoX={GoX} X={X}/>}
-                {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>}
+                {/* {!Inst_val && <InstQuest GoInst={GoInst} inst={inst}/>} */}
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
                 <AdsGramTask Ad={Ad} telegramId={telegramId} adsWatched={adsWatched}/>
@@ -564,8 +564,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                     <p>Complеted task</p>
                 </div>
 
-                {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />}
-                {PixelQuest_val && <PixelQuest PixelQuest_val={PixelQuest_val} telegram={telegram} />}
+                {/* {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />} */}
+                {/* {PixelQuest_val && <PixelQuest PixelQuest_val={PixelQuest_val} telegram={telegram} />} */}
                 {/* {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>} */}
                 {/* {AppCenterChanel_val && <TgAppChanell telegram={telegram} AppCenterChanel_val={AppCenterChanel_val}/>} */}
                 {/* {TgFox_val && <FoxQuest telegram={telegram} TgFox_val={TgFox_val}/>} */}
@@ -576,7 +576,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
-                {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>}
+                {/* {Inst_val && <InstQuest Inst_val={Inst_val} inst={inst}/>} */}
                 {/* {Bot_val && <Botview telegram={telegram} Bot_val={Bot_val}/>} */}
                 {/* {BotBourekas_val && <BotBourekas telegram={telegram} BotBourekas_val={BotBourekas_val}/>} */}
             </div>}
