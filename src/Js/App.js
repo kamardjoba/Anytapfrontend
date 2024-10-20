@@ -47,6 +47,7 @@ function App() {
     const [MushroomQuest_val, setMushroomQuest_val] = useState(localStorage.getItem('MushroomQuest_val') === 'true');
     const [PixelQuest_val, setPixelQuest_val] = useState(localStorage.getItem('PixelQuest_val') === 'true');
     const [Gas_val, setGas_val] = useState(localStorage.getItem('Gas_val') === 'true');
+    const [GasChanel_val, setGasChanel_val] = useState(localStorage.getItem('GasChanel_val') === 'true');
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -97,6 +98,7 @@ function App() {
             setMushroomQuest_val(localStorage.getItem('MushroomQuest_val') === 'true');
             setPixelQuest_val(localStorage.getItem('PixelQuest_val') === 'true');
             setGas_val(localStorage.getItem('Gas_val') === 'true');
+            setGasChanel_val(localStorage.getItem('GasChanel_val') === 'true');
         };
 
         window.addEventListener('storage', handleStorageChange);
@@ -122,6 +124,7 @@ function App() {
             MushroomQuest_val || 
             PixelQuest_val || 
             Gas_val || 
+            GasChanel_val || 
             Inst_val) 
             {setVisiblaComplatedTask(true);}}, 
             [TgChanel_val, 
@@ -139,13 +142,14 @@ function App() {
             MushroomQuest_val,
             PixelQuest_val,
             Gas_val,
+            GasChanel_val,
             Inst_val]);
 
     useEffect(() => {
-        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val && TgFox_val && AppCenter_val && AppCenterChanel_val && MushroomQuest_val && PixelQuest_val && Gas_val) {
+        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val && TgFox_val && AppCenter_val && AppCenterChanel_val && MushroomQuest_val && PixelQuest_val && Gas_val && GasChanel_val) {
             setVisiblaBasedTask(true);//old False
         }
-    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val, AppCenter_val, AppCenterChanel_val, MushroomQuest_val, PixelQuest_val, Gas_val]);
+    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val, AppCenter_val, AppCenterChanel_val, MushroomQuest_val, PixelQuest_val, Gas_val, GasChanel_val]);
 
     useEffect(() => {
         if (WeeklyNft_val && TonTran_val) {
@@ -354,7 +358,7 @@ function App() {
                             X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
                             TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val}
                             VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} MushroomQuest_val={MushroomQuest_val} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val} AppCenter_val={AppCenter_val} AppCenterChanel_val={AppCenterChanel_val}
-                            PixelQuest_val={PixelQuest_val} Gas_val={Gas_val}/>}/>
+                            PixelQuest_val={PixelQuest_val} Gas_val={Gas_val} GasChanel_val={GasChanel_val}/>}/>
                     </Routes>
                 </div>
 
