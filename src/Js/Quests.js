@@ -9,16 +9,14 @@ import FrendsQuest from '../Quests/questFriends';
 import WeeklyNft from '../Quests/questWeeklyNft';
 import TonTrans from '../Quests/questTon';
 import TonW from '../Quests/questTonWallet';
-//import InstQuest from '../Quests/questInst';
-//import Botview from '../Quests/questbot';
 import AdsGramTask from '../Quests/AdsGramTask';
 
 //import MushroomQuest from '../Quests/questMushroom.js';
 //import PixelQuest from '../Quests/questPixel.js';
-
+//import InstQuest from '../Quests/questInst';
+//import Botview from '../Quests/questbot';
 //import BotBourekas from '../Quests/questBotBourekas';
 //import FoxQuest from '../Quests/questCryptoFox';
-
 // import TgAppCenter from '../Quests/AppCenter';
 // import TgAppChanell from '../Quests/AppCenterChanel';
 
