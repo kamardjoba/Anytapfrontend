@@ -12,6 +12,7 @@ import TonW from '../Quests/questTonWallet';
 import InstQuest from '../Quests/questInst';
 //import Botview from '../Quests/questbot';
 import AdsGramTask from '../Quests/AdsGramTask';
+import Gas from '../Quests/questGaspump.js';
 
 import MushroomQuest from '../Quests/questMushroom.js';
 import PixelQuest from '../Quests/questPixel.js';
@@ -313,6 +314,33 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
             }
         }
     }
+    function GoGas() {
+        window.open('https://t.me/gasPump_bot/app?startapp=eyJyZWZfdXNlcl9pZCI6NjAwMDE1NTc0OSwidXNlcl9pZCI6NjAwMDE1NTc0OX0', '_blank'); 
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                const telegramId = user.id;
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Mushroom', { telegramId });
+                        localStorage.setItem('MushroomQuest_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));
+                        
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 1000 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
+                }, 5000); 
+            }
+        }
+    }
 
     function GoPixel() {
         window.open('https://x.com/anytap_dapps?s=21', '_blank'); 
@@ -528,7 +556,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 </div>
 
                 {!MushroomQuest_val && <MushroomQuest telegram={telegram} GoMushrom={GoMushroom}/>}
-
+                {!Gas_val && <Gas telegram={telegram} GoGas={GoGas}/>}
                 {/* {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>} */}
                 {/* {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>} */}
                 {/* {!TgFox_val && <FoxQuest telegram={telegram} GoFox={GoFox}/>} */}
@@ -556,7 +584,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Complеted task</p>
                 </div>
-
+                {Gas_val && <Gas telegram={telegram} Gas_val={Gas_val}/>}
                 {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />}
                 {!PixelQuest_val && <PixelQuest PixelQuest_val={PixelQuest_val} telegram={telegram} />}
                 {/* {AppCenter_val && <TgAppCenter telegram={telegram} AppCenter_val={AppCenter_val}/>} */}
