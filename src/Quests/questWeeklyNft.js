@@ -9,9 +9,9 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
 
     const GoWeekNft = async () => {
         const walletInfo = tonConnectUI.walletInfo;
-        if (!walletInfo) { // Если кошелек не подключен
+        if (!walletInfo) { 
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
-            return; // Останавливаем выполнение функции
+            return; 
           }
         try {
             const transaction = {
@@ -28,7 +28,6 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
 
             await axios.post('https://anypatbackend-production.up.railway.app/update-weekly-nft-val', { telegramId });
     
-            // Обновляем локальное хранилище
             localStorage.setItem('WeeklyNft_val', 'true');
             window.dispatchEvent(new Event('storage'));
             try {
@@ -37,7 +36,7 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
             }
-             // Теперь отправляем запрос на обновление монет у реферера
+
              const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 2500 });
              if (referralUpdateResponse.data.success) {
                  console.log('Монеты реферера обновлены');
@@ -59,9 +58,8 @@ const WeeklyNft = ({WeeklyNft_val, arrows, telegramId}) => {
                 const response = await axios.get(`https://anypatbackend-production.up.railway.app/get-weekly-nft-val?telegramId=${telegramId}`);
                 const { WeeklyNft_val } = response.data;
 
-                // Сохраняем значение TonTran_val в localStorage
                 localStorage.setItem('WeeklyNft_val', WeeklyNft_val ? 'true' : 'false');
-                window.dispatchEvent(new Event('storage')); // Обновляем состояние в React
+                window.dispatchEvent(new Event('storage')); 
             } catch (error) {
                 console.error('Ошибка при получении WeeklyNft_val из базы данных:', error);
             }
