@@ -147,7 +147,21 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             localStorage.setItem('PixelQuest_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
-       
+                        if (response.data.isSubscribedToChat) {
+                            localStorage.setItem('GasChanel_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('GasChanel_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+                        if (response.data.isSubscribedToGaspump) {
+                            localStorage.setItem('Gas_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('Gas_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
                     }
@@ -198,7 +212,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Mushroom', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Gaspump', { telegramId });
                         localStorage.setItem('Gas_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
@@ -224,7 +238,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Mushroom', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Chat', { telegramId });
                         localStorage.setItem('GasChanel_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
