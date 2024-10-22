@@ -350,8 +350,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 <div className='txtNf'>
                     <p>Based task</p>
                 </div>
-
-
+                
                 {!Gas_val && <Gas telegram={telegram} GoGas={GoGas}/>}
                 {!GasChanel_val && <GasChanel telegram={telegram} GoGasChanelNomer5={GoGasChanelNomer5}/>}
                 {!TgChanel_val && <TgQuest GoTg={GoTg} telegram={telegram} />}
@@ -360,14 +359,17 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {!StartNft_val && <MintStartNft  StartNft_val={StartNft_val}  MintStart={MintStart} telegramId={telegramId}/>}
                 {!Frends_val && <FrendsQuest telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
                 <AdsGramTask Ad={Ad} telegramId={telegramId} adsWatched={adsWatched}/>
+
             </div>}
 
             {VisiblaWeekTask &&<div className='basedtask'>
                 <div className='txtNf'>
                     <p>Weekly task</p>
                 </div>
+
                 {!WeeklyNft_val && <WeeklyNft WeeklyNft_val = {WeeklyNft_val} telegramId={telegramId} arrows={arrows}/>}
                 {!TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}     
+
             </div>}
 
             {VisiblaComplatedTask && <div id='complatedtask'>
@@ -384,6 +386,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 {Frends_val && <FrendsQuest Frends_val={Frends_val} telegramId={telegramId} invite={invite} referralsCount={referralsCount} />}
                 {WeeklyNft_val && <WeeklyNft WeeklyNft_val={WeeklyNft_val} telegramId={telegramId} arrows={arrows} />}
                 {TonTran_val && <TonTrans TonTran_val={TonTran_val} telegramId={telegramId} arrows={arrows} />}
+
             </div>}
         </div>
     );
