@@ -239,7 +239,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Gaspump', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Captcha', { telegramId });
                         localStorage.setItem('GoCaptcha_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
