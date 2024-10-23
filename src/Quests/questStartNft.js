@@ -9,9 +9,9 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
    
     const GoStartNft = async () => {
         const walletInfo = tonConnectUI.walletInfo;
-        if (!walletInfo) { // Если кошелек не подключен
+        if (!walletInfo) { 
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
-            return; // Останавливаем выполнение функции
+            return;
         }
         try {
             const transaction = {
@@ -19,22 +19,19 @@ const MintStartNft = ({ StartNft_val, MintStart, telegramId}) => {
                 messages: [
                     {
                         address: 'EQCHDYSdSCwGrWyQsIHRqdFg1z2HPHPfyK6QdyPkpAmGmvd4',
-                        amount: '3000000000', // 1 TON в нанотонах
+                        amount: '3000000000', 
                     },
                 ],
             };
 
             await tonConnectUI.sendTransaction(transaction);
             alert('Transaction sent successfully!');
-  
-             // Теперь отправляем запрос на обновление монет у реферера
              const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 10000 });
              if (referralUpdateResponse.data.success) {
                  console.log('Монеты реферера обновлены');
              } else {
                  console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
              }
-            // Отправляем запрос на сервер для добавления 1000 монет
             try {
                 await axios.post('https://anypatbackend-production.up.railway.app/mint-start-nft', { telegramId });
                 console.log('1000 монет добавлено пользователю');

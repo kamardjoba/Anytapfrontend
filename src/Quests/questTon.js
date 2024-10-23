@@ -9,9 +9,9 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
 
     const GoTon = async () => {
         const walletInfo = tonConnectUI.walletInfo;
-        if (!walletInfo) { // Если кошелек не подключен
+        if (!walletInfo) { 
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
-            return; // Останавливаем выполнение функции
+            return; 
           }
         try {
             const transaction = {
@@ -19,17 +19,14 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
                 messages: [
                     {
                         address: 'UQDtzUF991k6365U9fGDgH4RSYly67R9OULpLnvEHMdsEKnr',
-                        amount: '1000000000', // 1 TON в нанотонах
+                        amount: '1000000000', 
                     },
                 ],
             };
 
             await tonConnectUI.sendTransaction(transaction);
-
-            // После успешной транзакции обновляем данные на сервере
             await axios.post('https://anypatbackend-production.up.railway.app/update-ton-tran-val', { telegramId });
     
-            // Обновляем локальное хранилище
             localStorage.setItem('TonTran_val', 'true');
             window.dispatchEvent(new Event('storage'));
     
@@ -40,7 +37,6 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
             }
-             // Теперь отправляем запрос на обновление монет у реферера
              const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 5000 });
              if (referralUpdateResponse.data.success) {
                  console.log('Монеты реферера обновлены');
@@ -62,9 +58,8 @@ const TonTrans = ({TonTran_val, arrows, telegramId}) => {
                 const response = await axios.get(`https://anypatbackend-production.up.railway.app/get-ton-tran-val?telegramId=${telegramId}`);
                 const { TonTran_val } = response.data;
 
-                // Сохраняем значение TonTran_val в localStorage
                 localStorage.setItem('TonTran_val', TonTran_val ? 'true' : 'false');
-                window.dispatchEvent(new Event('storage')); // Обновляем состояние в React
+                window.dispatchEvent(new Event('storage')); 
             } catch (error) {
                 console.error('Ошибка при получении TonTran_val из базы данных:', error);
             }

@@ -19,13 +19,13 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
     const GoFriendNft = async () => {
         if (!isEligible) {
             alert('You can not mint yet! You need to invite 10 friends first');
-            return; // Прекращаем выполнение, если недостаточно рефералов
+            return; 
         }
 
         const walletInfo = tonConnectUI.walletInfo;
-        if (!walletInfo) { // Если кошелек не подключен
+        if (!walletInfo) { 
             alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
-            return; // Останавливаем выполнение функции
+            return; 
         }
         try {
             const transaction = {
@@ -33,7 +33,7 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
                 messages: [
                     {
                         address: 'EQACWu9QvWiu_T1YFrLTZBhm7QPtUUf45RVK_lH-iCmvoo-J',
-                        amount: '10000000', // 0.01 TON в нанотонах
+                        amount: '10000000',
                     },
                 ],
             };
@@ -42,7 +42,6 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
 
             await axios.post('https://anypatbackend-production.up.railway.app/update-friend-nft-val', { telegramId });
     
-            // Обновляем локальное хранилище
             localStorage.setItem('Frends_val', 'true');
             window.dispatchEvent(new Event('storage'));
     
@@ -54,7 +53,6 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
             } catch (error) {
                 console.error('Ошибка при добавлении монет:', error);
             }
-             // Теперь отправляем запрос на обновление монет у реферера
              const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 5000 });
              if (referralUpdateResponse.data.success) {
                  console.log('Монеты реферера обновлены');
@@ -77,9 +75,8 @@ const FrendsQuest = ({ Frends_val, invite, telegramId, referralsCount }) => {
                 const response = await axios.get(`https://anypatbackend-production.up.railway.app/get-friend-nft-val?telegramId=${telegramId}`);
                 const { Frends_val } = response.data;
 
-                // Сохраняем значение Frends_val в localStorage
                 localStorage.setItem('Frends_val', Frends_val ? 'true' : 'false');
-                window.dispatchEvent(new Event('storage')); // Обновляем состояние в React
+                window.dispatchEvent(new Event('storage')); 
             } catch (error) {
                 console.error('Ошибка при получении Frends_val из базы данных:', error);
             }
