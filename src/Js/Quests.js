@@ -25,7 +25,7 @@ import GasChanel from '../Quests/GasChanell.js';
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
     VisiblaBasedTask, VisiblaWeekTask,VisiblaComplatedTask,referralsCount, TgFox_val, AppCenter_val, AppCenterChanel_val, MushroomQuest_val,
-    PixelQuest_val, Gas_val, GasChanel_val
+    PixelQuest_val, Gas_val, GasChanel_val, GoCaptcha_val
 }) {
 
 
@@ -360,6 +360,34 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
             }
         }
     }
+
+    function GoCaptcha() {
+        window.open('https://t.me/fadewalletbot/app?startapp=79615df488694256ba5484fed2b514d8', '_blank'); 
+    
+        if (window.Telegram.WebApp) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                const telegramId = user.id;
+                setTimeout(async () => {
+                    try {
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Gaspump', { telegramId });
+                        localStorage.setItem('GoCaptcha_val', 'true'); 
+                        window.dispatchEvent(new Event('storage'));
+                        
+                    } catch (error) {
+                        console.error('Ошибка при обновлении подписки на Twitter:', error);
+                    }
+                     // Теперь отправляем запрос на обновление монет у реферера
+                     const referralUpdateResponse = await axios.post('https://anypatbackend-production.up.railway.app/add-coins-to-referral', { telegramId, amount: 1000 });
+                     if (referralUpdateResponse.data.success) {
+                         console.log('Монеты реферера обновлены');
+                     } else {
+                         console.error('Ошибка при обновлении монет реферера:', referralUpdateResponse.data.message);
+                     }
+                }, 5000); 
+            }
+        }
+    }
     function GoGasChanelNomer5() {
         window.open('https://t.me/anytapcommunity', '_blank'); 
     
@@ -604,6 +632,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
 
                 {!Gas_val && <Gas telegram={telegram} GoGas={GoGas}/>}
                 {!GasChanel_val && <GasChanel telegram={telegram} GoGasChanelNomer5={GoGasChanelNomer5}/>}
+                {!GoCaptcha_val && <GasChanel telegram={telegram} GoCaptcha={GoCaptcha}/>}
                 {/* {!MushroomQuest_val && <MushroomQuest telegram={telegram} GoMushrom={GoMushroom}/>} */}
                 {/* {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>} */}
                 {/* {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>} */}
@@ -635,7 +664,8 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
 
                 {Gas_val && <Gas telegram={telegram} Gas_val={Gas_val}/>}
                 {GasChanel_val && <GasChanel telegram={telegram} GasChanel_val={GasChanel_val }/>}
-
+                {GoCaptcha_val && <GasChanel telegram={telegram} GoCaptcha_val={GoCaptcha_val }/>}
+                
 
                 {/* {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />} */}
                 {/* {PixelQuest_val && <PixelQuest PixelQuest_val={PixelQuest_val} telegram={telegram} />} */}
