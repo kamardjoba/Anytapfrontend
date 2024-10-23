@@ -12,6 +12,7 @@ import TonW from '../Quests/questTonWallet';
 import AdsGramTask from '../Quests/AdsGramTask';
 import Gas from '../Quests/questGaspump.js';
 import GasChanel from '../Quests/GasChanell.js';
+import Captcha from '../Quests/Captcha.js'
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
@@ -381,7 +382,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 
                 {!Gas_val && <Gas telegram={telegram} GoGas={GoGas}/>}
                 {!GasChanel_val && <GasChanel telegram={telegram} GoGasChanelNomer5={GoGasChanelNomer5}/>}
-                {!GoCaptcha_val && <GasChanel telegram={telegram} GoCaptcha={GoCaptcha}/>}
+                {!GoCaptcha_val && <Captcha telegram={telegram} GoCaptcha={GoCaptcha}/>}
                 {/* {!MushroomQuest_val && <MushroomQuest telegram={telegram} GoMushrom={GoMushroom}/>} */}
                 {/* {!AppCenter_val && <TgAppCenter telegram={telegram} GoAppCenter={GoAppCenter}/>} */}
                 {/* {!AppCenterChanel_val && <TgAppChanell telegram={telegram} GoAppChanel={GoAppChanel}/>} */}

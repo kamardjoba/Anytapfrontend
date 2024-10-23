@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Css/Quests.css';
 
-const GasChanel = ({GoCaptcha, GoCaptcha_val, telegram}) => {
+const Captcha = ({GoCaptcha, GoCaptcha_val, telegram}) => {
     
   return (
     <div className='questItem'>
@@ -21,4 +21,4 @@ const GasChanel = ({GoCaptcha, GoCaptcha_val, telegram}) => {
   );
 };
 
-export default GasChanel;
+export default Captcha;
