@@ -413,10 +413,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
 
                 {Gas_val && <Gas telegram={telegram} Gas_val={Gas_val}/>}
                 {GasChanel_val && <GasChanel telegram={telegram} GasChanel_val={GasChanel_val }/>}
-
                 {GoCaptcha_val && <GasChanel telegram={telegram} GoCaptcha_val={GoCaptcha_val }/>}
-                
-
                 {/* {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />} */}
                 {/* {PixelQuest_val && <PixelQuest PixelQuest_val={PixelQuest_val} telegram={telegram} />} */}
 

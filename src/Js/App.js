@@ -362,7 +362,7 @@ function App() {
                             X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
                             TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val}
                             VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} MushroomQuest_val={MushroomQuest_val} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val} AppCenter_val={AppCenter_val} AppCenterChanel_val={AppCenterChanel_val}
-                            PixelQuest_val={PixelQuest_val} Gas_val={Gas_val} GasChanel_val={GasChanel_val} Captcha_val={GoCaptcha_val}/>}/>
+                            PixelQuest_val={PixelQuest_val} Gas_val={Gas_val} GasChanel_val={GasChanel_val} GoCaptcha_val={GoCaptcha_val}/>}/>
                     </Routes>
                 </div>
 
