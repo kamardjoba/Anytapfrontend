@@ -15,13 +15,14 @@ import Quests from "./Quests";
 import nophoto from '../IMG/noprofilephoto.png';
 import avatar from "../IMG/avatar.png";
 
-import X from'../IMG/x_chan.svg';
-import arrows from'../IMG/arrows.svg';
-import invite from'../IMG/invite.svg';
-import MintStart from'../IMG/mint.svg';
-import wallet from'../IMG/wallet.svg';
-import inst from'../IMG/inst.svg';
-import telegram from'../IMG/telegram.svg';
+import X from '../IMG/x_chan.svg';
+import arrows from '../IMG/arrows.svg';
+import invite from '../IMG/invite.svg';
+import MintStart from '../IMG/mint.svg';
+import chart_bar from '../IMG/chart_bar.svg'
+import wallet from '../IMG/wallet.svg';
+import inst from '../IMG/inst.svg';
+import telegram from '../IMG/telegram.svg';
 import copy from '../IMG/copy.svg';
 import Ad from '../IMG/Ad.svg'
 
@@ -48,7 +49,10 @@ function App() {
     const [PixelQuest_val, setPixelQuest_val] = useState(localStorage.getItem('PixelQuest_val') === 'true');
     const [Gas_val, setGas_val] = useState(localStorage.getItem('Gas_val') === 'true');
     const [GasChanel_val, setGasChanel_val] = useState(localStorage.getItem('GasChanel_val') === 'true');
-    const [GoCaptcha_val, setGoCaptcha_val] = useState(localStorage.getItem('GoCaptcha_val') === 'true');
+    const [Partners_val, setPartners_val] = useState(localStorage.getItem('Partners_val') === 'true');
+    const [Partners_val2, setPartners_val2] = useState(localStorage.getItem('Partners_val2') === 'true');
+    const [BuyAny_val, setBuyAny_val] = useState(localStorage.getItem('BuyAny_val') === 'true');
+    // const [GoCaptcha_val, setGoCaptcha_val] = useState(localStorage.getItem('GoCaptcha_val') === 'true');
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -100,7 +104,10 @@ function App() {
             setPixelQuest_val(localStorage.getItem('PixelQuest_val') === 'true');
             setGas_val(localStorage.getItem('Gas_val') === 'true');
             setGasChanel_val(localStorage.getItem('GasChanel_val') === 'true');
-            setGoCaptcha_val(localStorage.getItem('GoCaptcha_val') === 'true');
+            setPartners_val(localStorage.getItem('Partners_val') === 'true');
+            setPartners_val2(localStorage.getItem('Partners_val2') === 'true');
+            setBuyAny_val(localStorage.getItem('BuyAny_val') === 'true');
+            // setGoCaptcha_val(localStorage.getItem('GoCaptcha_val') === 'true');
         };
 
         window.addEventListener('storage', handleStorageChange);
@@ -127,7 +134,10 @@ function App() {
             PixelQuest_val || 
             Gas_val || 
             GasChanel_val || 
-            GoCaptcha_val ||
+            Partners_val || 
+            Partners_val2 || 
+            BuyAny_val || 
+            
             Inst_val) 
             {setVisiblaComplatedTask(true);}}, 
             [TgChanel_val, 
@@ -146,14 +156,22 @@ function App() {
             PixelQuest_val,
             Gas_val,
             GasChanel_val,
-            GoCaptcha_val,
+            Partners_val,
+            Partners_val2,
+            BuyAny_val,
+            
             Inst_val]);
 
     useEffect(() => {
-        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && BotBourekas_val && TgFox_val && AppCenter_val && AppCenterChanel_val && MushroomQuest_val && PixelQuest_val && Gas_val && GasChanel_val && GoCaptcha_val) {
+        if (TgChanel_val && TgOcties_val && X_val && StartNft_val && Frends_val && Inst_val && Bot_val  && 
+            BotBourekas_val && TgFox_val && AppCenter_val && AppCenterChanel_val && MushroomQuest_val && PixelQuest_val &&
+             Gas_val && GasChanel_val && Partners_val && Partners_val2 && BuyAny_val
+        ) {
             setVisiblaBasedTask(true);//old False
         }
-    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val, AppCenter_val, AppCenterChanel_val, MushroomQuest_val, PixelQuest_val, Gas_val, GasChanel_val, GoCaptcha_val]);
+    }, [TgChanel_val, TgOcties_val, X_val, StartNft_val, Frends_val, Inst_val, Bot_val, BotBourekas_val, TgFox_val, 
+        AppCenter_val, AppCenterChanel_val, MushroomQuest_val, PixelQuest_val, Gas_val, GasChanel_val, Partners_val, 
+        Partners_val2, BuyAny_val]);
 
     useEffect(() => {
         if (WeeklyNft_val && TonTran_val) {
@@ -180,6 +198,7 @@ function App() {
         preloadImage(arrows); 
         preloadImage(invite);
         preloadImage(MintStart);
+        preloadImage(chart_bar);
         preloadImage(wallet);
         preloadImage(inst);
         preloadImage(telegram);
@@ -360,9 +379,12 @@ function App() {
                         <Route path="/friends" element={<Friends referrals={referrals} referralLink={referralLink} userPhoto={userPhoto} invite={invite} MintStart={MintStart} copy={copy}/>} />
                         <Route path="/quests" element={<Quests 
                             X={X} arrows={arrows} invite={invite} userInfo={userInfo} MintStart={MintStart} wallet={wallet} inst={inst} Ad={Ad} telegram={telegram}
-                            TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val}
-                            VisiblaBasedTask={VisiblaBasedTask} VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} MushroomQuest_val={MushroomQuest_val} VisiblaComplatedTask={VisiblaComplatedTask} BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val} AppCenter_val={AppCenter_val} AppCenterChanel_val={AppCenterChanel_val}
-                            PixelQuest_val={PixelQuest_val} Gas_val={Gas_val} GasChanel_val={GasChanel_val} GoCaptcha_val={GoCaptcha_val}/>}/>
+                            TgChanel_val={TgChanel_val}  TgOcties_val={TgOcties_val}  X_val={X_val}  StartNft_val={StartNft_val}  Frends_val={Frends_val}  
+                            WeeklyNft_val={WeeklyNft_val} TonTran_val={TonTran_val} Inst_val={Inst_val} Bot_val={Bot_val} VisiblaBasedTask={VisiblaBasedTask} 
+                            VisiblaWeekTask={VisiblaWeekTask} referralsCount={referralsCount} MushroomQuest_val={MushroomQuest_val} VisiblaComplatedTask={VisiblaComplatedTask}
+                            BotBourekas_val={BotBourekas_val} TgFox_val={TgFox_val} AppCenter_val={AppCenter_val} AppCenterChanel_val={AppCenterChanel_val}
+                            PixelQuest_val={PixelQuest_val} Gas_val={Gas_val} GasChanel_val={GasChanel_val} Partners_val={Partners_val} Partners_val2={Partners_val2}
+                            BuyAny_val={BuyAny_val} chart_bar={chart_bar}/>}/>
                     </Routes>
                 </div>
 
