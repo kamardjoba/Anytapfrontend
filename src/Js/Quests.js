@@ -181,6 +181,20 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             localStorage.setItem('Partners_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedToBuyAny) {
+                            localStorage.setItem('Partners_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('Partners_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+                        if (response.data.isSubscribedTofuccdafomo) {
+                            localStorage.setItem('BuyAny_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('BuyAny_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
                         
 
                     } catch (error) {
@@ -286,7 +300,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Chat', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-stare', { telegramId });
                         localStorage.setItem('Partners_val2', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
@@ -312,7 +326,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Chat', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Buy', { telegramId });
                         localStorage.setItem('BuyAny_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
