@@ -460,9 +460,9 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                     <p>Complеted task</p>
                 </div>
 
-                {!BuyAny_val && <BuyAny chart_bar={chart_bar} BuyAny_val={BuyAny_val}/>} 
-                {!Partners_val && <Partners telegram={telegram} Partners_val={Partners_val}/>} 
-                {!Partners_val2 && <PartnersTwo telegram={telegram} Partners_val2={Partners_val2}/>} 
+                {BuyAny_val && <BuyAny chart_bar={chart_bar} BuyAny_val={BuyAny_val}/>} 
+                {Partners_val && <Partners telegram={telegram} Partners_val={Partners_val}/>} 
+                {Partners_val2 && <PartnersTwo telegram={telegram} Partners_val2={Partners_val2}/>} 
                 {/* {Gas_val && <Gas telegram={telegram} Gas_val={Gas_val}/>} */}
                 {GasChanel_val && <GasChanel telegram={telegram} GasChanel_val={GasChanel_val }/>}
                 {/* {GoCaptcha_val && <Captcha telegram={telegram} GoCaptcha_val={GoCaptcha_val }/>} */}
