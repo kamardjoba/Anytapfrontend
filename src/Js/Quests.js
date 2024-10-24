@@ -162,6 +162,13 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             localStorage.setItem('Gas_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedToGaspump) {
+                            localStorage.setItem('GoCaptcha_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('GoCaptcha_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
 
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
@@ -414,7 +421,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
 
                 {Gas_val && <Gas telegram={telegram} Gas_val={Gas_val}/>}
                 {GasChanel_val && <GasChanel telegram={telegram} GasChanel_val={GasChanel_val }/>}
-                {GoCaptcha_val && <GasChanel telegram={telegram} GoCaptcha_val={GoCaptcha_val }/>}
+                {GoCaptcha_val && <Captcha telegram={telegram} GoCaptcha_val={GoCaptcha_val }/>}
                 {/* {MushroomQuest_val && <MushroomQuest MushroomQuest_val={MushroomQuest_val} telegram={telegram} />} */}
                 {/* {PixelQuest_val && <PixelQuest PixelQuest_val={PixelQuest_val} telegram={telegram} />} */}
 
