@@ -17,7 +17,7 @@ import Partners from '../Quests/Quest_partner.js';
 import PartnersTwo from '../Quests/Quest_partnerTwo.js';
 import BuyAny from '../Quests/BuyAny.js';
 
-%%%%%%%
+
 
 function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
     TgChanel_val,  TgOcties_val,  X_val,StartNft_val, Frends_val, WeeklyNft_val, TonTran_val, Inst_val, Bot_val, BotBourekas_val,
