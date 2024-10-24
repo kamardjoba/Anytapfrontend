@@ -174,6 +174,14 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             localStorage.setItem('GoCaptcha_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
+                        if (response.data.isSubscribedTofuccdafomo) {
+                            localStorage.setItem('Partners_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('Partners_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+                        
 
                     } catch (error) {
                         console.error('Ошибка при проверке подписки:', error);
@@ -252,7 +260,7 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                 const telegramId = user.id;
                 setTimeout(async () => {
                     try {
-                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-Chat', { telegramId });
+                        await axios.post('https://anypatbackend-production.up.railway.app/update-telegram-fuccdafomo', { telegramId });
                         localStorage.setItem('Partners_val', 'true'); 
                         window.dispatchEvent(new Event('storage'));
                         
