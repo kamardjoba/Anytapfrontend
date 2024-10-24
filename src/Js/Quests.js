@@ -182,17 +182,17 @@ function Quests({ X, arrows, invite, MintStart, wallet, inst, Ad, telegram,
                             window.dispatchEvent(new Event('storage'));
                         }
                         if (response.data.isSubscribedToBuyAny) {
-                            localStorage.setItem('Partners_val', 'true'); 
-                            window.dispatchEvent(new Event('storage'));
-                        }else{
-                            localStorage.setItem('Partners_val', 'false'); 
-                            window.dispatchEvent(new Event('storage'));
-                        }
-                        if (response.data.isSubscribedTofuccdafomo) {
                             localStorage.setItem('BuyAny_val', 'true'); 
                             window.dispatchEvent(new Event('storage'));
                         }else{
                             localStorage.setItem('BuyAny_val', 'false'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }
+                        if (response.data.isSubscribedTofuccdafomo) {
+                            localStorage.setItem('Partners_val', 'true'); 
+                            window.dispatchEvent(new Event('storage'));
+                        }else{
+                            localStorage.setItem('Partners_val', 'false'); 
                             window.dispatchEvent(new Event('storage'));
                         }
                         
